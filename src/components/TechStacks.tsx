@@ -17,7 +17,6 @@ import { SiSanity } from "react-icons/si";
 import { SiCplusplus } from "react-icons/si";
 
 const TechStacks = () => {
-
   const features = [
     {
       title: "Javascript",
@@ -107,9 +106,9 @@ const TechStacks = () => {
       >
         <div className="w-full">
           <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-600 font-semibold text-center relative z-20 h-14">
-          Tech Stacks
+            Tech Stacks
           </h1>
-          <p className="text-center tracking-widest text-zinc-600">
+          <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
             Development Tech Stacks for creating Modern Projects
           </p>
         </div>

@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: #ffffff;
+  --foreground: black; 
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: black; 
+    --foreground: #ededed; 
   }
 }
 
@@ -23,13 +22,19 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.dark {
+  background-color: black;
+  color: #ededed; 
+}
+
+body {
+  background-color: #ffffff; 
+  color: black; 
 }
 
 @layer utilities {
@@ -74,7 +79,7 @@ body {
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: #000;
+  background-color: black;
   z-index: 1000;
 }
 
@@ -88,6 +93,20 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+}
+
+/* Hide the div for screens smaller than 640px */
+@media (max-width: 640px) {
+  .responsive-div {
+    display: none;
+  }
+}
+
+/* Show the div for screens larger than 640px */
+@media (min-width: 640px) {
+  .responsive-div {
+    display: flex; /* or block or whatever suits your layout */
+  }
 }
 
 .footerLogo {

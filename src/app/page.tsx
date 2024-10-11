@@ -26,7 +26,7 @@ const Page: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
-      <main className="pt-20 min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
+      <main className="pt-20 min-h-screen antialiased">
         {loading ? (
           <div className="flex items-center justify-center pt-40 w-full h-screen">
             <LoadingSpinner />
@@ -35,13 +35,16 @@ const Page: React.FC = () => {
           <>
             <div className="flex flex-col gap-y-32 py-28">
               <Navbar />
-              <div className="flex flex-col px-16 w-full h-full">
+              <div className="flex flex-col px-5 sm:px-10 md:px-16 w-full h-full">
                 <Hero />
               </div>
-              <div className="h-[30rem] -mt-28 flex items-center justify-center text-center">
-                <TextHoverEffect text="VIGORE" className="text-[5.5rem]" />
+              <div className="h-[30rem] md:h-[35rem] lg:h-[40rem] flex items-center justify-center text-center -mt-20 md:-mt-28">
+                <TextHoverEffect
+                  text="VIGORE"
+                  className="text-[0] sm:text-[5rem] md:text-[5.5rem] lg:text-[5.8rem]"
+                />
               </div>
-              <div className="flex flex-col space-y-48 px-16 w-full h-full">
+              <div className="flex flex-col space-y-48 px-16 -mt-80 sm:-mt-0 w-full h-full">
                 <Workflow />
                 <TechStacks />
               </div>

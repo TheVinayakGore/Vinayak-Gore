@@ -48,15 +48,17 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ codeString }) => {
           </button>
         )}
       </div>
-      <SyntaxHighlighter
-        language="html"
-        style={atomOneDark}
-        customStyle={{ padding: "1.5rem", borderRadius: "0 0 0.5rem 0.5rem" }}
-        wrapLongLines={true}
-        className="text-sm font-light"
-      >
-        {codeString}
-      </SyntaxHighlighter>
+      <div className="overflow-x-auto w-full">
+        <SyntaxHighlighter
+          language="html"
+          style={atomOneDark}
+          customStyle={{ padding: "1.5rem", borderRadius: "0 0 0.5rem 0.5rem" }}
+          wrapLongLines={false}
+          className="text-sm font-light"
+        >
+          {codeString}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 };

@@ -16,6 +16,10 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PiArrowUpRightBold } from "react-icons/pi";
 import { toast } from "react-toastify";
+import { BsMoonStars } from "react-icons/bs";
+import { HiOutlineSun } from "react-icons/hi2";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
+import SideBar from "./SideBar";
 
 const LoadingSpinner = lazy(() => import("@/components/LoadingSpinner"));
 
@@ -33,10 +37,13 @@ interface MainProjects {
 }
 
 const Navbar = ({ className }: { className?: string }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainprojects, setmainprojects] = useState<MainProjects[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isSunIcon, setIsSunIcon] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const { data: session, status } = useSession();
 
@@ -68,6 +75,21 @@ const Navbar = ({ className }: { className?: string }) => {
     fetchMainProjects();
   }, []);
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setIsDarkMode(storedTheme === "dark");
+      document.body.classList.toggle("dark", storedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    setIsSunIcon((prevState) => !prevState);
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDarkMode ? "light" : "dark");
+  };
+
   const handleFeedbackClick = () => {
     if (status === "authenticated") {
       openModal();
@@ -81,17 +103,35 @@ const Navbar = ({ className }: { className?: string }) => {
     }
   };
 
+  // Function to open sidebar
+  const openSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+
+  // Function to close sidebar
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+  // Close sidebar when clicking outside
+  const handleBackdropClick = (event: React.MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (isSidebarOpen && !target.closest(".sidebar-content")) {
+      closeSidebar();
+    }
+  };
+
   return (
     <>
-      <div
+      <nav
         className={cn(
-          `fixed top-5 inset-x-0 max-w-[40rem] mx-auto z-50`,
+          `fixed top-5 inset-x-0 max-w-sm sm:max-w-[38rem] lg:max-w-[40rem] text-sm sm:text-base mx-auto z-50`,
           className
         )}
       >
         <Menu setActive={setActive}>
           <div className="flex items-center justify-between z-50 w-full">
-            <Link href="/">
+            <Link href="/" className="flex items-center space-x-3">
               <Image
                 src="/logo.svg"
                 alt="logo"
@@ -100,8 +140,10 @@ const Navbar = ({ className }: { className?: string }) => {
                 className="rounded-full"
                 priority
               />
+              <p className="footerLogo text-2xl block sm:hidden">Vinu Gore</p>
             </Link>
-            <div className="flex items-center space-x-6 text-zinc-500 font-light">
+
+            <div className="responsive-div flex items-center space-x-6 font-light">
               <MenuItem setActive={setActive} active={active} item="Auther">
                 <div className="flex flex-col space-y-4 text-sm">
                   <HoveredLink href="/#auther">Who am I ?</HoveredLink>
@@ -110,7 +152,7 @@ const Navbar = ({ className }: { className?: string }) => {
                 </div>
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Projects">
-                <div className="text-sm grid grid-cols-3 gap-2 max-w-5xl mx-auto h-full">
+                <div className="text-sm grid grid-cols-1/2 lg:grid-cols-2 gap-2 w-[20rem] lg:w-[40rem] mx-auto h-full">
                   <Suspense fallback={<LoadingSpinner />}>
                     {loading ? (
                       <div className="flex justify-center items-center w-full h-full">
@@ -161,7 +203,7 @@ const Navbar = ({ className }: { className?: string }) => {
                 href="/create"
                 target="_blank"
                 prefetch={true}
-                className="flex items-start space-x-1 text-zinc-500 hover:text-white"
+                className="flex items-start space-x-1 text-zinc-500 hover:text-blue-600"
               >
                 Create
                 <PiArrowUpRightBold className="text-xs font-light w-2 h-2" />
@@ -170,13 +212,14 @@ const Navbar = ({ className }: { className?: string }) => {
                 href="/blogs"
                 target="_blank"
                 prefetch={true}
-                className="flex items-start space-x-1 text-zinc-500 hover:text-white"
+                className="flex items-start space-x-1 text-zinc-500 hover:text-blue-600"
               >
                 Blogs
                 <PiArrowUpRightBold className="text-xs font-light w-2 h-2" />
               </Link>
             </div>
-            <div className="flex items-center text-xs font-medium text-zinc-100">
+
+            <div className="flex items-center space-x-2 text-xs font-medium text-zinc-100">
               {status === "authenticated" && session?.user ? (
                 <Tooltip
                   text={
@@ -213,11 +256,32 @@ const Navbar = ({ className }: { className?: string }) => {
                   Login
                 </button>
               )}
+              <button
+                className="text-2xl p-2 text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
+                onClick={toggleTheme}
+              >
+                {isSunIcon ? <HiOutlineSun /> : <BsMoonStars />}
+              </button>
+              <button
+                className="block sm:hidden text-2xl p-2 text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
+                onClick={openSidebar}
+              >
+                <MdOutlineDashboardCustomize />
+              </button>
             </div>
           </div>
         </Menu>
         <Feedback isOpen={isModalOpen} onClose={closeModal} />
-      </div>
+      </nav>
+
+      {/* Sidebar */}
+      <SideBar
+        isSidebarOpen={isSidebarOpen}
+        handleBackdropClick={handleBackdropClick}
+        closeSidebar={closeSidebar}
+        toggleTheme={toggleTheme}
+        isSunIcon={isSunIcon}
+      />
     </>
   );
 };

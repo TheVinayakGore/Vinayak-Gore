@@ -110,20 +110,20 @@ const Workflow = () => {
     <>
       <main
         id="start"
-        className="flex flex-col items-center justify-center space-y-20 m-auto -mt-48 z-40 w-full"
+        className="flex flex-col items-center justify-center space-y-20 m-auto -mt-48 z-40 w-full px-4 sm:px-6 lg:px-8"
       >
         <div className="z-40 w-full">
           <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-600 font-semibold text-center relative z-20 h-14">
             Workflow Collection
           </h1>
-          <p className="text-center tracking-widest text-zinc-500">
+          <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
             Some Full Stack projects, Modern UI and SEO friendly websites
           </p>
         </div>
 
         <div className="flex flex-col items-center justify-center m-auto">
           <div className="space-y-5">
-            <ul className="flex items-center justify-center space-x-3 w-full">
+            <ul className="flex flex-wrap items-center justify-center w-full">
               {indicesToShow.map((index) => {
                 const project = projects[index];
                 if (!project || !project.imageUrl) {
@@ -132,15 +132,16 @@ const Workflow = () => {
                 return (
                   <li
                     key={project._id}
-                    className="hover:scale-105 transition-transform w-full"
+                    className="w-full md:w-1/2 lg:w-1/3 p-2"
                   >
-                    <BackgroundGradient className="rounded-xl bg-gradient-to-t from-black to-indigo-500/[0.5] w-full">
+                    <BackgroundGradient className="rounded-xl bg-gradient-to-t from-black to-indigo-500/[0.5] w-full h-full">
                       <Image
                         src={project.imageUrl}
                         alt={project.title}
-                        height="400"
-                        width="400"
-                        className="rounded-t-xl w-full h-full"
+                        layout="responsive"
+                        height={400}
+                        width={400}
+                        className="rounded-t-xl w-full h-auto"
                       />
                       <div className="gap-3 px-6 pb-5">
                         <h1 className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-zinc-200">
@@ -150,7 +151,9 @@ const Workflow = () => {
                           {project.description.slice(0, 500)}
                         </p>
                         <Link
-                          href={project.projectUrl} className="hover:scale-105 transition-transform rounded-full p-2 px-6 mt-10 text-zinc-500 hover:text-white inline-flex items-center space-x-3 border border-zinc-700 hover:border-blue-600 text-sm font-medium hover:bg-blue-600">
+                          href={project.projectUrl}
+                          className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-10 text-zinc-500 hover:text-white inline-flex items-center space-x-3 border border-zinc-700 hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
+                        >
                           <span>Explore Now</span>
                           <MdArrowRightAlt className="w-5 h-5" />
                         </Link>
@@ -162,14 +165,14 @@ const Workflow = () => {
             </ul>
 
             <div className="mx-auto overflow-y-auto w-full h-full">
-              <div className="flex flex-wrap items-start justify-start gap-3 w-full">
+              <div className="flex flex-wrap items-start justify-start w-full">
                 {blogs.length > 0 ? (
                   blogs.slice(0, 5).map((blog) => (
                     <Link
                       key={blog._id}
                       href={`/blogs/${blog?.slug?.current}`}
                       target="_blank"
-                      className="flex flex-col items-start w-[26.8rem] h-48"
+                      className="flex flex-col items-start w-full md:w-1/2 lg:w-1/3 p-2 h-48"
                     >
                       <div className="hover:animate-shimmer transition-colors bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] relative bg-white dark:bg-black border border-zinc-800 p-5 h-full overflow-hidden rounded-xl flex flex-col items-start group">
                         <div className="flex items-center space-x-2 text-xs leading-3 font-light text-zinc-500 w-full">
@@ -185,7 +188,7 @@ const Workflow = () => {
                         </h1>
                         <p className="text-zinc-600 relative z-20 text-sm">
                           {blog?.desc
-                            ? blog.desc.split(" ").slice(0, 27).join(" ") +
+                            ? blog.desc.split(" ").slice(0, 15).join(" ") +
                               "..."
                             : "No description available"}
                         </p>
@@ -197,7 +200,7 @@ const Workflow = () => {
                 ) : (
                   <p>No blogs available.</p>
                 )}
-                <div className="flex items-start justify-start rounded-xl antialiased w-[26.8rem]">
+                <div className="flex items-start justify-start rounded-xl p-2 antialiased w-full md:w-1/2 lg:w-1/3">
                   <GlowingStarsBackgroundCard className="p-5 w-full">
                     <GlowingStarsTitle className="text-zinc-300 my-2">
                       About this site
@@ -220,7 +223,7 @@ const Workflow = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between w-full relative z-40 h-[30rem]">
+            <div className="flex flex-col items-center justify-between w-full relative z-40 h-full md:h-[30rem]">
               <div className="relative shadow-xl bg-zinc-950 border border-zinc-800 px-4 py-10 overflow-hidden rounded-2xl flex flex-col justify-between items-start w-full h-full">
                 <h1 className="md:text-3xl text-2xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-700 font-semibold text-center relative z-50 w-full h-12">
                   What is Programming ?

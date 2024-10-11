@@ -37,7 +37,7 @@ export const TextGenerateEffect = ({
         {headlineArray.map((word, idx) => (
           <motion.span
             key={word + idx}
-            className="md:text-7xl text-3xl lg:text-[10.5rem] bg-clip-text text-transparent bg-gradient-to-b from-white to-black font-extrabold text-center relative z-20 h-36 opacity-0"
+            className="text-[0px] md:text-7xl lg:text-8xl xl:text-[9rem] 2xl:text-[10.3rem] bg-clip-text text-transparent bg-gradient-to-b from-white to-black font-extrabold text-center relative z-20 h-auto opacity-0 w-full"
             style={{
               filter: filter ? "blur(10px)" : "none",
             }}
@@ -52,9 +52,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div>
-          {renderheadline()}
-        </div>
+        <div>{renderheadline()}</div>
       </div>
     </div>
   );
