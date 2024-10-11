@@ -32,7 +32,7 @@ const Freelance = () => {
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
-  
+
   const toggleParagraph = () => {
     setIsParagraphVisible((prevState) => !prevState);
   };
@@ -212,7 +212,7 @@ const Freelance = () => {
                 to delivering clean, scalable code, and commitment to staying
                 updated with the latest industry trends set me apart. Whether
                 you need a visually appealing interface or a robust full-stack
-                solution, I'm here to turn your vision into reality—on time and
+                solution, I am here to turn your vision into reality—on time and
                 beyond expectations.
               </p>
             )}
@@ -268,7 +268,7 @@ const cards = [
     content: () => {
       return (
         <p>
-          I'm offering top-notch web development, frontend development, and UI
+          I am offering top-notch web development, frontend development, and UI
           design services through Glassdoor. With extensive experience in
           building high-performing, responsive websites and user-centric
           designs, I can help bring your next project to life. My skills in{" "}
@@ -278,9 +278,9 @@ const cards = [
           </strong>
           , and version control with GitHub ensure the highest quality work.{" "}
           <br /> <br />
-          Let&apos;s collaborate and make your vision a reality. If you're looking
+          Let&apos;s collaborate and make your vision a reality. If you are looking
           for someone reliable and skilled for your next project, feel free to
-          reach out. I'm excited to work with you and contribute to your
+          reach out. I am excited to work with you and contribute to your
           success.
         </p>
       );
@@ -297,7 +297,7 @@ const cards = [
         <p>
           On Fiverr, I specialize in offering web development and UI design
           services that meet modern standards and ensure client satisfaction.
-          Whether you're starting a new project or upgrading an existing one, my
+          Whether you are starting a new project or upgrading an existing one, my
           skill set—
           <strong>
             HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
@@ -328,8 +328,8 @@ const cards = [
           </strong>{" "}
           ensures that your project will stand out and perform well across all
           devices. <br /> <br />
-          Let&apos;s work together on your next project—whether it's building a brand
-          new site or enhancing an existing one. I'm committed to delivering
+          Let&apos;s work together on your next project—whether it is building a brand
+          new site or enhancing an existing one. I am committed to delivering
           results that exceed expectations.
         </p>
       );
@@ -345,9 +345,9 @@ const cards = [
       return (
         <p>
           On 99Design, I offer cutting-edge UI design and frontend development
-          services to bring your vision to life. If you're looking for a
+          services to bring your vision to life. If you are looking for a
           creative, efficient, and reliable developer who understands the
-          importance of design in creating a great user experience, you've come
+          importance of design in creating a great user experience, you have come
           to the right place. With proficiency in{" "}
           <strong>
             HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
@@ -355,7 +355,7 @@ const cards = [
           </strong>
           , I ensure that your designs are not only visually appealing but also
           functional and responsive. <br /> <br />
-          Let me take your project to the next level—I'd love to collaborate
+          Let me take your project to the next love to collaborate
           with you on your next big idea.
         </p>
       );
