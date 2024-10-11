@@ -32,8 +32,7 @@ const Freelance = () => {
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
-
-
+  
   const toggleParagraph = () => {
     setIsParagraphVisible((prevState) => !prevState);
   };
@@ -46,7 +45,8 @@ const Freelance = () => {
       >
         <div>
           <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold mx-auto text-center mt-6 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-zinc-800 via-white to-white">
-            Build amazing websites <br /> {"Let's"} <Cover>Code Together</Cover>
+            Build amazing websites <br /> {"Let&apos;s"}{" "}
+            <Cover>Code Together</Cover>
           </h1>
         </div>
         <div className="px-10 my-24 w-full">
@@ -278,7 +278,7 @@ const cards = [
           </strong>
           , and version control with GitHub ensure the highest quality work.{" "}
           <br /> <br />
-          Let's collaborate and make your vision a reality. If you're looking
+          Let&apos;s collaborate and make your vision a reality. If you're looking
           for someone reliable and skilled for your next project, feel free to
           reach out. I'm excited to work with you and contribute to your
           success.
@@ -305,7 +305,7 @@ const cards = [
           </strong>
           —will help you achieve the best results. <br /> <br />
           Give me the opportunity to work on your next project, and I promise to
-          deliver quality work on time. Let's build something amazing together!
+          deliver quality work on time. Let&apos;s build something amazing together!
         </p>
       );
     },
@@ -328,7 +328,7 @@ const cards = [
           </strong>{" "}
           ensures that your project will stand out and perform well across all
           devices. <br /> <br />
-          Let's work together on your next project—whether it's building a brand
+          Let&apos;s work together on your next project—whether it's building a brand
           new site or enhancing an existing one. I'm committed to delivering
           results that exceed expectations.
         </p>
