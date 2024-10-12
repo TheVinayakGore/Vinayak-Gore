@@ -87,7 +87,7 @@ const Create: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
-      <main className="flex flex-col items-start pb-10 w-full h-full">
+      <main className="flex flex-col items-start pb-10  w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
           {loading ? (
             <div className="w-full">
