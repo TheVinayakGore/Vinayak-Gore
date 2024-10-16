@@ -113,7 +113,7 @@ const Workflow = () => {
         className="flex flex-col items-center justify-center space-y-20 m-auto -mt-48 z-40 w-full px-4 sm:px-6 lg:px-8"
       >
         <div className="z-40 w-full">
-          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-600 font-semibold text-center relative z-20 h-14">
+          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-14">
             Workflow Collection
           </h1>
           <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
@@ -122,7 +122,7 @@ const Workflow = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center m-auto">
-          <div className="space-y-5">
+          <div className="">
             <ul className="flex flex-wrap items-center justify-center w-full">
               {indicesToShow.map((index) => {
                 const project = projects[index];
@@ -134,7 +134,7 @@ const Workflow = () => {
                     key={project._id}
                     className="w-full md:w-1/2 lg:w-1/3 p-2"
                   >
-                    <BackgroundGradient className="rounded-xl bg-gradient-to-t from-black to-indigo-500/[0.5] w-full h-full">
+                    <BackgroundGradient className="rounded-xl hover:shadow-xl shadow-black w-full h-full">
                       <Image
                         src={project.imageUrl}
                         alt={project.title}
@@ -143,16 +143,16 @@ const Workflow = () => {
                         width={400}
                         className="rounded-t-xl w-full h-auto"
                       />
-                      <div className="gap-3 px-6 pb-5">
-                        <h1 className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-zinc-200">
+                      <div className="flex flex-col items-start gap-3 p-5">
+                        <h1 className="text-base sm:text-2xl text-white font-semibold">
                           {project.title}
                         </h1>
-                        <p className="text-sm text-zinc-400 dark:text-zinc-500">
+                        <p className="text-sm text-zinc-200">
                           {project.description.slice(0, 500)}
                         </p>
                         <Link
                           href={project.projectUrl}
-                          className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-10 text-zinc-500 hover:text-white inline-flex items-center space-x-3 border border-zinc-700 hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
+                          className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-5 hover:shadow-lg shadow-zinc-800/[0.7] text-white inline-flex items-center space-x-3 border border-white hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
                         >
                           <span>Explore Now</span>
                           <MdArrowRightAlt className="w-5 h-5" />
@@ -164,7 +164,7 @@ const Workflow = () => {
               })}
             </ul>
 
-            <div className="mx-auto overflow-y-auto w-full h-full">
+            <div className="mx-auto overflow-y-auto py-5 w-full h-full">
               <div className="flex flex-wrap items-start justify-start w-full">
                 {blogs.length > 0 ? (
                   blogs.slice(0, 5).map((blog) => (
@@ -174,26 +174,26 @@ const Workflow = () => {
                       target="_blank"
                       className="flex flex-col items-start w-full md:w-1/2 lg:w-1/3 p-2 h-48"
                     >
-                      <div className="hover:animate-shimmer transition-colors bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] relative bg-white dark:bg-black border border-zinc-800 p-5 h-full overflow-hidden rounded-xl flex flex-col items-start group">
-                        <div className="flex items-center space-x-2 text-xs leading-3 font-light text-zinc-500 w-full">
+                      <div className="hover:animate-shimmer transition-colors bg-[linear-gradient(110deg,#fbfbfd,45%,#efefef,55%,#fbfbfd)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] relative border border-zinc-200 dark:border-zinc-800 hover:shadow-lg shadow-zinc-200 dark:shadow-zinc-900 p-5 h-full overflow-hidden rounded-xl flex flex-col items-start group">
+                        <div className="flex items-center space-x-2 text-xs leading-3 font-light text-zinc-500 dark:text-zinc-500 w-full">
                           <PiArrowCircleDownRight className="w-4 h-4" />
-                          <span className="text-zinc-600">
+                          <span className="">
                             {blog.date
                               ? format(new Date(blog.date), "MMM dd, yyyy")
                               : "No Date"}{" "}
                           </span>
                         </div>
-                        <h1 className="text-lg font-normal relative z-20 my-3 text-zinc-300">
+                        <h1 className="text-lg font-normal relative z-20 my-3 text-black dark:text-zinc-300">
                           {blog?.title}
                         </h1>
-                        <p className="text-zinc-600 relative z-20 text-sm">
+                        <p className="relative text-zinc-500 z-20 text-sm">
                           {blog?.desc
                             ? blog.desc.split(" ").slice(0, 15).join(" ") +
                               "..."
                             : "No description available"}
                         </p>
-                        <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-yellow-400 to-transparent transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-                        <span className="absolute -top-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-yellow-400 to-transparent transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+                        <span className="absolute -bottom-0 left-[1.125rem] h-[1px] dark:h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-blue-700 dark:via-yellow-400 to-transparent transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+                        <span className="absolute -top-0 left-[1.125rem] h-[1px] dark:h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-blue-700 dark:via-yellow-400 to-transparent transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
                       </div>
                     </Link>
                   ))
@@ -223,9 +223,9 @@ const Workflow = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between w-full relative z-40 h-full md:h-[30rem]">
-              <div className="relative shadow-xl bg-zinc-950 border border-zinc-800 px-4 py-10 overflow-hidden rounded-2xl flex flex-col justify-between items-start w-full h-full">
-                <h1 className="md:text-3xl text-2xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-700 font-semibold text-center relative z-50 w-full h-12">
+            <div className="flex flex-col items-center justify-between hover:shadow-xl shadow-zinc-200 dark:shadow-zinc-900 rounded-2xl w-full relative z-40 h-full md:h-[30rem]">
+              <div className="relative bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 px-4 py-10 overflow-hidden rounded-2xl flex flex-col justify-between items-start w-full h-full">
+                <h1 className="md:text-3xl text-2xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-700 font-semibold text-center relative z-50 w-full h-20">
                   What is Programming ?
                 </h1>
 
@@ -248,19 +248,19 @@ const Workflow = () => {
                     text="Explore blogs page"
                     className="mb-2 -left-2 bottom-full w-max h-max"
                   >
-                    <button className="animate-shimmer transition-colors bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] border border-zinc-800 hover:border-zinc-600 text-zinc-500 hover:text-zinc-100 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-md px-5 h-10 inline-block">
+                    <button className="animate-shimmer transition-colors bg-[linear-gradient(110deg,#fbfbfd,45%,#efefef,55%,#fbfbfd)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] border border-zinc-400 dark:border-zinc-800 hover:border-blue-600 dark:hover:border-zinc-600 text-zinc-500 hover:text-blue-600 dark:hover:text-zinc-100 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-300 dark:shadow-zinc-900 rounded-md px-5 h-10 inline-block">
                       <div className="flex items-center text-sm space-x-3">
                         <span>Explore</span>
                         <BsVectorPen />
                       </div>
-                      <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-sky-500 to-transparent transition-opacity duration-500 group-hover:opacity-40" />
+                      <span className="absolute -bottom-0 left-[1.125rem] h-[1px] dark:h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-blue-500 dark:via-sky-500 to-transparent transition-opacity duration-500 group-hover:opacity-40" />
                     </button>
                   </Tooltip>
                 </Link>
               </div>
               <div className="w-full">
-                <span className="absolute -top-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
-                <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-teal-400 to-transparent" />
+                <span className="absolute -top-0 left-[1.125rem] h-[2px] dark:h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-purple-500 dark:via-purple-400 to-transparent" />
+                <span className="absolute -bottom-0 left-[1.125rem] h-[2px] dark:h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-transparent via-teal-500 dark:via-teal-400 to-transparent" />
                 <BackgroundBeams />
               </div>
             </div>

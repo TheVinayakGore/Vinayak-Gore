@@ -33,7 +33,7 @@ export const TypewriterEffect = ({
         className
       )}
     >
-      <div className="inline-block overflow-hidden text-zinc-600 font-light w-40">
+      <div className="inline-block overflow-hidden text-zinc-300 dark:text-zinc-600 font-light w-40">
         <div className="flex items-center">
           <span>{"{"}</span>
           <AnimatePresence mode="wait">
@@ -45,7 +45,7 @@ export const TypewriterEffect = ({
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="relative w-full"
             >
-              <span className="block text-center text-yellow-400">
+              <span className="block text-center text-pink-500 dark:text-yellow-400">
                 {words[currentWordIndex].text}
               </span>
             </motion.div>

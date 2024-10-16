@@ -52,7 +52,6 @@ interface Props {
 
 const BlogPage = ({ params }: Props) => {
   const { slug } = params;
-
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -155,15 +154,13 @@ const BlogPage = ({ params }: Props) => {
     return (
       <>
         <LoadingBar loading={loading} />
-        <div className="pt-16">
-          <LoadingSpinner />
-        </div>
+        {loading && <LoadingSpinner />}
       </>
     );
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return toast.error("Error : "+ error, { autoClose: 2000 });
   }
 
   if (!blog) {
@@ -352,7 +349,6 @@ const BlogPage = ({ params }: Props) => {
   return (
     <>
       <title>{`${blog.title} | Blog`}</title>
-      <LoadingBar loading={loading} />
       {/* Link to Home Page */}
       <nav className="flex items-center p-2 sticky top-0 z-50">
         <Link

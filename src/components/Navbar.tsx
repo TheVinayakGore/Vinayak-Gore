@@ -36,13 +36,19 @@ interface MainProjects {
   projectUrl?: string;
 }
 
-const Navbar = ({ className }: { className?: string }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const Navbar = ({
+  className,
+  toggleTheme,
+  isSunIcon,
+}: {
+  className?: string;
+  toggleTheme: () => void;
+  isSunIcon: boolean;
+}) => {
   const [active, setActive] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainprojects, setmainprojects] = useState<MainProjects[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isSunIcon, setIsSunIcon] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const { data: session, status } = useSession();
@@ -74,21 +80,6 @@ const Navbar = ({ className }: { className?: string }) => {
     };
     fetchMainProjects();
   }, []);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setIsDarkMode(storedTheme === "dark");
-      document.body.classList.toggle("dark", storedTheme === "dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
-    setIsSunIcon((prevState) => !prevState);
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", isDarkMode ? "light" : "dark");
-  };
 
   const handleFeedbackClick = () => {
     if (status === "authenticated") {
@@ -143,7 +134,7 @@ const Navbar = ({ className }: { className?: string }) => {
               <p className="footerLogo text-2xl block sm:hidden">Vinu Gore</p>
             </Link>
 
-            <div className="responsive-div flex items-center space-x-6 font-light">
+            <div className="responsive-nav flex items-center space-x-6 font-light">
               <MenuItem setActive={setActive} active={active} item="Auther">
                 <div className="flex flex-col space-y-4 text-sm">
                   <HoveredLink href="/#auther">Who am I ?</HoveredLink>
@@ -203,7 +194,7 @@ const Navbar = ({ className }: { className?: string }) => {
                 href="/create"
                 target="_blank"
                 prefetch={true}
-                className="flex items-start space-x-1 text-zinc-500 hover:text-blue-600"
+                className="flex items-start space-x-1 text-black dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-600"
               >
                 Create
                 <PiArrowUpRightBold className="text-xs font-light w-2 h-2" />
@@ -212,14 +203,14 @@ const Navbar = ({ className }: { className?: string }) => {
                 href="/blogs"
                 target="_blank"
                 prefetch={true}
-                className="flex items-start space-x-1 text-zinc-500 hover:text-blue-600"
+                className="flex items-start space-x-1 text-black dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-600"
               >
                 Blogs
                 <PiArrowUpRightBold className="text-xs font-light w-2 h-2" />
               </Link>
             </div>
 
-            <div className="flex items-center space-x-2 text-xs font-medium text-zinc-100">
+            <div className="flex items-center space-x-2 text-xs font-medium dark:text-zinc-100">
               {status === "authenticated" && session?.user ? (
                 <Tooltip
                   text={
@@ -257,7 +248,7 @@ const Navbar = ({ className }: { className?: string }) => {
                 </button>
               )}
               <button
-                className="text-2xl p-2 text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
+                className="text-2xl p-2 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
                 onClick={toggleTheme}
               >
                 {isSunIcon ? <HiOutlineSun /> : <BsMoonStars />}
@@ -275,13 +266,7 @@ const Navbar = ({ className }: { className?: string }) => {
       </nav>
 
       {/* Sidebar */}
-      <SideBar
-        isSidebarOpen={isSidebarOpen}
-        handleBackdropClick={handleBackdropClick}
-        closeSidebar={closeSidebar}
-        toggleTheme={toggleTheme}
-        isSunIcon={isSunIcon}
-      />
+      <SideBar isSidebarOpen={isSidebarOpen} handleBackdropClick={handleBackdropClick} closeSidebar={closeSidebar} toggleTheme={toggleTheme} isSunIcon={isSunIcon}/>
     </>
   );
 };

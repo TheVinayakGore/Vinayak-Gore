@@ -46,18 +46,18 @@ const Create: React.FC = () => {
         </div>
       ),
     },
-    {
-      title: "Figma",
-      value: "Figma",
-      description: "A multinational technology company that specializes",
-      content: (
-        <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Figma />
-          </Suspense>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Figma",
+    //   value: "Figma",
+    //   description: "A multinational technology company that specializes",
+    //   content: (
+    //     <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+    //       <Suspense fallback={<LoadingSpinner />}>
+    //         <Figma />
+    //       </Suspense>
+    //     </div>
+    //   ),
+    // },
     {
       title: "Cheat Sheets",
       value: "Cheat Sheets",
@@ -87,13 +87,9 @@ const Create: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
+      {loading && <LoadingSpinner />}
       <main className="flex flex-col items-start pb-10  w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
-          {loading ? (
-            <div className="w-full">
-              <LoadingSpinner />
-            </div>
-          ) : (
             <div className="flex flex-col items-center m-auto top-10 w-full h-full">
               <TextHoverEffect
                 text="CREATE"
@@ -103,7 +99,6 @@ const Create: React.FC = () => {
                 <Tabs tabs={tabs} />
               </div>
             </div>
-          )}
         </div>
       </main>
     </>

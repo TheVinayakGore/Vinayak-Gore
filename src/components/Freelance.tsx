@@ -41,10 +41,10 @@ const Freelance = () => {
     <>
       <div
         id="freelance"
-        className="flex flex-col items-center justify-center m-auto border-b border-zinc-900 w-full"
+        className="flex flex-col items-center justify-center m-auto border-b border-zinc-300 dark:border-zinc-900 w-full"
       >
         <div>
-          <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold mx-auto text-center mt-6 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-zinc-800 via-white to-white">
+          <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold mx-auto text-center mt-6 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-zinc-500 via-black to-black dark:from-zinc-600 dark:via-white dark:to-white">
             Build amazing websites <br /> {"Let&apos;s"}{" "}
             <Cover>Code Together</Cover>
           </h1>
@@ -56,7 +56,7 @@ const Freelance = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/20 h-full w-full z-10"
+                className="fixed inset-0 bg-white/20 dark:bg-black/20 h-full w-full z-10"
               />
             )}
           </AnimatePresence>
@@ -86,7 +86,7 @@ const Freelance = () => {
                 <motion.div
                   layoutId={`card-${active.title}-${id}`}
                   ref={ref}
-                  className="w-full max-w-xl h-[38rem] mt-14 flex flex-col bg-zinc-900 shadow-2xl shadow-black rounded-xl"
+                  className="w-full max-w-xl h-[38rem] mt-14 flex flex-col bg-zinc-100 dark:bg-zinc-900 shadow-2xl shadow-zinc-400 dark:shadow-black rounded-xl"
                 >
                   <motion.div layoutId={`image-${active.title}-${id}`}>
                     <Image
@@ -104,7 +104,7 @@ const Freelance = () => {
                       <div className="">
                         <motion.h3
                           layoutId={`title-${active.title}-${id}`}
-                          className="font-bold text-zinc-100 text-2xl"
+                          className="font-bold text-zinc-700 dark:text-zinc-100 text-2xl"
                         >
                           {active.title}
                         </motion.h3>
@@ -123,7 +123,7 @@ const Freelance = () => {
                         exit={{ opacity: 0 }}
                         href={active.ctaLink}
                         target="_blank"
-                        className="px-7 py-3 text-sm rounded-full font-bold bg-zinc-200 hover:bg-green-500 text-black hover:text-white border-2 border-pink-500 hover:border-zinc-200 shadow-lg shadow-pink-700/[0.4] hover:shadow-green-700/[0.6] transition delay-100"
+                        className="px-7 py-3 text-sm rounded-full font-bold bg-white hover:bg-green-500 text-black hover:text-white border-2 border-pink-500 hover:border-zinc-200 shadow-lg shadow-pink-700/[0.4] hover:shadow-green-700/[0.6] transition delay-100"
                       >
                         {active.ctaText}
                       </motion.a>
@@ -152,7 +152,7 @@ const Freelance = () => {
                 layoutId={`card-${card.title}-${id}`}
                 key={card.title}
                 onClick={() => setActive(card)}
-                className="p-4 flex flex-col hover:bg-gradient-to-r from-zinc-900 to-zinc-800 rounded-xl cursor-pointer"
+                className="p-4 flex flex-col hover:bg-gradient-to-r from-pink-300 to-pink-500 rounded-xl cursor-pointer"
               >
                 <div className="flex gap-4 flex-col w-full">
                   <motion.div layoutId={`image-${card.title}-${id}`}>
@@ -167,7 +167,7 @@ const Freelance = () => {
                   <div className="flex justify-center items-center flex-col">
                     <motion.h3
                       layoutId={`title-${card.title}-${id}`}
-                      className="font-bold text-zinc-100 text-center md:text-left text-3xl"
+                      className="font-bold text-transparent/[0.8] dark:text-zinc-100 text-center md:text-left text-3xl"
                     >
                       {card.title}
                     </motion.h3>
@@ -184,19 +184,19 @@ const Freelance = () => {
           </ul>
         </div>
         <div className="flex items-center justify-center m-auto p-10 pt-0 w-full">
-          <div className="flex flex-col items-start border border-zinc-800 rounded-xl mx-20 w-full">
+          <div className="flex flex-col items-start border border-zinc-500 dark:border-zinc-800 rounded-xl mx-20 w-full">
             <div className="flex items-center justify-between m-auto p-5 w-full">
               <h1 className="text-2xl">Why Choose me ?</h1>
               <button
                 onClick={toggleParagraph}
                 className={`${
                   isParagraphVisible
-                    ? "bg-zinc-800 p-2"
-                    : "hover:bg-zinc-900 active:bg-zinc-800"
-                } hover:text-white text-zinc-500 p-2 rounded-full`}
+                    ? "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 p-2"
+                    : "hover:bg-zinc-100 dark:hover:bg-zinc-900 active:bg-zinc-200 dark:active:bg-zinc-800"
+                } hover:text-black dark:hover:text-white p-2 rounded-full`}
               >
                 {isParagraphVisible ? (
-                  <GoDash className="text-white w-6 h-6" />
+                  <GoDash className="text-black dark:text-white w-6 h-6" />
                 ) : (
                   <GoPlus className="w-6 h-6" />
                 )}

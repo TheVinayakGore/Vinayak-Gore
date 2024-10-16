@@ -88,7 +88,7 @@ const SocialMedia = () => {
             <span className="text-zinc-500">@mail :</span>{" "}
             vinu@vinayakgore.com
           </p>
-          <p className="flex items-end justify-end p-3 px-5 space-x-3 bg-white text-zinc-800 text-base font-medium rounded-lg">
+          <p className="flex items-end justify-end p-3 px-5 space-x-3 bg-black dark:bg-white text-white dark:text-black text-base font-medium rounded-lg">
             <span>Contact, Follow & Subscribe on</span>
             <span>
               <i className="fa-solid fa-arrow-turn-down"></i>

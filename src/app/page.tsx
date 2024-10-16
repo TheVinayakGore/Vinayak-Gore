@@ -14,6 +14,23 @@ import LoadingBar from "@/components/LoadingBar";
 
 const Page: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSunIcon, setIsSunIcon] = useState(true);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setIsDarkMode(storedTheme === "dark");
+      document.body.classList.toggle("dark", storedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    setIsSunIcon((prevState) => !prevState);
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDarkMode ? "light" : "dark");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,43 +43,38 @@ const Page: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
-      <main className="pt-20 min-h-screen antialiased">
-        {loading ? (
-          <div className="flex items-center justify-center pt-40 w-full h-screen">
-            <LoadingSpinner />
-          </div>
-        ) : (
-          <>
-            <div className="flex flex-col gap-y-32 py-28">
-              <Navbar />
-              <div className="flex flex-col px-5 sm:px-10 md:px-16 w-full h-full">
-                <Hero />
+      <main className="relative antialiased">
+        <div className="flex flex-col gap-y-32 pt-48 pb-28">
+          <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
+          {loading && <LoadingSpinner />}
+          <div className="flex flex-col gap-y-32">
+            <div className="flex flex-col px-5 sm:px-10 md:px-16 w-full h-full">
+              <Hero isDarkMode={isDarkMode} />
+            </div>
+            <div className="h-[30rem] md:h-[35rem] lg:h-[40rem] flex items-center justify-center text-center -mt-20 md:-mt-28">
+              <TextHoverEffect
+                text="VIGORE"
+                className="text-[0] sm:text-[5rem] md:text-[5.5rem] lg:text-[5.8rem]"
+              />
+            </div>
+            <div className="flex flex-col space-y-48 px-16 -mt-80 sm:-mt-0 w-full h-full">
+              <Workflow />
+              <TechStacks />
+            </div>
+            <div className="flex-col space-y-32">
+              <div className="px-16 mt-3">
+                <Gallery />
               </div>
-              <div className="h-[30rem] md:h-[35rem] lg:h-[40rem] flex items-center justify-center text-center -mt-20 md:-mt-28">
-                <TextHoverEffect
-                  text="VIGORE"
-                  className="text-[0] sm:text-[5rem] md:text-[5.5rem] lg:text-[5.8rem]"
-                />
-              </div>
-              <div className="flex flex-col space-y-48 px-16 -mt-80 sm:-mt-0 w-full h-full">
-                <Workflow />
-                <TechStacks />
-              </div>
-              <div className="flex-col space-y-32">
-                <div className="px-16 mt-3">
-                  <Gallery />
-                </div>
-                <div className="pt-5 pb-10 border-t border-b border-zinc-800">
-                  <Auther />
-                </div>
-              </div>
-              <div className="flex flex-col space-y-40 w-full h-full">
-                <Freelance />
-                <SocialMedia />
+              <div className="pt-5 pb-10 border-t border-b border-zinc-300 dark:border-zinc-800">
+                <Auther isDarkMode={isDarkMode} />
               </div>
             </div>
-          </>
-        )}
+            <div className="flex flex-col space-y-40 w-full h-full">
+              <Freelance />
+              <SocialMedia />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );

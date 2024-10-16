@@ -105,7 +105,7 @@ const TechStacks = () => {
         className="flex flex-col items-center justify-center m-auto space-y-10 w-full"
       >
         <div className="w-full">
-          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-600 font-semibold text-center relative z-20 h-14">
+          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-14">
             Tech Stacks
           </h1>
           <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">

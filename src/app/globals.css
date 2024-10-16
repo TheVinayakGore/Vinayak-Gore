@@ -97,18 +97,24 @@ body {
 
 /* Hide the div for screens smaller than 640px */
 @media (max-width: 640px) {
-  .responsive-div {
+  .responsive-nav {
     display: none;
   }
 }
 
 /* Show the div for screens larger than 640px */
 @media (min-width: 640px) {
-  .responsive-div {
+  .responsive-nav {
     display: flex; /* or block or whatever suits your layout */
   }
 }
 
 .footerLogo {
   font-family: "Satisfy", cursive;
+}
+
+@media (max-width: 1023px) {
+  .lamp-container {
+    display: none;
+  }
 }

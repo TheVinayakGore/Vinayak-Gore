@@ -95,9 +95,9 @@ const PortfolioBlog = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center w-full h-full">
         <LoadingBar loading={loading} />
-        <LoadingSpinner />
+        {loading && <LoadingSpinner />}
       </div>
     );
   }
@@ -177,8 +177,8 @@ const PortfolioBlog = () => {
 
   if (!blogData) {
     return (
-      <div className="pt-16">
-        <LoadingSpinner />
+      <div className="pt-32">
+        {loading && <LoadingSpinner />}
       </div>
     );
   }

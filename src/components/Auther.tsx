@@ -9,50 +9,56 @@ import Comments from "./Comments";
 import Link from "next/link";
 import Tooltip from "./Tooltip";
 
-const Auther = () => {
+interface AuthorProps {
+  isDarkMode: boolean;
+}
+
+const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
   return (
     <>
-      <div id="auther" className="flex flex-col w-full">
-        <div>
-          <LampContainer>
-            <motion.h1
-              initial={{ opacity: 0.5, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-              className="mt-8 bg-gradient-to-br from-zinc-100 to-zinc-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-            >
-              Namaste <br /> I am Vinayak Gore
-            </motion.h1>
-          </LampContainer>
-        </div>
+      <main id="auther" className="flex flex-col items-center w-full">
+        <LampContainer className="lamp-container">
+          <motion.h1
+            initial={{ opacity: 0.5, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+            className="mt-8 bg-gradient-to-b from-black to-zinc-700 dark:from-zinc-100 dark:to-zinc-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            Namaste <br /> I am Vinayak Gore
+          </motion.h1>
+        </LampContainer>
 
-        <div className="flex flex-col items-center space-y-5 -mt-64 mb-10 w-full">
+        <h1 className="block lg:hidden bg-gradient-to-b from-black to-zinc-700 dark:from-zinc-100 dark:to-zinc-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
+          Namaste <br /> I am Vinayak Gore
+        </h1>
+
+        <div className="flex flex-col items-center space-y-5 mt-5 lg:-mt-64 mb-10 w-full px-4 sm:px-8">
           <div className="flex flex-col items-center space-y-5 z-10 w-full">
             <Image
               src="/vinu.png"
-              className="rounded-lg"
               alt="me"
-              width="300"
-              height="300"
-            ></Image>
-            <p className="text-base font-normal text-zinc-400 tracking-wider">
+              width={300}
+              height={300}
+              className="rounded-lg"
+            />
+            <p className="text-base font-normal text-black dark:text-zinc-400 tracking-wider text-center">
               Web Development | Frontend UI Design
             </p>
             <Image
-              src="/sign2.png"
-              className="w-52"
+              src={isDarkMode ? "/sign2.png" : "/sign1.png"}
               alt="sign"
-              width="200"
-              height="50"
-            ></Image>
+              width={200}
+              height={50}
+              className="w-52"
+            />
           </div>
 
-          <div className="flex items-center justify-center space-x-2 h-20">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 h-full sm:h-20">
             {/* YouTube Button */}
             <Link
               href="http://www.youtube.com/@vinayakgore7715"
               target="_blank"
-              className="flex items-center space-x-5 py-3 px-5 bg-white hover:bg-red-500 hover:text-white text-zinc-800 text-base font-medium rounded-lg"
+              className="flex items-center space-x-5 px-5 bg-black dark:bg-white hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white text-white dark:text-zinc-800 text-base font-medium rounded-lg h-12"
             >
               <span>Visit YouTube Channel</span>
               <span>
@@ -64,7 +70,7 @@ const Auther = () => {
             <Link
               href="https://www.linkedin.com/in/vinayak-gore-b85b7922a/"
               target="_blank"
-              className="flex items-center space-x-5 py-3 px-5 animate-shimmer transition-colors bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] border border-white/[0.2] hover:border-zinc-500 text-zinc-300 hover:bg-blue-500 hover:text-white text-base font-medium rounded-lg"
+              className="flex items-center space-x-5 my-2 sm:my-0 px-5 animate-shimmer transition-colors bg-[linear-gradient(110deg,#fbfbfd,45%,#efefef,55%,#fbfbfd)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] border border-zinc-300 dark:border-zinc-800 hover:border-zinc-700 dark:hover:border-zinc-500 text-zinc-500 dark:text-zinc-300 hover:bg-blue-500 hover:text-black dark:hover:text-white text-base font-medium rounded-lg h-12"
             >
               <span>LinkedIn</span>
               <span>
@@ -77,15 +83,15 @@ const Auther = () => {
               text="Download Resume"
               className="-left-10 mb-2 bottom-full w-max h-max"
             >
-              <button className="flex items-center py-3 px-4 border border-zinc-800 hover:border-zinc-500 hover:text-zinc-100 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-md">
+              <button className="flex items-center px-4 border border-zinc-300 dark:border-zinc-800 hover:border-black dark:hover:border-zinc-500 text-zinc-400 hover:text-black dark:hover:text-white no-underline group cursor-pointer relative rounded-md h-12">
                 <RxDownload className="w-5 h-5" />
-                <span className="absolute -bottom-0 left-[0.7rem] h-px w-[calc(100%-1.3rem)] bg-gradient-to-r from-emerald-400/0 via-green-500 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+                <span className="absolute -bottom-0 left-[0.7rem] h-[1px] dark:h-px w-[calc(100%-1.3rem)] bg-gradient-to-r from-emerald-400/0 via-green-500 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
               </button>
             </Tooltip>
           </div>
         </div>
         <Comments />
-      </div>
+      </main>
     </>
   );
 };

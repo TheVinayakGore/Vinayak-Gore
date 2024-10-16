@@ -80,15 +80,13 @@ export default function TutorialPage({ params }: TutorialPageProps) {
     return (
       <div>
         <LoadingBar loading={loading} />
-        <div className="pt-40">
-          <LoadingSpinner />
-        </div>
+        {loading && <LoadingSpinner />}
       </div>
     );
   }
 
   if (!tutorial) {
-    return <div>Tutorial not found</div>;
+    return toast.error("Tutorial not found", { autoClose: 2000 });
   }
 
   const toggleLike = async () => {
@@ -261,7 +259,6 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   return (
     <>
       <title>{`${tutorial.tuttitle} | Tutorial`}</title>
-      <LoadingBar loading={loading} />
       <div className="flex flex-col items-start pt-10 px-52 overflow-auto w-full">
         <div className="flex items-end justify-between mb-5 pb-3 border-b border-zinc-600 w-full">
           <div className="flex flex-col items-start border-l-4 border-zinc-400 rounded-l-[0.3rem] pl-5 w-full">

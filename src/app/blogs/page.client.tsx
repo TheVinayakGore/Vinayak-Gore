@@ -95,98 +95,89 @@ const Blogs: React.FC = () => {
   return (
     <>
       <title>Blogs Page | Web Development | Vinayak Gore</title>
+      <LoadingBar loading={loading} />
+      {loading && <LoadingSpinner />}
       <main>
-        <Suspense fallback={<LoadingSpinner />}>
-          <LoadingBar loading={loading} />
-        </Suspense>
-        {loading ? (
-          <div className="p-10">
-            <Suspense fallback={<LoadingSpinner />}>
-              <LoadingSpinner />
-            </Suspense>
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center m-auto space-y-20 w-full">
-            <div className="w-full h-full">
-              <div className="">
-                <TextHoverEffect
-                  text="NEWBLOGS"
-                  className="text-[3.5rem] -mt-20 z-10"
-                />
-                <p className="text-center tracking-widest -mt-28 pb-10 text-3xl font-thin text-zinc-400">
-                  All the blogs related to development
-                </p>
-              </div>
-              <PlaceholdersAndVanishInput
-                placeholders={placeholders}
-                onChange={handleChange}
-                onSubmit={onSubmit}
+        <div className="flex flex-col items-center justify-center m-auto space-y-20 w-full">
+          <div className="w-full h-full">
+            <div className="">
+              <TextHoverEffect
+                text="NEWBLOGS"
+                className="text-[3.5rem] -mt-20 z-10"
               />
+              <p className="text-center tracking-widest -mt-28 pb-10 text-3xl font-thin text-zinc-400">
+                All the blogs related to development
+              </p>
             </div>
+            <PlaceholdersAndVanishInput
+              placeholders={placeholders}
+              onChange={handleChange}
+              onSubmit={onSubmit}
+            />
+          </div>
 
-            <div className="px-20 pb-20 w-full h-full">
-              <div className="w-full h-full">
-                {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog) => (
-                    <div className="w-full" key={blog._id}>
-                      <div className="flex items-start space-x-14 w-full">
-                        <span className="text-center text-sm font-light text-zinc-600 w-40">
-                          {blog.date
-                            ? format(new Date(blog.date), "MMM dd, yyyy")
-                            : "No Date"}{" "}
-                        </span>
-                        <div className="flex items-start relative w-full">
-                          <BiCircle className="absolute inset-0 -left-[5.5px] text-zinc-500 bg-white dark:bg-black w-3 h-3" />
-                          <div className="border-l border-zinc-800 pl-14 pb-10 w-full">
-                            <div className="flex border border-zinc-800 hover:border-blue-800 hover:bg-gradient-to-r from-blue-600/[0.2] to-cyan-600/[0.2] text-zinc-600 hover:text-zinc-500 mb-2 rounded-lg h-56 hover:scale-105 transition-transform">
-                              <div className="w-1/2">
-                                {blog.coverImage && (
-                                  <Image
-                                    src={urlFor(blog.coverImage.asset).url()}
-                                    alt={
-                                      blog.coverImage.attribution || "Cover image"
-                                    }
-                                    width={300}
-                                    height={300}
-                                    className="rounded-l-lg border-r border-zinc-800 w-full h-full"
-                                    priority
-                                  />
-                                )}
-                              </div>
-                              <div className="p-3 pl-5 w-full">
-                                <h2 className="font-medium text-2xl tracking-wider text-black dark:text-zinc-100">
-                                  {blog?.title}
-                                </h2>
-                                <p className="leading-relaxed font-light my-5">
-                                  {blog?.desc.slice(0, 220)}...
-                                </p>
-                                <Link
-                                  href={`/blogs/${blog?.slug?.current}`}
-                                  target="_blank"
-                                  className="hover:scale-105 transition-transform inline-flex items-center px-5 py-2 leading-5 rounded-full relative bg-white dark:bg-transparent text-zinc-600 hover:border-blue-600 hover:text-blue-600 text-sm hover:shadow-2xl hover:shadow-white/[0.1] border border-zinc-600"
-                                >
-                                  <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
-                                  <span className="relative z-20 font-light">
-                                    Read more
-                                  </span>
-                                  <LuChevronRightCircle className="ml-3 w-4 h-4" />
-                                </Link>
-                              </div>
+          <div className="px-20 pb-20 w-full h-full">
+            <div className="w-full h-full">
+              {filteredBlogs.length > 0 ? (
+                filteredBlogs.map((blog) => (
+                  <div className="w-full" key={blog._id}>
+                    <div className="flex items-start space-x-14 w-full">
+                      <span className="text-center text-sm font-light text-zinc-600 w-40">
+                        {blog.date
+                          ? format(new Date(blog.date), "MMM dd, yyyy")
+                          : "No Date"}{" "}
+                      </span>
+                      <div className="flex items-start relative w-full">
+                        <BiCircle className="absolute inset-0 -left-[5.5px] text-zinc-500 bg-white dark:bg-black w-3 h-3" />
+                        <div className="border-l border-zinc-800 pl-14 pb-10 w-full">
+                          <div className="flex border border-zinc-800 hover:border-blue-800 hover:bg-gradient-to-r from-blue-600/[0.2] to-cyan-600/[0.2] text-zinc-600 hover:text-zinc-500 mb-2 rounded-lg h-56 hover:scale-105 transition-transform">
+                            <div className="w-1/2">
+                              {blog.coverImage && (
+                                <Image
+                                  src={urlFor(blog.coverImage.asset).url()}
+                                  alt={
+                                    blog.coverImage.attribution || "Cover image"
+                                  }
+                                  width={300}
+                                  height={300}
+                                  className="rounded-l-lg border-r border-zinc-800 w-full h-full"
+                                  priority
+                                />
+                              )}
+                            </div>
+                            <div className="p-3 pl-5 w-full">
+                              <h2 className="font-medium text-2xl tracking-wider text-black dark:text-zinc-100">
+                                {blog?.title}
+                              </h2>
+                              <p className="leading-relaxed font-light my-5">
+                                {blog?.desc.slice(0, 220)}...
+                              </p>
+                              <Link
+                                href={`/blogs/${blog?.slug?.current}`}
+                                target="_blank"
+                                className="hover:scale-105 transition-transform inline-flex items-center px-5 py-2 leading-5 rounded-full relative bg-white dark:bg-transparent text-zinc-600 hover:border-blue-600 hover:text-blue-600 text-sm hover:shadow-2xl hover:shadow-white/[0.1] border border-zinc-600"
+                              >
+                                <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                                <span className="relative z-20 font-light">
+                                  Read more
+                                </span>
+                                <LuChevronRightCircle className="ml-3 w-4 h-4" />
+                              </Link>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  ))
-                ) : (
-                  <p className="text-center text-lg font-light text-zinc-600">
-                    No blog found !
-                  </p>
-                )}
-              </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-center text-lg font-light text-zinc-600">
+                  No blog found !
+                </p>
+              )}
             </div>
           </div>
-        )}
+        </div>
       </main>
     </>
   );
