@@ -109,6 +109,32 @@ body {
   }
 }
 
+
+/* Social Media Response */
+@media (max-width: 999px) {
+  .socialMedia {
+    display: none;
+  }
+}
+
+@media (min-width: 1000px) {
+  .socialMedia {
+    display: block;
+  }
+}
+
+@media (max-width: 999px) {
+  .socialMediaSmallLink {
+    display: flex;
+  }
+}
+
+@media (min-width: 1000px) {
+  .socialMediaSmallLink {
+    display: none;
+  }
+}
+
 .footerLogo {
   font-family: "Satisfy", cursive;
 }
@@ -118,3 +144,4 @@ body {
     display: none;
   }
 }
+

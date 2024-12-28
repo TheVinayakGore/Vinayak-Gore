@@ -110,10 +110,10 @@ const Workflow = () => {
     <>
       <main
         id="start"
-        className="flex flex-col items-center justify-center space-y-20 m-auto -mt-48 z-40 w-full px-4 sm:px-6 lg:px-8"
+        className="flex flex-col items-center justify-center space-y-5 md:space-y-14 m-auto -mt-48 z-40 w-full px-4 sm:px-6 lg:px-8"
       >
         <div className="z-40 w-full">
-          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-14">
+          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
             Workflow Collection
           </h1>
           <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
@@ -132,7 +132,7 @@ const Workflow = () => {
                 return (
                   <li
                     key={project._id}
-                    className="w-full md:w-1/2 lg:w-1/3 p-2"
+                    className="w-full sm:w-1/2 lg:w-1/3 p-2"
                   >
                     <BackgroundGradient className="rounded-xl hover:shadow-xl shadow-black w-full h-full">
                       <Image
@@ -172,7 +172,7 @@ const Workflow = () => {
                       key={blog._id}
                       href={`/blogs/${blog?.slug?.current}`}
                       target="_blank"
-                      className="flex flex-col items-start w-full md:w-1/2 lg:w-1/3 p-2 h-48"
+                      className="flex flex-col items-start w-full sm:w-1/2 lg:w-1/3 p-2 h-48"
                     >
                       <div className="hover:animate-shimmer transition-colors bg-[linear-gradient(110deg,#fbfbfd,45%,#efefef,55%,#fbfbfd)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] relative border border-zinc-200 dark:border-zinc-800 hover:shadow-lg shadow-zinc-200 dark:shadow-zinc-900 p-5 h-full overflow-hidden rounded-xl flex flex-col items-start group">
                         <div className="flex items-center space-x-2 text-xs leading-3 font-light text-zinc-500 dark:text-zinc-500 w-full">

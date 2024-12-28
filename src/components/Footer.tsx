@@ -69,7 +69,7 @@ const Footer = () => {
                 <span
                   className={`text-base md:text-lg font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
                 >
-                  {visitorCount / 2}
+                  {visitorCount}
                 </span>{" "}
                 Visitors
               </p>

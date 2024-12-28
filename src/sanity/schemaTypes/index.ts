@@ -13,7 +13,8 @@ import { python } from "./python";
 import { c } from "./c";
 import { cpp } from "./cpp";
 import { gallery } from "./gallery";
+import { socialMedia } from "./socialmedia";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [mainprojects, gallery, blogs, portfolioblog, tutorials, playlists, figma, posters, html, css, js, python, c, cpp],
+  types: [mainprojects, gallery, blogs, portfolioblog, tutorials, playlists, figma, posters, html, css, js, python, c, cpp, socialMedia],
 };

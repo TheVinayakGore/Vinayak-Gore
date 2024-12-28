@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
       <main className="flex flex-col items-center justify-center m-auto h-full w-full">
         <div className="flex flex-col items-center justify-center overflow-hidden rounded-md w-full h-full">
           <div className="flex flex-col items-center justify-center">
-            <TextGenerateEffect headline={headline} />
+            <TextGenerateEffect headline={headline} className="font-sans" />
             <Image
               src="/vinu.png"
               alt="card"
