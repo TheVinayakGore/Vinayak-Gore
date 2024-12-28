@@ -124,7 +124,7 @@ const SocialMedia = () => {
             You can contact me on my following social media accounts and
             subscribe if you like my content
           </p>
-          <p className="my-6 text-xs sm:text-sm text-blue-600 underline decoration-zinc-300 underline-offset-8">
+          <p className="my-6 text-xs sm:text-sm text-blue-600 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-8">
             <span className="text-zinc-500">@mail :</span> vvgore2675@gmail.com
           </p>
           <p className="flex items-center justify-center p-3 px-3 sm:px-5 space-x-3 bg-black dark:bg-white text-white dark:text-black text-xs sm:text-sm md:text-base font-medium rounded-lg">
@@ -133,8 +133,8 @@ const SocialMedia = () => {
           </p>
         </section>
 
-        <div className="socialMedia border-dashed border-t border-zinc-700 mt-5 mb-[-1rem] w-10"></div>
-        <div className="socialMedia border-dashed border-t border-l border-zinc-700 h-40 mb-[-2rem]"></div>
+        <div className="socialMedia border-dashed border-t border-zinc-700 mt-[-1rem] w-10"></div>
+        <div className="socialMedia border-dashed border-t border-l border-zinc-700 h-40 mt-[-1rem] mb-[-2rem]"></div>
         <div className="socialMedia flex items-center justify-between m-auto border-dashed border-t border-zinc-700 mb-10 w-full">
           <ul className="flex items-center justify-between m-auto ml-[-0.7rem] w-full">
             {socialMedia.map((item, index) => {
