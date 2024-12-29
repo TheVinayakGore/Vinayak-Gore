@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, Suspense, lazy } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { BiCircle } from "react-icons/bi";
 import { LuChevronRightCircle } from "react-icons/lu";
@@ -10,6 +10,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { format } from "date-fns";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import Navbar from "@/components/Navbar";
 
 const LoadingSpinner = lazy(() => import("@/components/LoadingSpinner"));
 const LoadingBar = lazy(() => import("@/components/LoadingBar"));
@@ -39,7 +40,25 @@ const BLOGS_QUERY = defineQuery(`*[
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSunIcon, setIsSunIcon] = useState(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setIsDarkMode(storedTheme === "dark");
+      setIsSunIcon(storedTheme !== "dark");
+      document.body.classList.toggle("dark", storedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    setIsSunIcon((prevState) => !prevState);
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDarkMode ? "light" : "dark");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -97,7 +116,8 @@ const Blogs: React.FC = () => {
       <title>Blogs Page | Web Development | Vinayak Gore</title>
       <LoadingBar loading={loading} />
       {loading && <LoadingSpinner />}
-      <main>
+      <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
+      <main className="pt-20">
         <div className="flex flex-col items-center justify-center m-auto space-y-20 w-full">
           <div className="w-full h-full">
             <div className="">

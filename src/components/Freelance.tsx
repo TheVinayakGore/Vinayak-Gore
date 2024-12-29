@@ -39,154 +39,156 @@ const Freelance = () => {
 
   return (
     <>
-      <div
+      <main
         id="freelance"
         className="flex flex-col items-center justify-center m-auto border-b border-zinc-300 dark:border-zinc-900 w-full"
       >
-        <div>
-          <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold mx-auto text-center mt-6 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-zinc-500 via-black to-black dark:from-zinc-600 dark:via-white dark:to-white">
-            Build amazing websites <br /> {"Let&apos;s"}{" "}
-            <Cover>Code Together</Cover>
-          </h1>
-        </div>
-        <div className="px-10 my-24 w-full">
-          <AnimatePresence>
-            {active && typeof active === "object" && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-white/20 dark:bg-black/20 h-full w-full z-10"
-              />
-            )}
-          </AnimatePresence>
-          <AnimatePresence>
-            {active && typeof active === "object" ? (
-              <div className="fixed inset-0  grid place-items-center z-[40]">
-                <motion.button
-                  key={`button-${active.title}-${id}`}
-                  layout
-                  initial={{
-                    opacity: 0,
-                  }}
-                  animate={{
-                    opacity: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    transition: {
-                      duration: 0.05,
-                    },
-                  }}
-                  className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
-                  onClick={() => setActive(null)}
-                >
-                  <CloseIcon />
-                </motion.button>
+        <section>
+          <div>
+            <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold mx-auto text-center mt-6 relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-zinc-500 via-black to-black dark:from-zinc-600 dark:via-white dark:to-white">
+              Build amazing websites <br /> {"Let's"}{" "}
+              <Cover>Code Together</Cover>
+            </h1>
+          </div>
+          <div className="px-20 sm:px-10 my-24 w-full">
+            <AnimatePresence>
+              {active && typeof active === "object" && (
                 <motion.div
-                  layoutId={`card-${active.title}-${id}`}
-                  ref={ref}
-                  className="w-full max-w-xl h-[38rem] mt-14 flex flex-col bg-zinc-100 dark:bg-zinc-900 shadow-2xl shadow-zinc-400 dark:shadow-black rounded-xl"
-                >
-                  <motion.div layoutId={`image-${active.title}-${id}`}>
-                    <Image
-                      priority
-                      width={1000}
-                      height={1000}
-                      src={active.src}
-                      alt={active.title}
-                      className="w-full h-72 sm:rounded-t-xl object-cover object-top"
-                    />
-                  </motion.div>
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-white/20 dark:bg-black/20 h-full w-full z-10"
+                />
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {active && typeof active === "object" ? (
+                <div className="fixed inset-0 grid place-items-center z-[40]">
+                  <motion.button
+                    key={`button-${active.title}-${id}`}
+                    layout
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: {
+                        duration: 0.05,
+                      },
+                    }}
+                    className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                    onClick={() => setActive(null)}
+                  >
+                    <CloseIcon />
+                  </motion.button>
+                  <motion.div
+                    layoutId={`card-${active.title}-${id}`}
+                    ref={ref}
+                    className="w-full max-w-xl h-[38rem] mt-14 flex flex-col bg-zinc-100 dark:bg-zinc-900 shadow-2xl shadow-zinc-400 dark:shadow-black rounded-xl"
+                  >
+                    <motion.div layoutId={`image-${active.title}-${id}`}>
+                      <Image
+                        priority
+                        width={1000}
+                        height={1000}
+                        src={active.src}
+                        alt={active.title}
+                        className="w-full h-72 sm:rounded-t-xl"
+                      />
+                    </motion.div>
 
-                  <div className="h-full overflow-auto">
-                    <div className="flex justify-between items-start p-4">
-                      <div className="">
-                        <motion.h3
-                          layoutId={`title-${active.title}-${id}`}
-                          className="font-bold text-zinc-700 dark:text-zinc-100 text-2xl"
+                    <div className="h-full overflow-auto">
+                      <div className="flex justify-between items-start p-4">
+                        <div className="">
+                          <motion.h3
+                            layoutId={`title-${active.title}-${id}`}
+                            className="font-bold text-zinc-700 dark:text-zinc-100 text-2xl"
+                          >
+                            {active.title}
+                          </motion.h3>
+                          <motion.p
+                            layoutId={`username-${active.username}-${id}`}
+                            className="text-zinc-400 text-lg"
+                          >
+                            @{active.username}
+                          </motion.p>
+                        </div>
+
+                        <motion.a
+                          layout
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          href={active.ctaLink}
+                          target="_blank"
+                          className="px-7 py-3 text-sm rounded-full font-bold bg-white hover:bg-green-500 text-black hover:text-white border-2 border-pink-500 hover:border-zinc-200 shadow-lg shadow-pink-700/[0.4] hover:shadow-green-700/[0.6] transition delay-100"
                         >
-                          {active.title}
-                        </motion.h3>
-                        <motion.p
-                          layoutId={`username-${active.username}-${id}`}
-                          className="text-zinc-400 text-lg"
-                        >
-                          @{active.username}
-                        </motion.p>
+                          {active.ctaText}
+                        </motion.a>
                       </div>
-
-                      <motion.a
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        href={active.ctaLink}
-                        target="_blank"
-                        className="px-7 py-3 text-sm rounded-full font-bold bg-white hover:bg-green-500 text-black hover:text-white border-2 border-pink-500 hover:border-zinc-200 shadow-lg shadow-pink-700/[0.4] hover:shadow-green-700/[0.6] transition delay-100"
-                      >
-                        {active.ctaText}
-                      </motion.a>
+                      <div className="pt-4 relative px-4">
+                        <motion.div
+                          layout
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="text-zinc-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-zinc-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                        >
+                          {typeof active.content === "function"
+                            ? active.content()
+                            : active.content}
+                        </motion.div>
+                      </div>
                     </div>
-                    <div className="pt-4 relative px-4">
-                      <motion.div
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="text-zinc-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-zinc-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                  </motion.div>
+                </div>
+              ) : null}
+            </AnimatePresence>
+            <ul className="max-w-3xl lg:max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 items-start gap-4">
+              {cards.map((card) => (
+                <motion.div
+                  layoutId={`card-${card.title}-${id}`}
+                  key={card.title}
+                  onClick={() => setActive(card)}
+                  className="p-4 flex flex-col hover:bg-gradient-to-r from-pink-300 to-pink-500 rounded-xl cursor-pointer"
+                >
+                  <div className="flex gap-4 flex-col w-full">
+                    <motion.div layoutId={`image-${card.title}-${id}`}>
+                      <Image
+                        width={1500}
+                        height={1500}
+                        src={card.src}
+                        alt={card.title}
+                        className="h-72 lg:h-96 w-full shadow-2xl shadow-zinc-950/[0.4] rounded-lg"
+                      />
+                    </motion.div>
+                    <div className="flex justify-center items-center flex-col">
+                      <motion.h3
+                        layoutId={`title-${card.title}-${id}`}
+                        className="font-bold text-transparent/[0.8] dark:text-zinc-100 text-center md:text-left text-3xl"
                       >
-                        {typeof active.content === "function"
-                          ? active.content()
-                          : active.content}
-                      </motion.div>
+                        {card.title}
+                      </motion.h3>
+                      <motion.p
+                        layoutId={`username-${card.username}-${id}`}
+                        className="text-blue-600 text-center md:text-left text-base font-medium"
+                      >
+                        @{card.username}
+                      </motion.p>
                     </div>
                   </div>
                 </motion.div>
-              </div>
-            ) : null}
-          </AnimatePresence>
-          <ul className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-start gap-4">
-            {cards.map((card) => (
-              <motion.div
-                layoutId={`card-${card.title}-${id}`}
-                key={card.title}
-                onClick={() => setActive(card)}
-                className="p-4 flex flex-col hover:bg-gradient-to-r from-pink-300 to-pink-500 rounded-xl cursor-pointer"
-              >
-                <div className="flex gap-4 flex-col w-full">
-                  <motion.div layoutId={`image-${card.title}-${id}`}>
-                    <Image
-                      width={1500}
-                      height={1500}
-                      src={card.src}
-                      alt={card.title}
-                      className="h-80 w-full shadow-2xl shadow-zinc-950/[0.4] rounded-lg object-cover object-top"
-                    />
-                  </motion.div>
-                  <div className="flex justify-center items-center flex-col">
-                    <motion.h3
-                      layoutId={`title-${card.title}-${id}`}
-                      className="font-bold text-transparent/[0.8] dark:text-zinc-100 text-center md:text-left text-3xl"
-                    >
-                      {card.title}
-                    </motion.h3>
-                    <motion.p
-                      layoutId={`username-${card.username}-${id}`}
-                      className="text-blue-600 text-center md:text-left text-base font-medium"
-                    >
-                      @{card.username}
-                    </motion.p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </ul>
-        </div>
-        <div className="flex items-center justify-center m-auto p-10 pt-0 w-full">
-          <div className="flex flex-col items-start border border-zinc-500 dark:border-zinc-800 rounded-xl mx-20 w-full">
-            <div className="flex items-center justify-between m-auto p-5 w-full">
-              <h1 className="text-2xl">Why Choose me ?</h1>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section className="flex items-center justify-center m-auto p-4 sm:p-6 md:p-10 pt-0 w-full">
+          <div className="flex flex-col items-start border border-zinc-500 dark:border-zinc-800 rounded-xl mx-4 sm:mx-10 md:mx-20 w-full max-w-screen-lg">
+            <div className="flex items-center justify-between m-auto p-3 sm:p-5 w-full">
+              <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl">Why Choose me ?</h1>
               <button
                 onClick={toggleParagraph}
                 className={`${
@@ -196,14 +198,14 @@ const Freelance = () => {
                 } hover:text-black dark:hover:text-white p-2 rounded-full`}
               >
                 {isParagraphVisible ? (
-                  <GoDash className="text-black dark:text-white w-6 h-6" />
+                  <GoDash className="text-black dark:text-white w-3 h-3 sm:w-6 sm:h-6" />
                 ) : (
-                  <GoPlus className="w-6 h-6" />
+                  <GoPlus className="w-3 h-3 sm:w-6 sm:h-6" />
                 )}
               </button>
             </div>
             {isParagraphVisible && (
-              <p className="text-zinc-400 font-light text-lg leading-6 p-5 tracking-wide">
+              <p className="text-zinc-400 font-extralight text-xs sm:text-sm md:text-base lg:text-lg p-4 pt-0 sm:p-5">
                 As a passionate and innovative web developer, I bring a blend of
                 creativity and technical expertise to each project. With a solid
                 foundation in HTML, CSS, JavaScript, React, and Next.js, I
@@ -217,8 +219,8 @@ const Freelance = () => {
               </p>
             )}
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };
@@ -278,10 +280,10 @@ const cards = [
           </strong>
           , and version control with GitHub ensure the highest quality work.{" "}
           <br /> <br />
-          Let&apos;s collaborate and make your vision a reality. If you are looking
-          for someone reliable and skilled for your next project, feel free to
-          reach out. I am excited to work with you and contribute to your
-          success.
+          Let&apos;s collaborate and make your vision a reality. If you are
+          looking for someone reliable and skilled for your next project, feel
+          free to reach out. I am excited to work with you and contribute to
+          your success.
         </p>
       );
     },
@@ -297,15 +299,16 @@ const cards = [
         <p>
           On Fiverr, I specialize in offering web development and UI design
           services that meet modern standards and ensure client satisfaction.
-          Whether you are starting a new project or upgrading an existing one, my
-          skill set—
+          Whether you are starting a new project or upgrading an existing one,
+          my skill set—
           <strong>
             HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
             Shadcn UI, Material UI, MERN, TypeScript, Vite, and Sanity
           </strong>
           —will help you achieve the best results. <br /> <br />
           Give me the opportunity to work on your next project, and I promise to
-          deliver quality work on time. Let&apos;s build something amazing together!
+          deliver quality work on time. Let&apos;s build something amazing
+          together!
         </p>
       );
     },
@@ -328,9 +331,9 @@ const cards = [
           </strong>{" "}
           ensures that your project will stand out and perform well across all
           devices. <br /> <br />
-          Let&apos;s work together on your next project—whether it is building a brand
-          new site or enhancing an existing one. I am committed to delivering
-          results that exceed expectations.
+          Let&apos;s work together on your next project—whether it is building a
+          brand new site or enhancing an existing one. I am committed to
+          delivering results that exceed expectations.
         </p>
       );
     },
@@ -347,16 +350,16 @@ const cards = [
           On 99Design, I offer cutting-edge UI design and frontend development
           services to bring your vision to life. If you are looking for a
           creative, efficient, and reliable developer who understands the
-          importance of design in creating a great user experience, you have come
-          to the right place. With proficiency in{" "}
+          importance of design in creating a great user experience, you have
+          come to the right place. With proficiency in{" "}
           <strong>
             HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
             Shadcn UI, Material UI, MERN, TypeScript, Vite, and Sanity
           </strong>
           , I ensure that your designs are not only visually appealing but also
           functional and responsive. <br /> <br />
-          Let me take your project to the next love to collaborate
-          with you on your next big idea.
+          Let me take your project to the next love to collaborate with you on
+          your next big idea.
         </p>
       );
     },

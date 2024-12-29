@@ -21,7 +21,6 @@ import CommentModal from "./CommentForm";
 import { ShareDialog } from "./ShareDialog";
 import { toast } from "react-toastify";
 import Tooltip from "@/components/Tooltip";
-import { IoHome } from "react-icons/io5";
 
 interface Blog {
   title: string;
@@ -65,6 +64,10 @@ const BlogPage = ({ params }: Props) => {
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+
+  useEffect(() => {
+    document.body.classList.add("dark"); // Apply dark mode class to body
+  }, []);
 
   // Handle comment submission
   const handleCommentSubmit = (newComment: {
@@ -160,7 +163,7 @@ const BlogPage = ({ params }: Props) => {
   }
 
   if (error) {
-    return toast.error("Error : "+ error, { autoClose: 2000 });
+    return toast.error("Error : " + error, { autoClose: 2000 });
   }
 
   if (!blog) {
@@ -295,15 +298,24 @@ const BlogPage = ({ params }: Props) => {
         <h4 className="text-xl font-medium text-zinc-200 my-2">{children}</h4>
       ),
       h5: ({ children }: any) => (
-        <h5 className="text-lg font-light text-white my-2 py-1 rounded-lg bg-yellow-500/[0.3] whitespace-nowrap overflow-auto opacity-50 w-full"><span className="sticky left-0 z-20 py-2 px-3 rounded-lg rounded-r-none bg-gradient-to-r from-yellow-500 to-yellow-400">✦</span><span className="p-2">{children}</span></h5>
+        <h5 className="text-lg font-light text-white my-2 py-1 rounded-lg bg-yellow-500/[0.3] whitespace-nowrap overflow-auto opacity-50 w-full">
+          <span className="sticky left-0 z-20 py-2 px-3 rounded-lg rounded-r-none bg-gradient-to-r from-yellow-500 to-yellow-400">
+            ✦
+          </span>
+          <span className="p-2">{children}</span>
+        </h5>
       ),
       normal: ({ children }: any) => (
-        <p className="text-base text-zinc-400 leading-relaxed mb-2">{children}</p>
+        <p className="text-base text-zinc-400 leading-relaxed mb-2">
+          {children}
+        </p>
       ),
     },
     list: {
       bullet: ({ children }: any) => (
-        <ul className="list-disc text-zinc-400 my-2 py-3 px-7 bg-zinc-900 rounded-lg opacity-90">{children}</ul>
+        <ul className="list-disc text-zinc-400 my-2 py-3 px-7 bg-zinc-900 rounded-lg opacity-90">
+          {children}
+        </ul>
       ),
       number: ({ children }: any) => (
         <ol className="list-decimal pl-5 text-zinc-400 my-2">{children}</ol>
@@ -349,33 +361,13 @@ const BlogPage = ({ params }: Props) => {
   return (
     <>
       <title>{`${blog.title} | Blog`}</title>
-      {/* Link to Home Page */}
-      <nav className="flex items-center p-2 sticky top-0 z-50">
-        <Link
-          href="/"
-          className="flex items-center space-x-3 group p-2 hover:bg-zinc-900 rounded-full"
-        >
-          <Image
-            src="/logo.svg"
-            alt="logo"
-            width={35}
-            height={35}
-            className="rounded-full shadow-lg shadow-zinc-950"
-            priority
-          />
-          <div className="hidden opacity-0 group-hover:opacity-100 group-hover:flex group-hover:pr-4 items-cenetr space-x-2 text-xl text-blue-600">
-            <IoHome className="w-6 h-6" />
-            <span>Home</span>
-          </div>
-        </Link>
-      </nav>
-      <main className="flex flex-col items-center justify-center m-auto sticky top-20 -mt-5 pb-20 px-32 w-full">
+      <main className="flex flex-col items-center justify-center m-auto sticky top-20 -mt-5 py-16 px-32 w-full">
         {/* Navigation Links */}
-        <div className="flex items-center justify-between sticky top-20 font-light text-zinc-700 w-full">
+        <div className="flex items-center justify-between sticky top-20 font-light text-zinc-500 w-full">
           {blog.previousPost ? (
             <Link
               href={`/blogs/${blog.previousPost.slug.current}`}
-              className="flex items-center space-x-2 hover:text-zinc-200 focus:text-blue-600 p-2 leading-3 pl-3 pr-5 hover:bg-zinc-900 rounded-full hover:scale-105 transition-transform"
+              className="flex items-center space-x-2 bg-zinc-900 hover:bg-white hover:text-black focus:text-blue-600 p-2 leading-3 pl-3 pr-5 rounded-full hover:scale-105 transition-transform"
             >
               <TfiControlBackward className="w-6 h-6" />
               <span>Back</span>
@@ -386,7 +378,7 @@ const BlogPage = ({ params }: Props) => {
           {blog.nextPost ? (
             <Link
               href={`/blogs/${blog.nextPost.slug.current}`}
-              className="flex items-center space-x-2 hover:text-zinc-200 focus:text-blue-600 p-2 leading-3 pr-3 pl-5 hover:bg-zinc-900 rounded-full hover:scale-105 transition-transform"
+              className="flex items-center space-x-2 bg-zinc-900 hover:bg-white hover:text-black focus:text-blue-600 p-2 leading-3 pr-3 pl-5 rounded-full hover:scale-105 transition-transform"
             >
               <span>Next</span>
               <TfiControlForward className="w-6 h-6" />

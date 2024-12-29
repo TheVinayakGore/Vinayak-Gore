@@ -104,7 +104,7 @@ const Workflow = () => {
     quia aliquam nihil illum quibusdam assumenda eos ex!
   `;
 
-  const indicesToShow = [1, 3, 4];
+  const indicesToShow = [1, 2, 3];
 
   return (
     <>

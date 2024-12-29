@@ -14,7 +14,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
-  const headline = `Visions Of Vinu`;
+  const headline = `TECH VISIONS OF VINAYAK GORE`;
 
   const words = [
     {
@@ -39,15 +39,16 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
       <main className="flex flex-col items-center justify-center m-auto h-full w-full">
         <div className="flex flex-col items-center justify-center overflow-hidden rounded-md w-full h-full">
           <div className="flex flex-col items-center justify-center">
-            <TextGenerateEffect headline={headline} className="font-sans" />
-            <Image
+            <TextGenerateEffect headline={headline} className="font-sans text-center" />
+            {/* <Image
               src="/vinu.png"
               alt="card"
               width={1000}
               height={1000}
               priority
               className="block md:hidden rounded-xl border-[1px] border-yellow-400 shadow-xl shadow-yellow-500/[0.3] mb-5 w-auto h-auto"
-            />
+            /> */}
+            <p className="block md:hidden text-4xl sm:text-6xl text-center font-extrabold">TECH VISIONS OF VINAYAK GORE</p>
             <Highlight className="flex items-center justify-center mx-auto text-xs sm:text-base md:text-lg px-6 sm:px-10 md:px-16 pb-2">
               <p className="text-center tracking-widest bg-clip-text text-transparent bg-gradient-to-b from-blue-700 to-sky-500 dark:from-white dark:to-zinc-500">
                 <span className="text-xl sm:text-2xl mx-2">⌲</span>
@@ -57,6 +58,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
               </p>
             </Highlight>
           </div>
+
 
           <div className="max-w-0 md:max-w-[40rem] w-full h-auto md:h-60 relative mx-auto py-10">
             <div className="absolute inset-x-4 sm:inset-x-10 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent h-[2px] sm:h-[3px] lg:h-[4px] w-3/4 blur-sm" />

@@ -46,6 +46,10 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.body.classList.add("dark"); // Apply dark mode class to body
+  }, []);
+
+  useEffect(() => {
     const fetchTutorial = async () => {
       try {
         const fetchedTutorial = await client.fetch(
@@ -259,7 +263,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   return (
     <>
       <title>{`${tutorial.tuttitle} | Tutorial`}</title>
-      <div className="flex flex-col items-start pt-10 px-52 overflow-auto w-full">
+      <main className="flex flex-col items-start pt-14 px-52 overflow-auto w-full">
         <div className="flex items-end justify-between mb-5 pb-3 border-b border-zinc-600 w-full">
           <div className="flex flex-col items-start border-l-4 border-zinc-400 rounded-l-[0.3rem] pl-5 w-full">
             <p className="text-3xl font-semibold text-zinc-300 mb-1">
@@ -292,7 +296,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
             <p className="text-lg font-medium text-gray-400">{likeCount}</p>
           </div>
         </div>
-        <div className="relative flex justify-center items-center hover:scale-105 transition-transform w-full">
+        <div className="relative flex justify-center items-center w-full">
           {/* Background image or cover */}
           {tutorial.tutimage && (
             <Image
@@ -324,7 +328,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
           </p>
         </div>
         <PortableText value={tutorial.content} components={components} />
-      </div>
+      </main>
     </>
   );
 }
