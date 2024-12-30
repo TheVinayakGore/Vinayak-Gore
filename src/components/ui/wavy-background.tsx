@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
 export const WavyBackground = ({
+  isDarkMode,
   children,
   className,
   containerClassName,
@@ -15,6 +16,7 @@ export const WavyBackground = ({
   waveOpacity = 0.5,
   ...props
 }: {
+  isDarkMode: boolean; // Accept the toggleTheme function as a prop
   children?: any;
   className?: string;
   containerClassName?: string;
@@ -35,6 +37,7 @@ export const WavyBackground = ({
     ctx: any,
     canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const getSpeed = () => {
     switch (speed) {
       case "slow":
@@ -76,7 +79,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * 0.5); // Adjust for height, currently at 50% of the container
       }
       ctx.stroke();
       ctx.closePath();
@@ -85,7 +88,7 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
+    ctx.fillStyle = isDarkMode ? "black" : "white"; // Adjust background color based on theme
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
     drawWave(5);
@@ -97,11 +100,11 @@ export const WavyBackground = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [isDarkMode]); // Reinitialize when theme changes
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
+    // I'm sorry but I have got to support it on Safari.
     setIsSafari(
       typeof window !== "undefined" &&
         navigator.userAgent.includes("Safari") &&
@@ -112,12 +115,12 @@ export const WavyBackground = ({
   return (
     <div
       className={cn(
-        "h-60 flex flex-col items-center justify-center",
+        "h-[25rem] flex flex-col items-center justify-center w-full max-w-screen",
         containerClassName
       )}
     >
       <canvas
-        className="absolute inset-0 z-0"
+        className="absolute z-0"
         ref={canvasRef}
         id="canvas"
         style={{

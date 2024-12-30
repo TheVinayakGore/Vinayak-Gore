@@ -1,23 +1,20 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { RxCross2 } from "react-icons/rx";
-import { RiArrowRightSLine } from "react-icons/ri";
 import { BsMoonStars } from "react-icons/bs";
 import { HiOutlineSun } from "react-icons/hi2";
+import { RiArrowRightSFill } from "react-icons/ri";
+import { RiArrowRightUpFill } from "react-icons/ri";
 
 interface SideBarProps {
   isSidebarOpen: boolean;
   handleBackdropClick: (event: React.MouseEvent) => void;
   closeSidebar: () => void;
-  toggleTheme: () => void; // Added toggleTheme as a prop
+  toggleTheme: () => void;
   isSunIcon: boolean;
 }
-
-const arrowIcon = (
-  <RiArrowRightSLine className="text-xl opacity-0 group-hover:opacity-100" />
-);
 
 const SideBar: React.FC<SideBarProps> = ({
   isSidebarOpen,
@@ -29,12 +26,12 @@ const SideBar: React.FC<SideBarProps> = ({
   return (
     <>
       {isSidebarOpen && (
-        <div
-          className="fixed block sm:hidden inset-0 bg-black/[0.6] backdrop-blur-sm z-[100]"
+        <main
+          className="items-center justify-center m-auto fixed block sm:hidden inset-0 bg-black/[0.6] backdrop-blur-sm z-[100] w-full"
           onClick={handleBackdropClick}
         >
-          <div className="absolute right-0 p-5 w-full h-full shadow-md sidebar-content">
-            <div className="flex items-center justify-between p-2 mx-3 bg-transparent/[0.05] dark:bg-transparent/[0.3] border border-white dark:border-zinc-700 rounded-full w-full">
+          <div className="flex flex-col items-center space-y-3 absolute right-0 p-3 w-full h-full shadow-md sidebar-content">
+            <nav className="flex items-center justify-between p-2 mx-3 bg-transparent/[0.05] dark:bg-transparent/[0.3] border border-white dark:border-zinc-700 rounded-full w-full">
               <Link href="/" className="flex items-center space-x-3">
                 <Image
                   src="/logo.svg"
@@ -61,167 +58,73 @@ const SideBar: React.FC<SideBarProps> = ({
                   <RxCross2 />
                 </button>
               </div>
-            </div>
-            <div className="grid grid-cols-3 gap-y-5 mt-10">
-              <div className="flex flex-col items-start gap-y-1 px-5 text-zinc-300 dark:text-zinc-500">
-                <h1 className="text-xl text-white font-medium mb-1">
+            </nav>
+            <section className="grid-cols-responsive grid grid-cols-2 gap-3 items-start px-3 text-center text-sm text-white w-full">
+              <div className="border border-t-0 border-white rounded-2xl">
+                <h1 className="p-2 bg-white text-black rounded-2xl hover:text-white w-full">
                   ✦ Author
                 </h1>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Who am I ?</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Tech Stacks</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Freelance</p>
-                </Link>
+                <ul className="flex flex-col space-y-1 px-3 py-2 whitespace-nowrap text-start text-white rounded-lg w-full">
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Who am I ?</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Tech Stacks</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Freelance</Link>
+                  </li>
+                </ul>
               </div>
-              <div className="flex flex-col items-start gap-y-1 px-5 text-zinc-300 dark:text-zinc-500">
-                <h1 className="text-xl text-white font-medium mb-1">
-                  ✦ Contact
-                </h1>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Email</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Social Handles</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Feedback Form</p>
-                </Link>
-              </div>
-              <div className="flex flex-col items-start gap-y-1 px-5 text-zinc-300 dark:text-zinc-500">
-                <h1 className="text-xl text-white font-medium mb-1">✦ Blogs</h1>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Programming</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Web Dev</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">App Dev</p>
-                </Link>
-              </div>
-              <div className="flex flex-col items-start gap-y-1 px-5 text-zinc-300 dark:text-zinc-500">
-                <h1 className="text-xl text-white font-medium mb-1">
+              <div className="border border-t-0 border-white rounded-2xl">
+                <h1 className="p-2 bg-white text-black rounded-2xl hover:text-white w-full">
                   ✦ Projects
                 </h1>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Stock Manager</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Mega Mall</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Voice AI</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Venz Park</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Gore Blogs</p>
-                </Link>
+                <ul className="flex flex-col space-y-1 px-3 py-2 whitespace-nowrap text-start text-white rounded-lg w-full">
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Mega Mall</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Textify</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">DooZen</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Snake Game</Link>
+                  </li>
+                </ul>
               </div>
-              <div className="flex flex-col items-start gap-y-1 px-5 text-zinc-300 dark:text-zinc-500">
-                <h1 className="text-xl text-white font-medium mb-1">
-                  ✦ Create
+              <div className="border border-t-0 border-white rounded-2xl">
+                <h1 className="p-2 bg-white text-black rounded-2xl hover:text-white w-full">
+                  ✦ Contact
                 </h1>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Tutorials</p>
+                <ul className="flex flex-col space-y-1 px-3 py-2 whitespace-nowrap text-start text-white rounded-lg w-full">
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Mega Mall</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Textify</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">DooZen</Link>
+                  </li>
+                  <li className="flex items-center hover:text-teal-400">
+                    <RiArrowRightSFill /> <Link href="/">Snake Game</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <Link href="/create" className="flex items-center justify-between p-2 px-4 bg-white hover:bg-teal-500 text-black rounded-full hover:text-white w-full">
+                  <span>✦ Create</span> <RiArrowRightUpFill className="text-lg" />
                 </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Playlists</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Figma</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Cheat Sheets</p>
-                </Link>
-                <Link
-                  href="/"
-                  className="flex items-center group hover:text-teal-400"
-                >
-                  {arrowIcon}
-                  <p className="whitespace-nowrap">Posters</p>
+                <Link href="/blogs" className="flex items-center justify-between p-2 px-4 bg-white hover:bg-teal-500 text-black rounded-full hover:text-white w-full">
+                  <span>✦ Blogs</span> <RiArrowRightUpFill className="text-lg" />
                 </Link>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
+        </main>
       )}
     </>
   );

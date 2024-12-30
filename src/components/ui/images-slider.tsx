@@ -1,47 +1,42 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import cn from "classnames"; // Assuming you are using classnames for conditional classes
+import cn from "classnames";
 
 export const ImagesSlider = ({
   images,
-  children,
   overlay = true,
   overlayClassName,
   className,
   autoplay = true,
   direction = "up",
-  setCurrentIndex, // Accept the setCurrentIndex function
+  setCurrentIndex,
 }: {
   images: string[];
-  children: React.ReactNode;
   overlay?: React.ReactNode;
   overlayClassName?: string;
   className?: string;
   autoplay?: boolean;
   direction?: "up" | "down";
-  setCurrentIndex: (index: number) => void; // Declare setCurrentIndex prop
+  setCurrentIndex: (index: number) => void;
 }) => {
   const [currentIndex, setLocalCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
-  // Function to handle the next image
   const handleNext = useCallback(() => {
     const nextIndex = currentIndex + 1 === images.length ? 0 : currentIndex + 1;
     setLocalCurrentIndex(nextIndex);
-    setCurrentIndex(nextIndex); // Update parent component's index
+    setCurrentIndex(nextIndex);
   }, [currentIndex, images.length, setCurrentIndex]);
 
-  // Function to handle the previous image
   const handlePrevious = useCallback(() => {
     const prevIndex =
       currentIndex - 1 < 0 ? images.length - 1 : currentIndex - 1;
     setLocalCurrentIndex(prevIndex);
-    setCurrentIndex(prevIndex); // Update parent component's index
+    setCurrentIndex(prevIndex);
   }, [currentIndex, images.length, setCurrentIndex]);
 
-  // Function to load the images and update the state
   const loadImages = useCallback(() => {
     setLoading(true);
     const loadPromises = images.map((image) => {
@@ -65,7 +60,6 @@ export const ImagesSlider = ({
     loadImages();
   }, [loadImages]);
 
-  // Listen for keyboard arrow keys and autoplay functionality
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
@@ -77,7 +71,6 @@ export const ImagesSlider = ({
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // autoplay
     let interval: NodeJS.Timeout | undefined;
     if (autoplay) {
       interval = setInterval(() => {
@@ -134,7 +127,6 @@ export const ImagesSlider = ({
         perspective: "5000px",
       }}
     >
-      {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
         <div
           className={cn("absolute inset-0 bg-transparent z-40", overlayClassName)}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@portabletext/react": "^3.1.0",
     "@radix-ui/react-label": "^2.1.0",
     "@react-three/fiber": "^8.17.8",
@@ -29,6 +30,7 @@
     "express": "^4.21.0",
     "framer-motion": "^11.15.0",
     "lru-cache": "^11.0.1",
+    "lucide-react": "^0.469.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.13",
     "next-auth": "^4.24.8",

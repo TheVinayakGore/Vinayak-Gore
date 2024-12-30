@@ -41,8 +41,8 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
               height={300}
               className="rounded-lg"
             />
-            <p className="text-base font-normal text-black dark:text-zinc-400 tracking-wider text-center">
-              Web Development | Frontend UI Design
+            <p className="text-sm font-mono font-normal text-black dark:text-zinc-400 tracking-wider text-center">
+              MERN STACK | NEXT.JS | REACT.JS
             </p>
             <Image
               src={isDarkMode ? "/sign2.png" : "/sign1.png"}
@@ -53,12 +53,16 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
             />
           </div>
 
+          <div className="text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente incidunt quia consectetur quis, in fugiat temporibus cum beatae ducimus accusantium officiis commodi enim recusandae impedit perspiciatis voluptatem obcaecati non expedita possimus cupiditate delectus? Ad laudantium excepturi repellat ipsum corporis animi enim distinctio officia asperiores praesentium, adipisci labore eveniet blanditiis cupiditate architecto molestias, recusandae saepe quaerat harum voluptates.</p>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 h-full sm:h-20">
             {/* YouTube Button */}
             <Link
               href="http://www.youtube.com/@vinayakgore7715"
               target="_blank"
-              className="flex items-center space-x-5 px-3 sm:px-5 bg-black dark:bg-white hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white text-white dark:text-zinc-800 text-base font-medium rounded-lg h-12"
+              className="flex items-center space-x-5 px-4 bg-black dark:bg-white hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white text-white dark:text-zinc-800 text-base font-medium rounded-lg h-12"
             >
                 <span>YouTube</span>
               <span>
@@ -83,7 +87,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
               text="Download Resume"
               className="-left-10 mb-2 bottom-full w-max h-max"
             >
-              <button className="flex items-center px-4 border border-zinc-300 dark:border-zinc-800 hover:border-black dark:hover:border-zinc-500 text-zinc-400 hover:text-black dark:hover:text-white no-underline group cursor-pointer relative rounded-md h-12">
+              <button className="flex items-center px-5 border border-zinc-300 dark:border-zinc-800 hover:border-black dark:hover:border-zinc-500 text-zinc-400 hover:text-black dark:hover:text-white no-underline group cursor-pointer relative rounded-md h-12">
                 <p className="mr-5">Resume</p>
                 <RxDownload className="w-5 h-5" />
                 <span className="absolute -bottom-0 left-[0.7rem] h-[1px] dark:h-px w-[calc(100%-1.3rem)] bg-gradient-to-r from-emerald-400/0 via-green-500 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />

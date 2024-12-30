@@ -111,29 +111,24 @@ body {
 
 
 /* Social Media Response */
-@media (max-width: 999px) {
-  .socialMedia {
+@media (min-width: 750px) {
+  .show-on-desktop {
+    display: block;
+  }
+  .show-on-mobile {
     display: none;
   }
 }
 
-@media (min-width: 1000px) {
-  .socialMedia {
-    display: block;
+@media (max-width: 749px) {
+  .show-on-desktop {
+    display: none;
   }
-}
-
-@media (max-width: 999px) {
-  .socialMediaSmallLink {
+  .show-on-mobile {
     display: flex;
   }
 }
 
-@media (min-width: 1000px) {
-  .socialMediaSmallLink {
-    display: none;
-  }
-}
 
 .footerLogo {
   font-family: "Satisfy", cursive;
@@ -144,4 +139,13 @@ body {
     display: none;
   }
 }
+
+/* Side Bar */
+@media (max-width: 350px) {
+  .grid-cols-responsive {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: 0 1rem;
+  }
+}
+
 

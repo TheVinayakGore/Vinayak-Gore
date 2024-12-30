@@ -16,7 +16,8 @@ import {
   IconBrandTelegram,
 } from "@tabler/icons-react";
 import { FaArrowTurnDown } from "react-icons/fa6";
-
+import { WavyBackground } from "./ui/wavy-background";
+import Image from "next/image";
 
 interface SocialMedia {
   id: number;
@@ -35,7 +36,7 @@ interface SocialMedia {
 
 const SOCIALMEDIA_QUERY = `*[_type == "socialMedia"]`;
 
-const SocialMedia = () => {
+const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([]);
 
   useEffect(() => {
@@ -56,7 +57,13 @@ const SocialMedia = () => {
     {
       title: "GitHub",
       icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/github.png"
+          alt="GitHub"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://github.com/your-profile",
     },
@@ -64,28 +71,52 @@ const SocialMedia = () => {
     {
       title: "Instagram",
       icon: (
-        <IconBrandInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/instagram.png"
+          alt="Instagram"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://instagram.com/your-profile",
     },
     {
       title: "Threads",
       icon: (
-        <IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/threads.png"
+          alt="Threads"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://threads.net/your-profile",
     },
     {
       title: "LinkedIn",
       icon: (
-        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/linkedin.png"
+          alt="LinkedIn"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://linkedin.com/in/your-profile",
     },
     {
       title: "X",
       icon: (
-        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/x.png"
+          alt="X"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://twitter.com/your-profile",
     },
@@ -93,21 +124,39 @@ const SocialMedia = () => {
     {
       title: "YouTube",
       icon: (
-        <IconBrandYoutube className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/youtube.png"
+          alt="YouTube"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://youtube.com/your-channel",
     },
     {
       title: "Facebook",
       icon: (
-        <IconBrandFacebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/facebook.png"
+          alt="Facebook"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://facebook.com/your-profile",
     },
     {
       title: "Telegram",
       icon: (
-        <IconBrandTelegram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Image
+          src="/icons/telegram.png"
+          alt="Telegram"
+          className="rounded-xl"
+          width={300}
+          height={300}
+        />
       ),
       href: "https://t.me/your-channel",
     },
@@ -119,12 +168,12 @@ const SocialMedia = () => {
         id="socialMedia"
         className="flex flex-col items-center px-10 sm:px-20 w-full"
       >
-        <section className="flex flex-col items-center justify-center text-center text-zinc-600 w-full max-w-[40rem] p-4 sm:p-6 lg:p-8">
+        <section className="flex flex-col items-center justify-center text-center text-zinc-600 w-full max-w-[40rem] p-4 sm:p-6 lg:p-8 z-10">
           <p className="text-sm sm:text-lg md:text-xl">
             You can contact me on my following social media accounts and
             subscribe if you like my content
           </p>
-          <p className="my-6 text-xs sm:text-sm text-blue-600 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-8">
+          <p className="my-6 text-xs sm:text-sm text-blue-600">
             <span className="text-zinc-500">@mail :</span> vvgore2675@gmail.com
           </p>
           <p className="flex items-center justify-center p-3 px-3 sm:px-5 space-x-3 bg-black dark:bg-white text-white dark:text-black text-xs sm:text-sm md:text-base font-medium rounded-lg">
@@ -133,7 +182,7 @@ const SocialMedia = () => {
           </p>
         </section>
 
-        <div className="socialMedia border-dashed border-t border-zinc-700 mt-[-1rem] w-10"></div>
+        {/* <div className="socialMedia border-dashed border-t border-zinc-700 mt-[-1rem] w-10"></div>
         <div className="socialMedia border-dashed border-t border-l border-zinc-700 h-40 mt-[-1rem] mb-[-2rem]"></div>
         <div className="socialMedia flex items-center justify-between m-auto border-dashed border-t border-zinc-700 mb-10 w-full">
           <ul className="flex items-center justify-between m-auto ml-[-0.7rem] w-full">
@@ -166,11 +215,30 @@ const SocialMedia = () => {
               );
             })}
           </ul>
-        </div>
+        </div> */}
 
-        <div className="socialMediaSmallLink flex items-center justify-center h-[10rem] w-full">
-          <FloatingDock items={links} />
-        </div>
+        <section className="flex flex-wrap z-0">
+          <div className="show-on-desktop w-full">
+            <WavyBackground isDarkMode={isDarkMode} className="max-w-4xl mx-auto z-0">
+              <FloatingDock items={links} />
+            </WavyBackground>
+          </div>
+
+          <div className="show-on-mobile items-center justify-center w-full">
+            <WavyBackground isDarkMode={isDarkMode} className="z-0 w-full max-w-screen">
+              <ul className="grid grid-cols-4 gap-3 items-center w-60">
+                <li><Image src="/icons/github.png" alt="GitHub" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/instagram.png" alt="Instagram" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/threads.png" alt="Threads" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/linkedin.png" alt="LinkedIn" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/x.png" alt="X" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/youtube.png" alt="YouTube" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/facebook.png" alt="Facebook" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                <li><Image src="/icons/telegram.png" alt="Telegram" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+              </ul>
+            </WavyBackground>
+          </div>
+        </section>
       </main>
     </>
   );

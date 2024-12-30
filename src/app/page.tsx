@@ -43,6 +43,7 @@ const Page: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
+      <div className="absolute top-0 z-[-20] h-screen w-screen bg-white dark:bg-black bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(135,206,250,0.5),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(150,150,150,0.3),rgba(0,0,0,0))]"></div>
       <main className="relative antialiased">
         <div className="flex flex-col gap-y-32 pt-48 pb-28">
           <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
@@ -71,7 +72,7 @@ const Page: React.FC = () => {
             </div>
             <div className="flex flex-col space-y-40 w-full h-full">
               <Freelance />
-              <SocialMedia />
+              <SocialMedia isDarkMode={isDarkMode} />
             </div>
           </div>
         </div>

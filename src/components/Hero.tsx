@@ -7,7 +7,6 @@ import { PiStudent } from "react-icons/pi";
 import { TypewriterEffect } from "./ui/typewriter-effect";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { Highlight } from "./ui/hero-highlight";
-import Image from "next/image";
 
 interface HeroProps {
   isDarkMode: boolean;
@@ -40,14 +39,6 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
         <div className="flex flex-col items-center justify-center overflow-hidden rounded-md w-full h-full">
           <div className="flex flex-col items-center justify-center">
             <TextGenerateEffect headline={headline} className="font-sans text-center" />
-            {/* <Image
-              src="/vinu.png"
-              alt="card"
-              width={1000}
-              height={1000}
-              priority
-              className="block md:hidden rounded-xl border-[1px] border-yellow-400 shadow-xl shadow-yellow-500/[0.3] mb-5 w-auto h-auto"
-            /> */}
             <p className="block md:hidden text-4xl sm:text-6xl text-center font-extrabold">TECH VISIONS OF VINAYAK GORE</p>
             <Highlight className="flex items-center justify-center mx-auto text-xs sm:text-base md:text-lg px-6 sm:px-10 md:px-16 pb-2">
               <p className="text-center tracking-widest bg-clip-text text-transparent bg-gradient-to-b from-blue-700 to-sky-500 dark:from-white dark:to-zinc-500">

@@ -205,7 +205,7 @@ const Freelance = () => {
               </button>
             </div>
             {isParagraphVisible && (
-              <p className="text-zinc-400 font-extralight text-xs sm:text-sm md:text-base lg:text-lg p-4 pt-0 sm:p-5">
+              <p className="font-extralight text-xs sm:text-sm md:text-base lg:text-lg p-4 pt-0 sm:p-5">
                 As a passionate and innovative web developer, I bring a blend of
                 creativity and technical expertise to each project. With a solid
                 foundation in HTML, CSS, JavaScript, React, and Next.js, I
