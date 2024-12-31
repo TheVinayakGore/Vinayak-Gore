@@ -7,7 +7,6 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { IoHeartSharp } from "react-icons/io5";
 import { BiLogoYoutube } from "react-icons/bi";
 import LoadingBar from "@/components/LoadingBar";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -15,12 +14,12 @@ import { GoPaste } from "react-icons/go";
 import { MdDone } from "react-icons/md";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Tutorial {
   _id: string;
   tuttitle: string;
   tutstack: string[];
-  likes: number;
   tutshortdesc: string;
   tutimage?: {
     asset: {
@@ -29,56 +28,55 @@ interface Tutorial {
   };
   content: any[];
   date: string;
-  tutorialYTUrl: string;
+  tutorialYTUrl: string | null;
 }
 
 interface TutorialPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default function TutorialPage({ params }: TutorialPageProps) {
-  const { id } = params;
   const [tutorial, setTutorial] = useState<Tutorial | null>(null);
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [id, setId] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    params
+      .then((resolvedParams) => setId(resolvedParams.id))
+      .catch((error) => {
+        console.error("Failed to resolve params:", error);
+        router.push("/404");
+      });
+  }, [params, router]);
 
   useEffect(() => {
     document.body.classList.add("dark"); // Apply dark mode class to body
   }, []);
 
   useEffect(() => {
+    if (!id) return;
+
     const fetchTutorial = async () => {
       try {
         const fetchedTutorial = await client.fetch(
           `*[_type == "tutorials" && _id == $id][0]`,
           { id }
         );
+        if (!fetchedTutorial) {
+          router.push("/404");
+          return;
+        }
         setTutorial(fetchedTutorial);
-        setLikeCount(fetchedTutorial?.likes || 0);
-      } catch (err) {
-        console.error("Failed to fetch tutorial:", err);
+      } catch (error) {
+        console.error("Failed to fetch tutorial:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchTutorial();
-  }, [id]);
-
-  useEffect(() => {
-    const storedLikeStatus = localStorage.getItem(`liked-${id}`);
-    const storedLikeCount = localStorage.getItem(`likeCount-${id}`);
-
-    if (storedLikeStatus === "true") {
-      setIsLiked(true);
-    }
-    if (storedLikeCount) {
-      setLikeCount(parseInt(storedLikeCount));
-    }
-  }, [id]);
+  }, [id, router]);
 
   if (loading) {
     return (
@@ -93,36 +91,6 @@ export default function TutorialPage({ params }: TutorialPageProps) {
     return toast.error("Tutorial not found", { autoClose: 2000 });
   }
 
-  const toggleLike = async () => {
-    let newLikeStatus = !isLiked;
-    setIsLiked(newLikeStatus);
-
-    let updatedLikeCount = likeCount;
-    if (newLikeStatus) {
-      updatedLikeCount += 1;
-      toast.success("Liked tutorial!", { autoClose: 2000 });
-    } else {
-      updatedLikeCount -= 1;
-      toast.warning("Unliked tutorial!", { autoClose: 2000 });
-    }
-
-    setLikeCount(updatedLikeCount);
-
-    try {
-      await client
-        .patch(id) // Use the document's ID
-        .set({ likes: updatedLikeCount }) // Update the "likes" field
-        .commit(); // Commit the changes
-    } catch (error) {
-      console.error("Failed to update likes:", error);
-      toast.error(
-        "Failed to update like count due to insufficient permissions."
-      );
-      setIsLiked(!newLikeStatus); // Revert like status if update fails
-      setLikeCount(likeCount); // Revert like count if update fails
-    }
-  };
-
   const CodeBlock = ({
     value,
   }: {
@@ -133,6 +101,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
     const handleCopy = () => {
       navigator.clipboard.writeText(value.code);
       setIsCopied(true);
+      toast.success("Copied Successfully!", { autoClose: 2000 });
       setTimeout(() => {
         setIsCopied(false);
       }, 2000);
@@ -285,19 +254,8 @@ export default function TutorialPage({ params }: TutorialPageProps) {
               ))}
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <button onClick={toggleLike}>
-              <IoHeartSharp
-                className={
-                  isLiked ? "text-zinc-600 w-8 h-8" : "text-pink-500 w-8 h-8"
-                }
-              />
-            </button>
-            <p className="text-lg font-medium text-gray-400">{likeCount}</p>
-          </div>
         </div>
         <div className="relative flex justify-center items-center w-full">
-          {/* Background image or cover */}
           {tutorial.tutimage && (
             <Image
               src={urlFor(tutorial.tutimage.asset._ref).url()}
@@ -307,16 +265,16 @@ export default function TutorialPage({ params }: TutorialPageProps) {
               className="border border-zinc-800 rounded-lg w-full h-auto"
             />
           )}
-
-          {/* YouTube Button */}
           <div className="absolute flex justify-center items-center z-10 rounded-lg w-full h-full">
-            <Link
-              href={tutorial.tutorialYTUrl}
-              target="_blank"
-              className="bg-white rounded-full text-red-600 shadow-xl shadow-black/[0.5] hover:scale-105 transition-transform w-20 h-20"
-            >
-              <BiLogoYoutube className="p-2 w-full h-full" />
-            </Link>
+            {tutorial.tutorialYTUrl ? (
+              <Link
+                href={tutorial.tutorialYTUrl}
+                target="_blank"
+                className="bg-white rounded-full text-red-600 shadow-xl shadow-black/[0.5] hover:scale-105 transition-transform w-20 h-20"
+              >
+                <BiLogoYoutube className="p-2 w-full h-full" />
+              </Link>
+            ) : ("")}
           </div>
         </div>
         <div className="flex flex-col items-start justify-start py-5 mb-10 border-dashed border-b border-zinc-700 w-full">

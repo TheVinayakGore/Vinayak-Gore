@@ -15,7 +15,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ codeString }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(codeString);
     setCopy(true);
-    toast.success("Code copied!", { autoClose: 2000 });
+    toast.success("Copied Successfully!", { autoClose: 2000 });
     setTimeout(() => {
       setCopy(false);
     }, 2000);

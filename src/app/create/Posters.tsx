@@ -37,7 +37,7 @@ const Posters = () => {
         const data = await client.fetch(POSTERS_QUERY);
         setPosterDocs(data);
       } catch (error) {
-        console.error("Error fetching posters:", error);
+        toast.error("Error fetching posters:" + error);
       } finally {
         setLoading(false);
       }

@@ -103,14 +103,12 @@ export const tutorials = defineType({
       name: "tutorialGitUrl",
       type: "url",
       description: "URL to the github repo",
-      validation: (Rule) => Rule.uri({ allowRelative: false }),
     }),
     defineField({
       title: "Tutorial YouTube URL",
       name: "tutorialYTUrl",
       type: "url",
       description: "URL to the tutorial",
-      validation: (Rule) => Rule.uri({ allowRelative: false }),
     }),
   ],
 });

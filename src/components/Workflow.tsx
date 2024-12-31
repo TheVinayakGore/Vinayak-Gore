@@ -152,6 +152,7 @@ const Workflow = () => {
                         </p>
                         <Link
                           href={project.projectUrl}
+                          target="_blank"
                           className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-5 hover:shadow-lg shadow-zinc-800/[0.7] text-white inline-flex items-center space-x-3 border border-white hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
                         >
                           <span>Explore Now</span>

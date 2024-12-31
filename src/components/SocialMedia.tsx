@@ -2,25 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { AnimatedTooltip } from "./ui/animated-tooltip";
 import Link from "next/link";
 import { FloatingDock } from "./ui/floating-dock";
-import {
-  IconBrandGithub,
-  IconBrandInstagram,
-  IconBrandThreads,
-  IconBrandLinkedin,
-  IconBrandX,
-  IconBrandYoutube,
-  IconBrandFacebook,
-  IconBrandTelegram,
-} from "@tabler/icons-react";
 import { FaArrowTurnDown } from "react-icons/fa6";
 import { WavyBackground } from "./ui/wavy-background";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 interface SocialMedia {
-  id: number;
+  _id: number;
   title: string;
   desc: string;
   img?: {
@@ -28,10 +18,7 @@ interface SocialMedia {
       _ref: string;
     };
   };
-  icon: string;
   UrlLink: string;
-  height: string;
-  margin: string;
 }
 
 const SOCIALMEDIA_QUERY = `*[_type == "socialMedia"]`;
@@ -45,8 +32,7 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
         const data: SocialMedia[] = await client.fetch(SOCIALMEDIA_QUERY);
         setSocialMedia(data);
       } catch (error) {
-        console.error("Error fetching social media data:", error);
-        alert("Error fetching social media data. Check console for details.");
+        toast.error("Error fetching social media data:" + error);
       }
     };
 
@@ -182,41 +168,6 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
           </p>
         </section>
 
-        {/* <div className="socialMedia border-dashed border-t border-zinc-700 mt-[-1rem] w-10"></div>
-        <div className="socialMedia border-dashed border-t border-l border-zinc-700 h-40 mt-[-1rem] mb-[-2rem]"></div>
-        <div className="socialMedia flex items-center justify-between m-auto border-dashed border-t border-zinc-700 mb-10 w-full">
-          <ul className="flex items-center justify-between m-auto ml-[-0.7rem] w-full">
-            {socialMedia.map((item, index) => {
-              const imageUrl = item.img
-                ? urlFor(item.img).url()
-                : "/icons/youtube.png";
-              return (
-                <li key={item.id}>
-                  <hr
-                    className={`${item.height} w-0 ${item.margin} ml-14 border-dashed border-l border-zinc-700`}
-                  />
-                  <div className="ml-[1.3rem]">
-                    <Link
-                      href={item.UrlLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <AnimatedTooltip
-                        item={{
-                          id: index,
-                          name: item.title,
-                          designation: item.desc,
-                          image: imageUrl,
-                        }}
-                      />
-                    </Link>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div> */}
-
         <section className="flex flex-wrap z-0">
           <div className="show-on-desktop w-full">
             <WavyBackground isDarkMode={isDarkMode} className="max-w-4xl mx-auto z-0">
@@ -225,16 +176,28 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
           </div>
 
           <div className="show-on-mobile items-center justify-center w-full">
-            <WavyBackground isDarkMode={isDarkMode} className="z-0 w-full max-w-screen">
+            <WavyBackground
+              isDarkMode={isDarkMode}
+              className="z-0 w-full max-w-screen"
+            >
               <ul className="grid grid-cols-4 gap-3 items-center w-60">
-                <li><Image src="/icons/github.png" alt="GitHub" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/instagram.png" alt="Instagram" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/threads.png" alt="Threads" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/linkedin.png" alt="LinkedIn" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/x.png" alt="X" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/youtube.png" alt="YouTube" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/facebook.png" alt="Facebook" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
-                <li><Image src="/icons/telegram.png" alt="Telegram" className="rounded-lg w-14 h-14" width={300} height={300}/></li>
+                {socialMedia.map((item) => (
+                  <li key={item._id}>
+                    {item.img?.asset?._ref ? (
+                      <Link href={item.UrlLink}>
+                        <Image
+                          src={urlFor(item.img).url()}
+                          alt={item.title || "Social media icon"}
+                          className="rounded-lg w-14 h-14"
+                          width={300}
+                          height={300}
+                        />
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">Image not available</span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </WavyBackground>
           </div>

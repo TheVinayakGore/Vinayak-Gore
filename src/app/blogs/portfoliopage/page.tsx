@@ -31,6 +31,10 @@ const PortfolioBlog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.body.classList.add("dark"); // Apply dark mode class to body
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true); // Set loading to true before fetching
       const query = `*[_type == "portfolioblog"] | order(date desc)[0]`;
@@ -176,19 +180,15 @@ const PortfolioBlog = () => {
   };
 
   if (!blogData) {
-    return (
-      <div className="pt-32">
-        {loading && <LoadingSpinner />}
-      </div>
-    );
+    return <div className="pt-32">{loading && <LoadingSpinner />}</div>;
   }
 
   return (
     <>
       <title>{`${blogData.title} | Blog | Vinayak Gore`}</title>
       <LoadingBar loading={loading} />
-      <main className="flex flex-col items-center justify-center m-auto sticky top-0 py-10 px-16 w-full">
-        <div className="font-light px-20 w-full">
+      <main className="flex flex-col items-center justify-center m-auto sticky top-0 max-w-4xl">
+        <div className="font-light py-14 w-full">
           <section className="flex flex-col items-start space-y-10 w-full">
             <div className="w-full">
               <div className="flex items-end justify-between mb-5 pb-5 border-b border-zinc-700 w-full">

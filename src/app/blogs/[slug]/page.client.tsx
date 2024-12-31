@@ -229,6 +229,7 @@ const BlogPage = ({ params }: Props) => {
     const handleCopy = () => {
       navigator.clipboard.writeText(value.code);
       setIsCopied(true);
+      toast.success("Copied Successfully!");
       setTimeout(() => {
         setIsCopied(false);
       }, 2000); // Revert to "Copy" after 2 seconds
@@ -361,9 +362,9 @@ const BlogPage = ({ params }: Props) => {
   return (
     <>
       <title>{`${blog.title} | Blog`}</title>
-      <main className="flex flex-col items-center justify-center m-auto sticky top-20 -mt-5 py-16 px-32 w-full">
+      <main className="flex flex-col items-center justify-center m-auto sticky top-20 -mt-5 w-full">
         {/* Navigation Links */}
-        <div className="flex items-center justify-between sticky top-20 font-light text-zinc-500 w-full">
+        <div className="flex items-center justify-between sticky top-20 px-20 font-light text-zinc-500 w-full">
           {blog.previousPost ? (
             <Link
               href={`/blogs/${blog.previousPost.slug.current}`}
@@ -389,7 +390,7 @@ const BlogPage = ({ params }: Props) => {
         </div>
 
         {/* Blog Content */}
-        <div className="font-light px-40 w-full">
+        <div className="font-light py-12 max-w-4xl">
           <section className="flex flex-col items-start space-y-10 w-full">
             <div className="w-full">
               <div className="flex items-end justify-between mb-5 pb-5 border-b border-zinc-700 w-full">

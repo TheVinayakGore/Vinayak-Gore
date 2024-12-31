@@ -6,11 +6,6 @@ export const socialMedia = defineType({
   type: "document",
   fields: [
     defineField({
-      title: "ID",
-      name: "id",
-      type: "number",
-    }),
-    defineField({
       title: "Title",
       name: "title",
       type: "string",
@@ -29,26 +24,11 @@ export const socialMedia = defineType({
       }
     }),
     defineField({
-      title: "Icon",
-      name: "icon",
-      type: "string",
-    }),
-    defineField({
       title: "URL Link",
       name: "UrlLink",
       type: "url",
       description: "URL link to the social Media profile",
       validation: (Rule) => Rule.uri({ allowRelative: false }),
-    }),
-    defineField({
-      title: "Height",
-      name: "height",
-      type: "string",
-    }),
-    defineField({
-      title: "Margin",
-      name: "margin",
-      type: "string",
     }),
   ],
 });

@@ -54,7 +54,16 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
           </div>
 
           <div className="text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente incidunt quia consectetur quis, in fugiat temporibus cum beatae ducimus accusantium officiis commodi enim recusandae impedit perspiciatis voluptatem obcaecati non expedita possimus cupiditate delectus? Ad laudantium excepturi repellat ipsum corporis animi enim distinctio officia asperiores praesentium, adipisci labore eveniet blanditiis cupiditate architecto molestias, recusandae saepe quaerat harum voluptates.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+              incidunt quia consectetur quis, in fugiat temporibus cum beatae
+              ducimus accusantium officiis commodi enim recusandae impedit
+              perspiciatis voluptatem obcaecati non expedita possimus cupiditate
+              delectus? Ad laudantium excepturi repellat ipsum corporis animi
+              enim distinctio officia asperiores praesentium, adipisci labore
+              eveniet blanditiis cupiditate architecto molestias, recusandae
+              saepe quaerat harum voluptates.
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 h-full sm:h-20">
@@ -64,7 +73,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
               target="_blank"
               className="flex items-center space-x-5 px-4 bg-black dark:bg-white hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white text-white dark:text-zinc-800 text-base font-medium rounded-lg h-12"
             >
-                <span>YouTube</span>
+              <span>YouTube</span>
               <span>
                 <ImYoutube className="w-7 h-7" />
               </span>
@@ -85,13 +94,17 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
             {/* Download Button with Tooltip */}
             <Tooltip
               text="Download Resume"
-              className="-left-10 mb-2 bottom-full w-max h-max"
+              className="mb-2 bottom-full w-full h-max"
             >
-              <button className="flex items-center px-5 border border-zinc-300 dark:border-zinc-800 hover:border-black dark:hover:border-zinc-500 text-zinc-400 hover:text-black dark:hover:text-white no-underline group cursor-pointer relative rounded-md h-12">
+              <a
+                href="https://raw.githubusercontent.com/TheVinayakGore/Resume/main/Resume.pdf"
+                download="Resume.pdf"
+                className="flex items-center px-5 border border-zinc-300 dark:border-zinc-800 hover:border-black dark:hover:border-zinc-500 text-zinc-400 hover:text-black dark:hover:text-white no-underline group cursor-pointer relative rounded-md h-12"
+              >
                 <p className="mr-5">Resume</p>
                 <RxDownload className="w-5 h-5" />
                 <span className="absolute -bottom-0 left-[0.7rem] h-[1px] dark:h-px w-[calc(100%-1.3rem)] bg-gradient-to-r from-emerald-400/0 via-green-500 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
-              </button>
+              </a>
             </Tooltip>
           </div>
         </div>

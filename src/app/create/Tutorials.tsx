@@ -24,10 +24,10 @@ interface Tutorial {
     };
     caption?: string;
   };
-  tutdownloadUrl: string;
-  tutorialGitUrl: string;
-  tutorialYTUrl: string;
-  tutlink: string;
+  tutdownloadUrl: string | null;
+  tutorialGitUrl: string | null;
+  tutorialYTUrl: string | null;
+  tutlink: string | null;
   date: string;
 }
 
@@ -105,9 +105,18 @@ const Tutorials = () => {
       ? tutorialData
       : tutorialData.filter((item) => item.tutstack.includes(selectedStack));
 
+  // Function to handle link clicks
+  const handleLinkClick = (link: string | null) => {
+    if (!link) {
+      toast.error("Link is Unavailable!", { autoClose: 2000 });
+      return false; // Indicate the link is unavailable
+    }
+    return true; // Indicate the link is available
+  };
+
   return (
     <>
-      <div className="flex flex-col items-start w-full h-[64.5rem]">
+      <main className="flex flex-col items-start w-full h-[64.5rem]">
         <div className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <div className="flex items-center space-x-4 w-1/2">
             <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-10">
@@ -187,19 +196,38 @@ const Tutorials = () => {
                         <CardItem translateZ={40} className="w-full">
                           <div className="flex items-center space-x-2 w-full">
                             <Link
-                              href={item.tutorialGitUrl}
-                              target="_blank"
-                              rel="noopener"
-                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 hover:border-purple-500 hover:bg-purple-500 hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
+                              href={item.tutorialGitUrl || "/errorpage"}
+                              target={
+                                item.tutorialGitUrl ? "_blank" : undefined
+                              }
+                              rel={item.tutorialGitUrl ? "noopener" : undefined}
+                              onClick={(e) => {
+                                if (!handleLinkClick(item.tutorialGitUrl))
+                                  e.preventDefault();
+                              }}
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                                item.tutorialGitUrl
+                                  ? "hover:border-purple-500 hover:bg-purple-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  : "opacity-50 hover:cursor-not-allowed"
+                              } transition-transform w-full`}
                             >
                               <span className="relative z-20">GitHub Repo</span>
                               <VscGithub className="w-7 h-7" />
                             </Link>
+
                             <Link
-                              href={item.tutorialYTUrl}
-                              target="_blank"
-                              rel="noopener"
-                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
+                              href={item.tutorialYTUrl || "/errorpage"}
+                              target={item.tutorialYTUrl ? "_blank" : undefined}
+                              rel={item.tutorialYTUrl ? "noopener" : undefined}
+                              onClick={(e) => {
+                                if (!handleLinkClick(item.tutorialYTUrl))
+                                  e.preventDefault();
+                              }}
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                                item.tutorialYTUrl
+                                  ? "hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  : "opacity-50 hover:cursor-not-allowed"
+                              } transition-transform w-full`}
                             >
                               <span className="relative z-20">
                                 YouTube Video
@@ -211,12 +239,19 @@ const Tutorials = () => {
                         <CardItem translateZ={40} className="w-full">
                           <div className="flex items-center space-x-2 w-full">
                             <a
-                              href={item.tutdownloadUrl}
+                              href={item.tutdownloadUrl || "/errorpage"}
                               onClick={(e) => {
-                                e.preventDefault();
-                                handleDownloadClick(item.tutdownloadUrl);
+                                if (!item.tutdownloadUrl) {
+                                  e.preventDefault();
+                                } else {
+                                  handleDownloadClick(item.tutdownloadUrl);
+                                }
                               }}
-                              className="flex items-center p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 hover:border-green-500 hover:bg-green-500 hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
+                              className={`flex items-center p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                                item.tutdownloadUrl
+                                  ? "hover:border-green-500 hover:bg-green-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  : "opacity-50 hover:cursor-not-allowed"
+                              } transition-transform w-full`}
                             >
                               <button className="flex items-center justify-between w-full">
                                 <span className="relative z-20">
@@ -243,7 +278,9 @@ const Tutorials = () => {
                 ))
               ) : (
                 <div className="flex flex-col items-center space-y-3">
-                  <p className="text-lg font-mono opacity-50"># Currently Unavailable !</p>
+                  <p className="text-lg font-mono opacity-50">
+                    # Currently Unavailable !
+                  </p>
                   <Image
                     src="/nofile2.gif"
                     alt="No File found!"
@@ -257,7 +294,7 @@ const Tutorials = () => {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };
