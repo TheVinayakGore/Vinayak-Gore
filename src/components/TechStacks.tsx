@@ -1,12 +1,13 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { IoLogoHtml5 } from "react-icons/io";
+import { IoLogoCss3 } from "react-icons/io";
 import { IoLogoJavascript } from "react-icons/io";
 import { RiReactjsLine } from "react-icons/ri";
 import { SiNextdotjs } from "react-icons/si";
 import { SiMongodb } from "react-icons/si";
 import { IoIosGitBranch } from "react-icons/io";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { SiMui } from "react-icons/si";
 import { SiShadcnui } from "react-icons/si";
 import { BsBootstrapFill } from "react-icons/bs";
 import { FaNodeJs } from "react-icons/fa";
@@ -14,87 +15,101 @@ import { SiExpress } from "react-icons/si";
 import { SiTypescript } from "react-icons/si";
 import { SiVite } from "react-icons/si";
 import { SiSanity } from "react-icons/si";
-import { SiCplusplus } from "react-icons/si";
+import Link from "next/link";
 
 const TechStacks = () => {
   const features = [
     {
+      title: "HTML5",
+      description: "Markup language for structuring web content.",
+      icon: <IoLogoHtml5 className="w-7 h-7" />,
+      link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    },
+    {
+      title: "CSS3",
+      description: "Styling language for designing web pages.",
+      icon: <IoLogoCss3 className="w-7 h-7" />,
+      link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    },
+    {
       title: "Javascript",
       description: "Versatile language for web development and scripting.",
       icon: <IoLogoJavascript className="w-7 h-7" />,
+      link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     },
     {
       title: "Typescript",
       description: "Typed superset of JavaScript for scalable applications.",
       icon: <SiTypescript className="w-7 h-7" />,
+      link: "https://www.typescriptlang.org/",
     },
     {
       title: "Bootstrap",
       description: "Popular CSS framework for responsive web design.",
       icon: <BsBootstrapFill className="w-7 h-7" />,
+      link: "https://getbootstrap.com/",
     },
     {
       title: "Tailwind CSS",
       description: "Utility-first CSS framework for custom designs.",
       icon: <RiTailwindCssFill className="w-7 h-7" />,
+      link: "https://tailwindcss.com/",
     },
     {
-      title: "Node.js",
-      description: "JavaScript runtime for building server-side applications.",
-      icon: <FaNodeJs className="w-7 h-7" />,
-    },
-    {
-      title: "Express.js",
-      description:
-        "Minimalist framework for building web applications in Node.",
-      icon: <SiExpress className="w-7 h-7" />,
+      title: "Vite",
+      description: "Fast build tool for modern web applications.",
+      icon: <SiVite className="w-7 h-7" />,
+      link: "https://vitejs.dev/",
     },
     {
       title: "React.Js",
       description: "Library for building interactive user interfaces.",
       icon: <RiReactjsLine className="w-7 h-7" />,
+      link: "https://react.dev/",
     },
     {
       title: "Next.Js",
       description:
         "React framework for server-side rendering and static sites.",
       icon: <SiNextdotjs className="w-7 h-7" />,
-    },
-    {
-      title: "Vite",
-      description: "Fast build tool for modern web applications.",
-      icon: <SiVite className="w-7 h-7" />,
-    },
-    {
-      title: "Material UI",
-      description: "React components implementing Google's Material Design.",
-      icon: <SiMui className="w-7 h-7" />,
+      link: "https://nextjs.org/",
     },
     {
       title: "Shadcn UI",
       description: "Dark-themed UI components for modern web apps.",
       icon: <SiShadcnui className="w-7 h-7" />,
+      link: "https://ui.shadcn.com/",
+    },
+    {
+      title: "Node.js",
+      description: "JavaScript runtime for building server-side applications.",
+      icon: <FaNodeJs className="w-7 h-7" />,
+      link: "https://nodejs.org/",
+    },
+    {
+      title: "Express.js",
+      description:
+        "Minimalist framework for building web applications in Node.",
+      icon: <SiExpress className="w-7 h-7" />,
+      link: "https://expressjs.com/",
     },
     {
       title: "Mongo DB",
       description: "NoSQL database for scalable and flexible data storage.",
       icon: <SiMongodb className="w-7 h-7" />,
-    },
-    {
-      title: "Version Control",
-      description: "Track changes in code with Git and GitHub.",
-      icon: <IoIosGitBranch className="w-7 h-7" />,
-    },
-    {
-      title: "C++",
-      description:
-        "General-purpose programming language for performance-critical applications.",
-      icon: <SiCplusplus className="w-7 h-7" />,
+      link: "https://www.mongodb.com/",
     },
     {
       title: "Sanity",
       description: "Headless CMS for structured content management.",
       icon: <SiSanity className="w-7 h-7" />,
+      link: "https://www.sanity.io/",
+    },
+    {
+      title: "Version Control",
+      description: "Track changes in code with Git and GitHub.",
+      icon: <IoIosGitBranch className="w-7 h-7" />,
+      link: "https://git-scm.com/",
     },
   ];
 
@@ -129,14 +144,19 @@ const Feature = ({
   description,
   icon,
   index,
+  link,
 }: {
   title: string;
   description: string;
   icon: React.ReactNode;
   index: number;
+  link?: string;
 }) => {
   return (
-    <div
+    <Link
+      href={link || "/"}
+      target="_blank"
+      rel="noopener noreferrer"
       className={cn(
         "flex flex-col lg:border-r py-5 relative group/feature dark:border-neutral-800",
         (index === 0 || index === 5 || index === 10) &&
@@ -165,6 +185,6 @@ const Feature = ({
       <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
         {description}
       </p>
-    </div>
+    </Link>
   );
 };

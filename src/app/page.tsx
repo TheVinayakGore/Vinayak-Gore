@@ -52,7 +52,7 @@ const Page: React.FC = () => {
             <div className="flex flex-col w-full h-full">
               <Hero isDarkMode={isDarkMode} />
             </div>
-            <div className="h-[15rem] md:h-[25rem] lg:h-[30rem] flex items-center justify-center text-center">
+            <div className="h-[15rem] md:h-[25rem] lg:h-[30rem] -mb-40 flex items-center justify-center text-center">
               <TextHoverEffect
                 text="GORE"
                 className="text-[0] sm:text-2xl md:text-5xl lg:text-[6.5rem]"

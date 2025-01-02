@@ -99,7 +99,7 @@ export const ProductItem = ({
           alt={title}
           width={500} 
           height={500} 
-          className="rounded-md dark:shadow-xl group-hover:shadow-zinc-950/[0.4] w-full h-full"
+          className="rounded-md dark:shadow-xl group-hover:shadow-zinc-950/[0.4] border border-zinc-200 w-full h-full"
           priority={priority}
         />
       </div>

@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BackgroundGradient } from "./ui/background-gradient";
-import { MdArrowRightAlt } from "react-icons/md";
+// import { BackgroundGradient } from "./ui/background-gradient";
+// import { MdArrowRightAlt } from "react-icons/md";
 import { PiArrowCircleDownRight } from "react-icons/pi";
 import { BsVectorPen } from "react-icons/bs";
 import { BackgroundBeams } from "./ui/background-beams";
@@ -83,59 +83,57 @@ const Workflow = () => {
   }, []);
 
   const typingText = `
-    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Cupiditate possimus delectus doloribus a! Ea et, nesciunt
-    nulla commodi aliquid tempora exercitationem doloribus ex
-    cupiditate blanditiis ut praesentium aut magni adipisci?
-    Voluptate aliquam nam distinctio ratione impedit tenetur
-    blanditiis dolore quaerat corrupti repellendus praesentium
-    unde, eligendi provident optio assumenda voluptates asperiores
-    sequi nihil enim deserunt eveniet placeat suscipit. Temporibus
-    debitis fugiat omnis at, odit nobis. Iusto porro quasi nostrum
-    illo. Sapiente eius modi reprehenderit voluptatem saepe,
-    voluptatum hic numquam amet, itaque repellendus incidunt,
-    minus asperiores ipsum sit adipisci! Consequatur illo quidem
-    quo, eum nobis repudiandae tempora doloremque itaque
-    doloribus. Deleniti autem at, impedit accusamus tempora harum,
-    distinctio rerum non, earum delectus eligendi possimus?
-    Laudantium nihil esse ipsa, deserunt architecto aperiam nulla
-    debitis veritatis, adipisci quidem facilis rerum earum
-    suscipit optio molestias aliquam veniam at possimus sit
-    aspernatur labore. Odit nisi, debitis delectus, perferendis
-    quia aliquam nihil illum quibusdam assumenda eos ex!
+    Programming is the art of instructing a computer to perform specific tasks through written code. It involves designing, writing, testing, and maintaining code to solve problems or create interactive applications. With programming, you can build anything from simple scripts to complex systems like websites, games, and artificial intelligence models. The process encourages critical thinking, problem-solving, and creativity. Popular programming languages like JavaScript, Python, and C++ allow developers to interact with machines in meaningful ways, creating solutions that impact millions globally. Whether automating repetitive tasks or building groundbreaking software, programming empowers individuals to shape the digital world.
   `;
-
-  const indicesToShow = [1, 2, 3];
 
   const data = [
     {
       title: "2024",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
-            Built and deployed <strong>Mega Mall</strong>, an immersive
-            e-commerce platform, and <strong>Gore Blogs</strong>, a dynamic
-            blogging application, using the powerful stack of{" "}
-            <strong>Next.js</strong>, <strong>Tailwind CSS</strong>,{" "}
-            <strong>Shadcn UI</strong>, and <strong>Sanity CMS</strong>. Both
-            projects are live on <strong>Vercel</strong> with source code hosted
-            on <strong>GitHub</strong>.
+          <p className="text-neutral-800 dark:text-neutral-300 text-xs md:text-sm mb-8">
+            Developed and deployed{" "}
+            <strong className="dark:text-neutral-200">Mega Mall</strong>, an
+            e-commerce platform, and{" "}
+            <strong className="dark:text-neutral-200">Gore Blogs</strong>, a
+            blogging app, using{" "}
+            <strong className="dark:text-neutral-200">Next.js</strong>,{" "}
+            <strong className="dark:text-neutral-200">Tailwind CSS</strong>,{" "}
+            <strong className="dark:text-neutral-200">Shadcn UI</strong>, and{" "}
+            <strong className="dark:text-neutral-200">Sanity CMS</strong>. Both
+            are live on{" "}
+            <strong className="dark:text-neutral-200">Vercel</strong> with
+            source code on{" "}
+            <strong className="dark:text-neutral-200">GitHub</strong>.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/card.png"
-              alt="Megamall"
-              width={500}
-              height={1000}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/card.png"
-              alt="Gore Blogs"
-              width={500}
-              height={1000}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
+            {projects
+              .filter(
+                (project) =>
+                  project.title === "Mega Mall" || project.title === "Key.Store"
+              )
+              .sort((a, b) => {
+                if (a.title === "Mega Mall") return -1;
+                if (b.title === "Mega Mall") return 1;
+                return 0;
+              })
+              .map((project) => (
+                <Link
+                  key={project._id}
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    width={500}
+                    height={1000}
+                    priority
+                    className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+                  />
+                </Link>
+              ))}
           </div>
         </div>
       ),
@@ -144,46 +142,42 @@ const Workflow = () => {
       title: "Early 2023",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
-            Explore my portfolio featuring innovative creations like{" "}
-            <strong>Textify</strong>, a versatile text utility app, and{" "}
-            <strong>DooZen</strong>, a task management tool designed for
-            productivity enthusiasts.
-          </p>
-          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
-            Discover the power of <strong>News Mark</strong>, a real-time news
-            aggregator, and enjoy the nostalgic charm of the classic{" "}
-            <strong>Snake Game</strong> reimagined for modern users.
+          <p className="text-neutral-800 dark:text-neutral-300 text-xs md:text-sm mb-8">
+            Discover my portfolio with creations like{" "}
+            <strong className="dark:text-neutral-200">Textify</strong>, a text
+            utility app,{" "}
+            <strong className="dark:text-neutral-200">DooZen</strong>, a task
+            manager,{" "}
+            <strong className="dark:text-neutral-200">News Mark</strong>, a
+            real-time news aggregator, and a modern take on the classic{" "}
+            <strong className="dark:text-neutral-200">Snake Game</strong>.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/card.png"
-              alt="hero template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/card.png"
-              alt="feature template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/card.png"
-              alt="bento template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/card.png"
-              alt="cards template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
+            {projects
+              .filter(
+                (project) =>
+                  project.title === "Textify" ||
+                  project.title === "DooZen" ||
+                  project.title === "News Mark" ||
+                  project.title === "Snake Game"
+              )
+              .map((project) => (
+                <Link
+                  key={project._id}
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    width={500}
+                    height={1000}
+                    priority
+                    className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+                  />
+                </Link>
+              ))}
           </div>
         </div>
       ),
@@ -192,42 +186,55 @@ const Workflow = () => {
       title: "Past 2022",
       content: (
         <div>
-          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-4">
-            Started learning web development since 2022
+          <p className="text-neutral-800 dark:text-neutral-300 text-xs md:text-sm mb-4">
+            Started learning web development in 2022 with a focus on creating
+            responsive and dynamic websites.
           </p>
           <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
-              ✅ Card grid component
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
+              ✅ Improved my UI layouts by building various types of websites.
             </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
-              ✅ Startup template Aceternity
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
+              ✅ Designed and developed a different templates with Bootstrap & Tailwind CSS.
             </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
-              ✅ Random file upload lol
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
+              ✅ Created projects to explore and learn advanced web development
+              techniques.
             </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
-              ✅ Himesh Reshammiya Music CD
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
+              ✅ Started adding projects to GitHub.
             </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
-              ✅ Salman Bhai Fan Club registrations open
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
+              🧑‍💻 Below are my websites, which were created at a beginner level.
             </div>
           </div>
-          <p className="text-xl font-medium mb-4">My first website</p>
           <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/card.png"
-              alt="bento template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/card.png"
-              alt="cards template"
-              width={500}
-              height={500}
-              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
+            <Link
+              href="https://www.linkedin.com/posts/vinayak-gore-b85b7922a_first-newbeginnings2022-html-activity-6949800187313688576-_UIS?utm_source=share&utm_medium=member_desktop"
+              target="_blank"
+            >
+              <Image
+                src="/F1.png"
+                alt="Gym Website"
+                width={500}
+                height={500}
+                priority
+                className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/posts/vinayak-gore-b85b7922a_my-website-pdf-activity-6949802181495508992-iXfO?utm_source=share&utm_medium=member_desktop"
+              target="_blank"
+            >
+              <Image
+                src="/F2.png"
+                alt="Construction web"
+                width={500}
+                height={500}
+                priority
+                className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              />
+            </Link>
           </div>
         </div>
       ),
@@ -236,23 +243,15 @@ const Workflow = () => {
 
   return (
     <>
-      <main id="start" className="flex flex-col space-y-20 -mt-20 z-40">
-        <div className="w-full">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl mb-4 text-black dark:text-white">
-              Workflow from my journey
-            </h2>
-            <p className="text-neutral-700 dark:text-neutral-300 text-lg max-w-xl">
-              I&apos;ve been working/learning on Web Developement skills for the
-              past 2 years. Here&apos;s a timeline of my journey.
-            </p>
-          </div>
-          <div className="py-20">
-            <Timeline data={data} />
-          </div>
+      <main
+        id="start"
+        className="flex flex-col items-center justify-center m-auto space-y-20 z-40 w-full"
+      >
+        <div className="font-medium w-full">
+          <Timeline data={data} />
         </div>
 
-        <div className="flex flex-col items-center justify-center space-y-5 md:space-y-14 m-auto max-w-7xl w-full">
+        <div className="flex flex-col items-center justify-center space-y-5 md:space-y-14 mt-20 m-auto max-w-7xl w-full">
           <div className="z-40 w-full">
             <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
               Blogs Collection
@@ -263,7 +262,7 @@ const Workflow = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center m-auto w-full">
-            <ul className="flex flex-wrap items-center justify-center w-full">
+            {/* <ul className="flex flex-wrap items-center justify-center w-full">
               {indicesToShow.map((index) => {
                 const project = projects[index];
                 if (!project || !project.imageUrl) {
@@ -303,7 +302,7 @@ const Workflow = () => {
                   </li>
                 );
               })}
-            </ul>
+            </ul> */}
 
             <div className="mx-auto overflow-y-auto py-5 w-full h-full">
               <div className="flex flex-wrap items-start justify-start w-full">

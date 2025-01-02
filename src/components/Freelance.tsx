@@ -189,7 +189,9 @@ const Freelance = () => {
           <section className="flex items-start justify-start m-auto w-full h-72">
             <div className="flex flex-col items-start border border-zinc-500 dark:border-zinc-800 rounded-xl w-full">
               <div className="flex items-center justify-between m-auto p-3 sm:p-5 w-full">
-                <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl">Why Choose me ?</h1>
+                <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl">
+                  Why Choose me ?
+                </h1>
                 <button
                   onClick={toggleParagraph}
                   className={`${
@@ -207,16 +209,16 @@ const Freelance = () => {
               </div>
               {isParagraphVisible && (
                 <p className="font-extralight text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 pb-3">
-                  As a passionate and innovative web developer, I bring a blend of
-                  creativity and technical expertise to each project. With a solid
-                  foundation in HTML, CSS, JavaScript, React, and Next.js, I
-                  create modern, responsive websites that not only look stunning
-                  but also perform seamlessly. My attention to detail, dedication
-                  to delivering clean, scalable code, and commitment to staying
-                  updated with the latest industry trends set me apart. Whether
-                  you need a visually appealing interface or a robust full-stack
-                  solution, I am here to turn your vision into reality—on time and
-                  beyond expectations.
+                  As a passionate and innovative web developer, I bring a blend
+                  of creativity and technical expertise to each project. With a
+                  solid foundation in HTML, CSS, JavaScript, React, and Next.js,
+                  I create modern, responsive websites that not only look
+                  stunning but also perform seamlessly. My attention to detail,
+                  dedication to delivering clean, scalable code, and commitment
+                  to staying updated with the latest industry trends set me
+                  apart. Whether you need a visually appealing interface or a
+                  robust full-stack solution, I am here to turn your vision into
+                  reality—on time and beyond expectations.
                 </p>
               )}
             </div>
@@ -264,104 +266,61 @@ export const CloseIcon = () => {
 
 const cards = [
   {
-    title: "Glassdoor",
-    username: "vinu_glassdoor",
-    src: "/icons/glassdoor.jpeg",
-    ctaText: "Visit Profile",
-    ctaLink: "https://www.glassdoor.com",
-    content: () => {
-      return (
-        <p>
-          I am offering top-notch web development, frontend development, and UI
-          design services through Glassdoor. With extensive experience in
-          building high-performing, responsive websites and user-centric
-          designs, I can help bring your next project to life. My skills in{" "}
-          <strong>
-            HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
-            Shadcn UI, Material UI, MERN, TypeScript, Vite, Sanity
-          </strong>
-          , and version control with GitHub ensure the highest quality work.{" "}
-          <br /> <br />
-          Let&apos;s collaborate and make your vision a reality. If you are
-          looking for someone reliable and skilled for your next project, feel
-          free to reach out. I am excited to work with you and contribute to
-          your success.
-        </p>
-      );
-    },
-  },
-  {
-    title: "Fiverr",
-    username: "vinu_fiverr",
-    src: "/icons/fiverr.png",
-    ctaText: "Visit Profile",
-    ctaLink: "https://www.fiverr.com",
-    content: () => {
-      return (
-        <p>
-          On Fiverr, I specialize in offering web development and UI design
-          services that meet modern standards and ensure client satisfaction.
-          Whether you are starting a new project or upgrading an existing one,
-          my skill set—
-          <strong>
-            HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
-            Shadcn UI, Material UI, MERN, TypeScript, Vite, and Sanity
-          </strong>
-          —will help you achieve the best results. <br /> <br />
-          Give me the opportunity to work on your next project, and I promise to
-          deliver quality work on time. Let&apos;s build something amazing
-          together!
-        </p>
-      );
-    },
-  },
-  {
     title: "Upwork",
-    username: "vinu_upwork",
+    username: "Vinayak.G",
     src: "/icons/upwork.png",
     ctaText: "Visit Profile",
     ctaLink: "https://www.upwork.com",
     content: () => {
       return (
         <p>
-          Looking for a dedicated freelancer for your web development or
-          frontend development needs? On Upwork, I offer comprehensive services
-          to create seamless and responsive web experiences. My expertise in{" "}
-          <strong>
-            HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
-            Shadcn UI, Material UI, MERN, TypeScript, Vite, and Sanity
-          </strong>{" "}
-          ensures that your project will stand out and perform well across all
-          devices. <br /> <br />
-          Let&apos;s work together on your next project—whether it is building a
-          brand new site or enhancing an existing one. I am committed to
-          delivering results that exceed expectations.
+          I&apos;m a skilled Web Developer specializing in React, Next.js, and
+          the MERN stack. I create responsive, user-friendly websites using
+          modern tools like Tailwind CSS and Shadcn UI, with a strong focus on
+          intuitive frontend UI design. My experience includes delivering 5
+          full-stack projects with dynamic data handling powered by MongoDB and
+          Sanity.
+          <br /> <br />
+          Here is what I can help you with: • Building responsive websites or
+          single-page applications • Designing and developing intuitive UIs for
+          impactful user experiences • Creating and managing dynamic backend
+          solutions using MongoDB and Express • Collaborating using Git for
+          seamless development workflows
+          <br /> <br />
+          Whether you need a polished portfolio website, an online store, or a
+          custom web application, I&apos;m here to bring your ideas to life. I
+          believe in clear communication and delivering quality work on time, so
+          let&apos;s discuss how I can help with your project !
         </p>
       );
     },
   },
   {
-    title: "99Design",
-    username: "vinu_99design",
-    src: "/icons/99design.png",
+    title: "Glassdoor",
+    username: "Vinayak Gore",
+    src: "/icons/glassdoor.jpeg",
     ctaText: "Visit Profile",
-    ctaLink: "https://www.99designs.com",
+    ctaLink: "https://www.glassdoor.co.uk/member/profile",
     content: () => {
       return (
         <p>
-          On 99Design, I offer cutting-edge UI design and frontend development
-          services to bring your vision to life. If you are looking for a
-          creative, efficient, and reliable developer who understands the
-          importance of design in creating a great user experience, you have
-          come to the right place. With proficiency in{" "}
-          <strong>
-            HTML, CSS, JavaScript, React, Next.js, Bootstrap, Tailwind CSS,
-            Shadcn UI, Material UI, MERN, TypeScript, Vite, and Sanity
-          </strong>
-          , I ensure that your designs are not only visually appealing but also
-          functional and responsive. <br /> <br />
-          Let me take your project to the next love to collaborate with you on
-          your next big idea.
+          I&apos;m a skilled Web Developer specializing in React, Next.js, and
+          the MERN stack. I create responsive, user-friendly websites using
+          modern tools like Tailwind CSS and Shadcn UI, with a strong focus on
+          intuitive frontend UI design. My experience includes delivering 5
+          full-stack projects with dynamic data handling powered by MongoDB and
+          Sanity.
+          <br /> <br />
+          Here is what I can help you with: • Building responsive websites or
+          single-page applications • Designing and developing intuitive UIs for
+          impactful user experiences • Creating and managing dynamic backend
+          solutions using MongoDB and Express • Collaborating using Git for
+          seamless development workflows
+          <br /> <br />
+          Whether you need a polished portfolio website, an online store, or a
+          custom web application, I&apos;m here to bring your ideas to life. I
+          believe in clear communication and delivering quality work on time, so
+          let&apos;s discuss how I can help with your project !
         </p>
       );
     },

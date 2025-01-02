@@ -160,7 +160,8 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
             subscribe if you like my content
           </p>
           <p className="my-6 text-xs sm:text-sm text-blue-600">
-            <span className="text-zinc-500">@mail :</span> vvgore2675@gmail.com
+            <span className="text-zinc-500">@mail :</span>{" "}
+            vinugore2677@gmail.com
           </p>
           <p className="flex items-center justify-center p-3 px-3 sm:px-5 space-x-3 bg-black dark:bg-white text-white dark:text-black text-xs sm:text-sm md:text-base font-medium rounded-lg">
             <span>Contact, Follow & Subscribe</span>
@@ -170,7 +171,10 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
         <section className="flex flex-wrap z-0">
           <div className="show-on-desktop w-full">
-            <WavyBackground isDarkMode={isDarkMode} className="max-w-4xl mx-auto z-0">
+            <WavyBackground
+              isDarkMode={isDarkMode}
+              className="max-w-4xl mx-auto z-0"
+            >
               <FloatingDock items={links} />
             </WavyBackground>
           </div>

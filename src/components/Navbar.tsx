@@ -150,7 +150,7 @@ const Navbar = ({
                         <LoadingSpinner />
                       </div>
                     ) : (
-                      mainprojects.map((project) => (
+                      mainprojects.slice(0, 5).map((project) => (
                         <ProductItem
                           key={project._id}
                           title={project.title}
