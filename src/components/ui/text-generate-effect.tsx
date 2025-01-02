@@ -37,7 +37,7 @@ export const TextGenerateEffect = ({
         {headlineArray.map((word, idx) => (
           <motion.span
             key={word + idx}
-            className="text-[0px] md:text-7xl lg:text-8xl xl:text-[8.6rem] 2xl:text-[10.3rem] bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-500 dark:from-white dark:to-black font-extrabold text-center relative z-20 h-auto opacity-0 w-full"
+            className="text-[0px] md:text-[5rem] lg:text-[7rem] xl:text-[10rem] bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-500 dark:from-white dark:to-black font-extrabold text-center relative z-20 h-auto opacity-0 w-full"
             style={{
               filter: filter ? "blur(10px)" : "none",
             }}

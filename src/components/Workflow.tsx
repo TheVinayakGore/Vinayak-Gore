@@ -18,6 +18,7 @@ import {
   GlowingStarsDescription,
   GlowingStarsTitle,
 } from "../components/ui/glowing-stars";
+import { Timeline } from "./ui/timeline";
 
 interface Project {
   _id: string;
@@ -106,23 +107,162 @@ const Workflow = () => {
 
   const indicesToShow = [1, 2, 3];
 
+  const data = [
+    {
+      title: "2024",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
+            Built and deployed <strong>Mega Mall</strong>, an immersive
+            e-commerce platform, and <strong>Gore Blogs</strong>, a dynamic
+            blogging application, using the powerful stack of{" "}
+            <strong>Next.js</strong>, <strong>Tailwind CSS</strong>,{" "}
+            <strong>Shadcn UI</strong>, and <strong>Sanity CMS</strong>. Both
+            projects are live on <strong>Vercel</strong> with source code hosted
+            on <strong>GitHub</strong>.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="/card.png"
+              alt="Megamall"
+              width={500}
+              height={1000}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            <Image
+              src="/card.png"
+              alt="Gore Blogs"
+              width={500}
+              height={1000}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Early 2023",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
+            Explore my portfolio featuring innovative creations like{" "}
+            <strong>Textify</strong>, a versatile text utility app, and{" "}
+            <strong>DooZen</strong>, a task management tool designed for
+            productivity enthusiasts.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-8">
+            Discover the power of <strong>News Mark</strong>, a real-time news
+            aggregator, and enjoy the nostalgic charm of the classic{" "}
+            <strong>Snake Game</strong> reimagined for modern users.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="/card.png"
+              alt="hero template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            <Image
+              src="/card.png"
+              alt="feature template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            <Image
+              src="/card.png"
+              alt="bento template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            <Image
+              src="/card.png"
+              alt="cards template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Past 2022",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 font-normal text-xl mb-4">
+            Started learning web development since 2022
+          </p>
+          <div className="mb-8">
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
+              ✅ Card grid component
+            </div>
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
+              ✅ Startup template Aceternity
+            </div>
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
+              ✅ Random file upload lol
+            </div>
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
+              ✅ Himesh Reshammiya Music CD
+            </div>
+            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-lg">
+              ✅ Salman Bhai Fan Club registrations open
+            </div>
+          </div>
+          <p className="text-xl font-medium mb-4">My first website</p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="/card.png"
+              alt="bento template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            <Image
+              src="/card.png"
+              alt="cards template"
+              width={500}
+              height={500}
+              className="rounded-lg transform hover:scale-125 z-0 hover:z-10 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <>
-      <main
-        id="start"
-        className="flex flex-col items-center justify-center space-y-5 md:space-y-14 m-auto -mt-48 z-40 w-full px-4 sm:px-6 lg:px-8"
-      >
-        <div className="z-40 w-full">
-          <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
-            Workflow Collection
-          </h1>
-          <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
-            Some Full Stack projects, Modern UI and SEO friendly websites
-          </p>
+      <main id="start" className="flex flex-col space-y-20 -mt-20 z-40">
+        <div className="w-full">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-5xl mb-4 text-black dark:text-white">
+              Workflow from my journey
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300 text-lg max-w-xl">
+              I&apos;ve been working/learning on Web Developement skills for the
+              past 2 years. Here&apos;s a timeline of my journey.
+            </p>
+          </div>
+          <div className="py-20">
+            <Timeline data={data} />
+          </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center m-auto">
-          <div className="">
+        <div className="flex flex-col items-center justify-center space-y-5 md:space-y-14 m-auto max-w-7xl w-full">
+          <div className="z-40 w-full">
+            <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
+              Blogs Collection
+            </h1>
+            <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
+              Some blogs related to Modern UI & Front-end websites
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center justify-center m-auto w-full">
             <ul className="flex flex-wrap items-center justify-center w-full">
               {indicesToShow.map((index) => {
                 const project = projects[index];

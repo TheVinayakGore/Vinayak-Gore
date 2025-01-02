@@ -39,12 +39,12 @@ const Gallery = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col items-center m-auto max-w-7xl w-full">
         <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] leading-none bg-clip-text text-transparent bg-gradient-to-b from-zinc-400 dark:from-zinc-400 dark:to-black font-extrabold text-center relative z-20 h-16 sm:h-20 md:h-24 lg:h-32 xl:h-36 opacity-50 dark:opacity-70">
           GALLERY
         </h1>
 
-        <div>
+        <div className="w-full">
           <ImagesSlider
             className="border border-zinc-300 dark:border-zinc-800 rounded-2xl"
             images={images.filter((img) => img)}

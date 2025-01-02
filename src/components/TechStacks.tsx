@@ -100,9 +100,9 @@ const TechStacks = () => {
 
   return (
     <>
-      <div
+      <main
         id="techStacks"
-        className="flex flex-col items-center justify-center m-auto space-y-10 w-full"
+        className="flex flex-col items-center justify-center m-auto space-y-10 max-w-7xl w-full"
       >
         <div className="w-full">
           <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
@@ -112,12 +112,12 @@ const TechStacks = () => {
             Development Tech Stacks for creating Modern Projects
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 py-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 py-10 mx-auto w-full">
           {features.map((feature, index) => (
             <Feature key={feature.title} {...feature} index={index} />
           ))}
         </div>
-      </div>
+      </main>
     </>
   );
 };
