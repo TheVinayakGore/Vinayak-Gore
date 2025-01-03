@@ -92,19 +92,18 @@ const Workflow = () => {
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-300 text-xs md:text-sm mb-8">
-            Developed and deployed{" "}
+            Developed{" "}
+            <strong className="dark:text-neutral-200">Key.Store</strong>, a
+            password manager using{" "}
+            <strong className="dark:text-neutral-200">React.js</strong> and{" "}
+            <strong className="dark:text-neutral-200">Vite</strong>, and{" "}
             <strong className="dark:text-neutral-200">Mega Mall</strong>, an
-            e-commerce platform, and{" "}
-            <strong className="dark:text-neutral-200">Gore Blogs</strong>, a
-            blogging app, using{" "}
-            <strong className="dark:text-neutral-200">Next.js</strong>,{" "}
-            <strong className="dark:text-neutral-200">Tailwind CSS</strong>,{" "}
-            <strong className="dark:text-neutral-200">Shadcn UI</strong>, and{" "}
-            <strong className="dark:text-neutral-200">Sanity CMS</strong>. Both
-            are live on{" "}
-            <strong className="dark:text-neutral-200">Vercel</strong> with
-            source code on{" "}
-            <strong className="dark:text-neutral-200">GitHub</strong>.
+            e-commerce site with{" "}
+            <strong className="dark:text-neutral-200">Next.js</strong> and{" "}
+            <strong className="dark:text-neutral-200">Tailwind CSS</strong>.
+            Both are live on{" "}
+            <strong className="dark:text-neutral-200">Vercel</strong> with code
+            on <strong className="dark:text-neutral-200">GitHub</strong>.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {projects
@@ -123,7 +122,7 @@ const Workflow = () => {
                     src={project.imageUrl}
                     alt={project.title}
                     width={500}
-                    height={1000}
+                    height={500}
                     priority
                     className="rounded-lg transform hover:scale-105 duration-300 w-full h-40 sm:h-44 lg:h-60 shadow-md"
                   />
@@ -167,7 +166,7 @@ const Workflow = () => {
                     src={project.imageUrl}
                     alt={project.title}
                     width={500}
-                    height={1000}
+                    height={500}
                     priority
                     className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-md"
                   />
@@ -201,7 +200,8 @@ const Workflow = () => {
               ✅ Started adding projects to GitHub.
             </div>
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
-              🧑‍💻 Below are my websites, which were created at a beginner level.
+              🌐 Below are web templates, which were created by me at beginner
+              level 🧑‍💻
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -215,7 +215,7 @@ const Workflow = () => {
                 width={500}
                 height={500}
                 priority
-                className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                className="rounded-lg transform hover:scale-105 duration-300 w-full h-40 sm:h-44 lg:h-60 shadow-md"
               />
             </Link>
             <Link
@@ -228,7 +228,7 @@ const Workflow = () => {
                 width={500}
                 height={500}
                 priority
-                className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                className="rounded-lg transform hover:scale-105 duration-300 w-full h-40 sm:h-44 lg:h-60 shadow-md"
               />
             </Link>
           </div>

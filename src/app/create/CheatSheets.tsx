@@ -37,6 +37,12 @@ const CheatSheets: React.FC = () => {
       default:
         data = await getHTMLSnippets();
     }
+
+    // Sort snippets alphabetically by title
+    if (data && Array.isArray(data)) {
+      data.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
     setSnippets(data);
   }, [selectedCategory]);
 

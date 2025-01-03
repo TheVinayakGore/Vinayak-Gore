@@ -19,7 +19,7 @@ interface PosterDoc {
   downloadurl: string;
 }
 
-const POSTERS_QUERY = `*[_type == "posters"]{
+const POSTERS_QUERY = `*[_type == "posters"] | order(_createdAt asc) {
   _id,
   title,
   image,
@@ -35,7 +35,7 @@ const Posters = () => {
     const fetchPosters = async () => {
       try {
         const data = await client.fetch(POSTERS_QUERY);
-        setPosterDocs(data);
+        setPosterDocs(data); // Store the posters in state
       } catch (error) {
         toast.error("Error fetching posters:" + error);
       } finally {
@@ -70,9 +70,8 @@ const Posters = () => {
   const categories = [
     "ALL",
     "M S DHONI",
-    "SACHIN TENDULKAR",
-    "ROCKING STAR",
-    "PM MODI",
+    "MAHARAJ",
+    "BALASAHEB THAKARE",
   ];
 
   // Filter posters based on selected category
@@ -83,8 +82,8 @@ const Posters = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start w-full h-[64.5rem]">
-        <div className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+      <main className="flex flex-col items-start w-full h-[64.5rem]">
+        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/2">
             Posters
           </h1>
@@ -103,8 +102,8 @@ const Posters = () => {
               </button>
             ))}
           </div>
-        </div>
-        <div className="h-full">
+        </section>
+        <section className="h-full">
           <div className="mx-auto overflow-y-auto w-full h-full">
             <div className="flex flex-wrap items-start justify-start gap-7 p-10 w-full">
               {filteredPosters.length > 0 ? (
@@ -120,8 +119,10 @@ const Posters = () => {
                           }
                           height="1000"
                           width="1000"
-                          className="h-[36rem] w-full rounded-xl group-hover/card:shadow-xl"
                           alt={doc.image?.caption || "thumbnail"}
+                          onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                          onDragStart={(e) => e.preventDefault()} // Disable drag
+                          className="h-[36rem] w-full rounded-xl group-hover/card:shadow-xl"
                         />
                       </CardItem>
                       <div className="flex items-center justify-between m-auto my-5 px-5 w-full">
@@ -164,8 +165,8 @@ const Posters = () => {
               )}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };
