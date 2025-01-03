@@ -268,7 +268,7 @@ const cards = [
   {
     title: "Upwork",
     username: "Vinayak.G",
-    src: "/icons/upwork.png",
+    src: "/upwork.png",
     ctaText: "Visit Profile",
     ctaLink: "https://www.upwork.com/freelancers/~011d4c26a288037333",
     content: () => {
@@ -298,7 +298,7 @@ const cards = [
   {
     title: "Glassdoor",
     username: "Vinayak Gore",
-    src: "/icons/glassdoor.jpeg",
+    src: "/glassdoor.png",
     ctaText: "Visit Profile",
     ctaLink: "https://www.glassdoor.co.uk/member/profile",
     content: () => {

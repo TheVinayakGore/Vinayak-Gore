@@ -106,17 +106,12 @@ const Workflow = () => {
             source code on{" "}
             <strong className="dark:text-neutral-200">GitHub</strong>.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {projects
               .filter(
                 (project) =>
                   project.title === "Mega Mall" || project.title === "Key.Store"
               )
-              .sort((a, b) => {
-                if (a.title === "Mega Mall") return -1;
-                if (b.title === "Mega Mall") return 1;
-                return 0;
-              })
               .map((project) => (
                 <Link
                   key={project._id}
@@ -130,7 +125,7 @@ const Workflow = () => {
                     width={500}
                     height={1000}
                     priority
-                    className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+                    className="rounded-lg transform hover:scale-105 duration-300 w-full h-40 sm:h-44 lg:h-60 shadow-md"
                   />
                 </Link>
               ))}
@@ -152,7 +147,7 @@ const Workflow = () => {
             real-time news aggregator, and a modern take on the classic{" "}
             <strong className="dark:text-neutral-200">Snake Game</strong>.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {projects
               .filter(
                 (project) =>
@@ -174,7 +169,7 @@ const Workflow = () => {
                     width={500}
                     height={1000}
                     priority
-                    className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+                    className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-md"
                   />
                 </Link>
               ))}
@@ -195,7 +190,8 @@ const Workflow = () => {
               ✅ Improved my UI layouts by building various types of websites.
             </div>
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
-              ✅ Designed and developed a different templates with Bootstrap & Tailwind CSS.
+              ✅ Designed and developed a different templates with Bootstrap &
+              Tailwind CSS.
             </div>
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-400 text-xs md:text-sm">
               ✅ Created projects to explore and learn advanced web development
@@ -208,7 +204,7 @@ const Workflow = () => {
               🧑‍💻 Below are my websites, which were created at a beginner level.
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
               href="https://www.linkedin.com/posts/vinayak-gore-b85b7922a_first-newbeginnings2022-html-activity-6949800187313688576-_UIS?utm_source=share&utm_medium=member_desktop"
               target="_blank"
@@ -219,7 +215,7 @@ const Workflow = () => {
                 width={500}
                 height={500}
                 priority
-                className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
               />
             </Link>
             <Link
@@ -232,7 +228,7 @@ const Workflow = () => {
                 width={500}
                 height={500}
                 priority
-                className="rounded-lg transform hover:scale-105 duration-300 border border-zinc-500 object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                className="rounded-lg transform hover:scale-105 duration-300 h-40 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
               />
             </Link>
           </div>
@@ -247,11 +243,11 @@ const Workflow = () => {
         id="start"
         className="flex flex-col items-center justify-center m-auto space-y-20 z-40 w-full"
       >
-        <div className="font-medium w-full">
+        <section className="font-medium w-full">
           <Timeline data={data} />
-        </div>
+        </section>
 
-        <div className="flex flex-col items-center justify-center space-y-5 md:space-y-14 mt-20 m-auto max-w-7xl w-full">
+        <section className="flex flex-col items-center justify-center space-y-5 md:space-y-14 mt-20 m-auto max-w-7xl w-full">
           <div className="z-40 w-full">
             <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
               Blogs Collection
@@ -405,7 +401,7 @@ const Workflow = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );

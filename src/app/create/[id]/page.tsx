@@ -32,7 +32,7 @@ interface Tutorial {
 }
 
 interface TutorialPageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string }; // Directly define `params` as an object
 }
 
 export default function TutorialPage({ params }: TutorialPageProps) {
@@ -42,13 +42,35 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   const router = useRouter();
 
   useEffect(() => {
-    params
-      .then((resolvedParams) => setId(resolvedParams.id))
-      .catch((error) => {
-        console.error("Failed to resolve params:", error);
-        router.push("/404");
-      });
-  }, [params, router]);
+    const id = params.id; // Directly access `params.id`
+
+    if (!id) {
+      console.error("No ID provided in params");
+      router.push("/404");
+      return;
+    }
+
+    const fetchTutorial = async () => {
+      try {
+        const fetchedTutorial = await client.fetch(
+          `*[_type == "tutorials" && _id == $id][0]`,
+          { id }
+        );
+        if (!fetchedTutorial) {
+          router.push("/404");
+          return;
+        }
+        setTutorial(fetchedTutorial);
+      } catch (error) {
+        console.error("Failed to fetch tutorial:", error);
+        toast.error("Failed to load tutorial", { autoClose: 2000 });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTutorial();
+  }, [params.id, router]);
 
   useEffect(() => {
     document.body.classList.add("dark"); // Apply dark mode class to body
@@ -274,7 +296,9 @@ export default function TutorialPage({ params }: TutorialPageProps) {
               >
                 <BiLogoYoutube className="p-2 w-full h-full" />
               </Link>
-            ) : ("")}
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="flex flex-col items-start justify-start py-5 mb-10 border-dashed border-b border-zinc-700 w-full">

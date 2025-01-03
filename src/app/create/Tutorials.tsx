@@ -263,6 +263,7 @@ const Tutorials = () => {
                             <Link
                               href={`/create/${item._id}`}
                               target="_blank"
+                              rel="noopener"
                               className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 hover:border-blue-500 hover:bg-blue-500 hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
                             >
                               <span className="relative z-20">

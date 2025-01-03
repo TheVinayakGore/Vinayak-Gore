@@ -11,6 +11,7 @@ import TechStacks from "@/components/TechStacks";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import LoadingBar from "@/components/LoadingBar";
+import { toast } from "react-toastify";
 
 const Page: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -22,6 +23,12 @@ const Page: React.FC = () => {
     if (storedTheme) {
       setIsDarkMode(storedTheme === "dark");
       document.body.classList.toggle("dark", storedTheme === "dark");
+    }
+    // Show the toast only once on the first visit
+    const hasSeenToast = localStorage.getItem("hasSeenToast");
+    if (!hasSeenToast) {
+      toast.info("Prefer Dark mode", { autoClose: 3000 });
+      localStorage.setItem("hasSeenToast", "true");
     }
   }, []);
 
@@ -43,7 +50,7 @@ const Page: React.FC = () => {
   return (
     <>
       <LoadingBar loading={loading} />
-      <div className="absolute top-0 z-[-20] h-screen w-screen bg-white dark:bg-black bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(135,206,250,0.5),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(150,150,150,0.3),rgba(0,0,0,0))]"></div>
+      <div className="absolute top-0 z-[-20] h-[500px] w-screen bg-white dark:bg-black bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(135,206,250,0.5),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(150,150,150,0.3),rgba(0,0,0,0))]"></div>
       <main className="relative antialiased">
         <div className="flex flex-col gap-y-32 pt-28 pb-28">
           <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />

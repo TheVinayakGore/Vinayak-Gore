@@ -43,7 +43,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="flex flex-col items-center p-4 md:p-10 space-y-10 md:space-y-28 bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-800 text-xs md:text-sm z-60 w-full">
+      <footer className="flex flex-col items-center p-4 md:p-10 space-y-10 md:space-y-28 bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-800 text-xs md:text-sm z-[100] w-full">
         <ul className="flex flex-col md:flex-row items-center md:items-start justify-between text-zinc-600 w-full space-y-4 md:space-y-0">
           <li className="flex-col space-y-3">
             <Link
