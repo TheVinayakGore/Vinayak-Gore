@@ -270,7 +270,7 @@ const cards = [
     username: "Vinayak.G",
     src: "/icons/upwork.png",
     ctaText: "Visit Profile",
-    ctaLink: "https://www.upwork.com",
+    ctaLink: "https://www.upwork.com/freelancers/~011d4c26a288037333",
     content: () => {
       return (
         <p>
