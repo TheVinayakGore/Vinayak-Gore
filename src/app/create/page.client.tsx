@@ -43,7 +43,7 @@ const Create: React.FC = () => {
     {
       title: "Tutorials",
       value: "Tutorials",
-      description: "A technology company that builds economic infrastructure",
+      description: "Explore step-by-step guide to web UI templates build with various skills & techs.",
       content: (
         <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -52,22 +52,22 @@ const Create: React.FC = () => {
         </div>
       ),
     },
-    {
-      title: "Playlists",
-      value: "Playlists",
-      description: "A streaming service that offers a wide variety of award",
-      content: (
-        <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Playlists />
-          </Suspense>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Playlists",
+    //   value: "Playlists",
+    //   description: "Created playlists of tutorials on my YouTube channel, watch & enjoy videos !",
+    //   content: (
+    //     <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+    //       <Suspense fallback={<LoadingSpinner />}>
+    //         <Playlists />
+    //       </Suspense>
+    //     </div>
+    //   ),
+    // },
     {
       title: "Cheat Sheets",
       value: "Cheat Sheets",
-      description: "A technology company that focuses on building products",
+      description: "Quick reference guides to help you solve problems and code efficiently.",
       content: (
         <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -79,7 +79,7 @@ const Create: React.FC = () => {
     {
       title: "Posters",
       value: "Posters",
-      description: "A multinational technology company focusing",
+      description: "Beautifully designed posters as my hobby and for entertenment purposes.",
       content: (
         <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -99,7 +99,7 @@ const Create: React.FC = () => {
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
           <div className="flex flex-col items-center m-auto top-10 w-full h-full">
             <TextHoverEffect text="CREATE" className="text-[5rem] -mt-10 z-10" />
-            <div className="px-14 -mt-56 z-40">
+            <div className="max-w-7xl -mt-56 z-40">
               <Tabs tabs={tabs} />
             </div>
           </div>

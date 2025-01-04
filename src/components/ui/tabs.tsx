@@ -41,7 +41,7 @@ export const Tabs = ({
       <title>{`Create - ${active.title} | Vinayak Gore`}</title>
       <div
         className={cn(
-          "flex flex-row items-center justify-start space-x-2 relative border-b border-zinc-700 pb-5 overflow-auto sm:overflow-visible no-visible-scrollbar min-w-full w-full",
+          "flex flex-row items-center justify-between space-x-2 relative border-b border-zinc-700 pb-5 overflow-auto sm:overflow-visible no-visible-scrollbar min-w-full w-full",
           containerClassName
         )}
       >
@@ -54,7 +54,7 @@ export const Tabs = ({
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
             className={cn(
-              "flex flex-col items-start relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-32",
+              "flex flex-col items-start justify-between relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-32",
               tabClassName
             )}
             style={{

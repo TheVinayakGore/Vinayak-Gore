@@ -242,7 +242,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
             href={value.href}
             target={target}
             rel={target === "_blank" ? "noopener noreferrer" : undefined}
-            className="text-blue-600 hover:text-green-500"
+            className="text-blue-600 underline underline-offset-4 decoration-1 hover:text-green-500"
           >
             {children}
           </Link>

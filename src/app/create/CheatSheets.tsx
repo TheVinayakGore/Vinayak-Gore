@@ -7,11 +7,12 @@ import { getCodeSnippets as getJSSnippets } from "./SheetsData/JSData";
 import { getCodeSnippets as getPythonSnippets } from "./SheetsData/PythonData";
 import { getCodeSnippets as getCSnippets } from "./SheetsData/CData";
 import { getCodeSnippets as getCPPSnippets } from "./SheetsData/CPPData";
-import Image from "next/image";
+import { IoSearch } from "react-icons/io5";
 
 const CheatSheets: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("HTML");
   const [snippets, setSnippets] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const fetchSnippets = useCallback(async () => {
     let data;
@@ -50,16 +51,39 @@ const CheatSheets: React.FC = () => {
     fetchSnippets();
   }, [fetchSnippets]);
 
+  const filteredSnippets = snippets.filter(
+    (snippet) =>
+      snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      snippet.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const sheets = ["HTML", "CSS", "JAVASCRIPT", "PYTHON", "C", "C++"];
 
   return (
     <>
-      <div className="flex flex-col w-full h-full">
-        <div className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/2">
+      <main className="flex flex-col w-full h-full">
+        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+          <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
             CheatSheets
           </h1>
           <div className="flex items-center justify-end space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
+            <div className="relative transform transition-transform hover:scale-105">
+              <input
+                type="text"
+                id="searchInput"
+                className="w-80 leading-9 pl-4 pr-10 bg-transparent/[0.2] backdrop-blur-sm border border-gray-300 rounded-full shadow-lg placeholder:text-zinc-300 focus:outline-none focus:ring-0 focus:border-gray-400"
+                placeholder="Search here for code snippets.."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                autoComplete="off"
+              />
+              <button
+                className="absolute top-1/2 right-[1px] -translate-y-1/2 p-2 cursor-pointer rounded-full bg-white text-black"
+                onClick={() => console.log("Search button clicked")}
+              >
+                <IoSearch className="w-5 h-5" />
+              </button>
+            </div>
             {sheets.map((item) => (
               <button
                 key={item}
@@ -74,11 +98,11 @@ const CheatSheets: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
-        <div className="flex items-center overflow-auto w-full h-full">
+        </section>
+        <section className="flex items-center overflow-auto w-full h-full">
           <ul className="flex flex-col px-10 w-full h-full">
-            {snippets.length > 0 ? (
-              snippets.map((snippet, index) => (
+            {filteredSnippets.length > 0 ? (
+              filteredSnippets.map((snippet, index) => (
                 <li
                   key={index}
                   className="space-y-5 py-10 border-dashed border-b border-purple-500"
@@ -95,23 +119,13 @@ const CheatSheets: React.FC = () => {
                 </li>
               ))
             ) : (
-              <div className="flex flex-col items-center space-y-3">
-                <p className="text-lg font-mono opacity-50">
-                  # Currently Unavailable !
-                </p>
-                <Image
-                  src="/nofile2.gif"
-                  alt="No File found!"
-                  width={700}
-                  height={700}
-                  priority
-                  className="rounded-xl w-[23rem]"
-                />
-              </div>
+              <p className="text-lg font-mono opacity-50 pt-10">
+                # No such code snippet is available !
+              </p>
             )}
           </ul>
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

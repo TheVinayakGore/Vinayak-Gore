@@ -28,7 +28,6 @@ const POSTERS_QUERY = `*[_type == "posters"] | order(_createdAt asc) {
 
 const Posters = () => {
   const [posterDocs, setPosterDocs] = useState<PosterDoc[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
 
   useEffect(() => {
@@ -38,8 +37,6 @@ const Posters = () => {
         setPosterDocs(data); // Store the posters in state
       } catch (error) {
         toast.error("Error fetching posters:" + error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -63,22 +60,24 @@ const Posters = () => {
     window.location.href = url;
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const categories = [
-    "ALL",
-    "M S DHONI",
-    "MAHARAJ",
-    "BALASAHEB THAKARE",
-  ];
+  const categories = ["ALL", "MAHARAJ", "M S DHONI", "BALASAHEB THAKARE"];
 
   // Filter posters based on selected category
   const filteredPosters = posterDocs.filter((doc) => {
     if (selectedCategory === "ALL") return true; // Show all documents
     return doc.title.toUpperCase().includes(selectedCategory); // Match title with selected category
   });
+
+  // Separate "Chatrapati" posters and others
+  const chatrapatiPosters = filteredPosters.filter((doc) =>
+    doc.title.toUpperCase().startsWith("CHATRAPATI")
+  );
+  const otherPosters = filteredPosters.filter(
+    (doc) => !doc.title.toUpperCase().startsWith("CHATRAPATI")
+  );
+
+  // Combine "Chatrapati" posters with the rest
+  const allPosters = [...chatrapatiPosters, ...otherPosters];
 
   return (
     <>
@@ -106,10 +105,10 @@ const Posters = () => {
         <section className="h-full">
           <div className="mx-auto overflow-y-auto w-full h-full">
             <div className="flex flex-wrap items-start justify-start gap-7 p-10 w-full">
-              {filteredPosters.length > 0 ? (
-                filteredPosters.map((doc) => (
+              {allPosters.length > 0 ? (
+                allPosters.map((doc) => (
                   <CardContainer key={doc._id} className="inter-var">
-                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 mb-5 w-[24.6rem] h-full">
+                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 mb-5 w-[23.8rem] h-full">
                       <CardItem translateZ={40} className="w-full">
                         <Image
                           src={
@@ -122,7 +121,7 @@ const Posters = () => {
                           alt={doc.image?.caption || "thumbnail"}
                           onContextMenu={(e) => e.preventDefault()} // Disable right-click
                           onDragStart={(e) => e.preventDefault()} // Disable drag
-                          className="h-[36rem] w-full rounded-xl group-hover/card:shadow-xl"
+                          className="h-[34rem] w-full rounded-xl group-hover/card:shadow-xl"
                         />
                       </CardItem>
                       <div className="flex items-center justify-between m-auto my-5 px-5 w-full">

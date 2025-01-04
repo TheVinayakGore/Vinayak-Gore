@@ -117,8 +117,8 @@ const Blogs: React.FC = () => {
       <LoadingBar loading={loading} />
       {loading && <LoadingSpinner />}
       <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
-      <main className="pt-20">
-        <div className="flex flex-col items-center justify-center m-auto space-y-20 w-full">
+      <main className="pt-20 w-full">
+        <section className="flex flex-col items-center justify-center m-auto space-y-20 w-full">
           <div className="w-full h-full">
             <div className="">
               <TextHoverEffect
@@ -136,7 +136,7 @@ const Blogs: React.FC = () => {
             />
           </div>
 
-          <div className="px-20 pb-20 w-full h-full">
+          <div className="pb-20 w-full max-w-6xl h-full">
             <div className="w-full h-full">
               {filteredBlogs.length > 0 ? (
                 filteredBlogs.map((blog) => (
@@ -151,7 +151,7 @@ const Blogs: React.FC = () => {
                         <BiCircle className="absolute inset-0 -left-[5.5px] text-zinc-500 bg-white dark:bg-black w-3 h-3" />
                         <div className="border-l border-zinc-800 pl-14 pb-10 w-full">
                           <div className="flex border border-zinc-800 hover:border-blue-800 hover:bg-gradient-to-r from-blue-600/[0.2] to-cyan-600/[0.2] text-zinc-600 hover:text-zinc-500 mb-2 rounded-lg h-56 hover:scale-105 transition-transform">
-                            <div className="w-1/2">
+                            <div className="w-[40rem]">
                               {blog.coverImage && (
                                 <Image
                                   src={urlFor(blog.coverImage.asset).url()}
@@ -170,7 +170,7 @@ const Blogs: React.FC = () => {
                                 {blog?.title}
                               </h2>
                               <p className="leading-relaxed font-light my-5">
-                                {blog?.desc.slice(0, 220)}...
+                                {blog?.desc.slice(0, 150)}...
                               </p>
                               <Link
                                 href={`/blogs/${blog?.slug?.current}`}
@@ -197,7 +197,7 @@ const Blogs: React.FC = () => {
               )}
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );

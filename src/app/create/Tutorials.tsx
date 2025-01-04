@@ -145,53 +145,59 @@ const Tutorials = () => {
             <div className="flex flex-wrap items-start justify-start gap-6 px-7 py-10 w-full">
               {filteredTutorials.length > 0 ? (
                 filteredTutorials.map((item, index) => (
-                  <CardContainer key={index} className="inter-var h-full">
-                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[25.5rem] h-max">
-                      <CardItem translateZ={40} className="w-full">
-                        <Image
-                          src={
-                            item.tutimage?.asset?._ref
-                              ? urlFor(item.tutimage.asset).url()
-                              : "/noimage.png"
-                          }
-                          height={500}
-                          width={1000}
-                          className="h-60 w-full rounded-xl group-hover/card:shadow-xl"
-                          alt={item.tuttitle || "tutorial image"}
-                        />
-                      </CardItem>
-                      <div className="p-5">
-                        <CardItem
-                          translateZ={60}
-                          className="flex items-center whitespace-nowrap w-[20rem]"
-                        >
-                          <div className="flex item-center w-[23rem]">
-                            <div className="flex space-x-1 overflow-auto pb-4 w-full">
-                              {item.tutstack?.map((stack, index) => (
-                                <span
-                                  key={index}
-                                  className="p-1 px-2 leading-4 border border-pink-500 rounded text-xs mb-1 font-light text-pink-500 w-max"
-                                >
-                                  {stack}
-                                </span>
-                              ))}
+                  <CardContainer
+                    key={index}
+                    className="flex flex-col items-start justify-start inter-var h-full"
+                  >
+                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[24.5rem] h-[500px]">
+                      <CardItem translateZ={40} className="flex-col h-full">
+                        <CardItem className="w-full">
+                          <Image
+                            src={
+                              item.tutimage?.asset?._ref
+                                ? urlFor(item.tutimage.asset).url()
+                                : "/noimage.png"
+                            }
+                            height={500}
+                            width={1000}
+                            className="h-60 w-full rounded-xl group-hover/card:shadow-xl"
+                            alt={item.tuttitle || "tutorial image"}
+                          />
+                        </CardItem>
+                        <div className="p-5">
+                          <CardItem
+                            translateZ={40}
+                            className="flex items-center whitespace-nowrap w-[20rem]"
+                          >
+                            <div className="flex item-center w-[23rem]">
+                              <div className="flex space-x-1 overflow-auto pb-4 w-full">
+                                {item.tutstack?.map((stack, index) => (
+                                  <span
+                                    key={index}
+                                    className="p-1 px-2 leading-4 border border-pink-500 rounded text-xs mb-1 font-light text-pink-500 w-max"
+                                  >
+                                    {stack}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        </CardItem>
-                        <CardItem
-                          translateZ={50}
-                          className="text-xl font-bold text-black"
-                        >
-                          {item.tuttitle}
-                        </CardItem>
-                        <CardItem
-                          as="p"
-                          translateZ={50}
-                          className="text-sm mt-2 text-zinc-800 font-light"
-                        >
-                          {item.tutshortdesc}
-                        </CardItem>
-                      </div>
+                          </CardItem>
+                          <CardItem
+                            translateZ={50}
+                            className="text-xl font-bold text-black"
+                          >
+                            {item.tuttitle}
+                          </CardItem>
+                          <CardItem
+                            as="p"
+                            translateZ={50}
+                            className="text-sm mt-2 text-zinc-800 font-light"
+                          >
+                            {item.tutshortdesc.slice(0, 100)}...
+                          </CardItem>
+                        </div>
+                      </CardItem>
+
                       <div className="flex flex-col items-center justify-between space-y-2 m-auto text-base font-light p-5 pt-0 w-full">
                         <CardItem translateZ={40} className="w-full">
                           <div className="flex items-center space-x-2 w-full">
