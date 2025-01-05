@@ -25,9 +25,9 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
               titleComponent={
                 <>
                   <h1 className="text-4xl font-semibold bg-gradient-to-b from-black to-zinc-500 dark:from-white dark:to-zinc-600 bg-clip-text tracking-tight text-transparent py-5">
-                  Empowering Ideas with Stunning <br />
+                    Empowering Ideas with Stunning <br />
                     <span className="text-4xl md:text-[7rem] font-bold leading-none">
-                    Web Creations
+                      Web Creations
                     </span>
                   </h1>
                 </>
@@ -55,17 +55,15 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                 </div>
 
                 <div className="text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl w-full">
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sapiente incidunt quia consectetur quis, in fugiat
-                    temporibus cum beatae ducimus accusantium officiis commodi
-                    enim recusandae impedit perspiciatis voluptatem obcaecati
-                    non expedita possimus cupiditate delectus? Ad laudantium
-                    excepturi repellat ipsum corporis animi enim distinctio
-                    officia asperiores praesentium, adipisci labore eveniet
-                    blanditiis cupiditate architecto molestias, recusandae saepe
-                    quaerat harum voluptates.
-                  </p>
+                  <span className="text-2xl font-extrabold bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text tracking-tight text-transparent">Namaste Guys, </span>
+                  <br />
+                  <br />
+                  I&apos;m Vinayak Gore, a Web Developer specializing in React,
+                  Next.js, and the MERN stack, with experience in building
+                  responsive websites using Tailwind CSS and Shadcn UI. I create
+                  intuitive UIs and dynamic backend solutions with MongoDB and
+                  Express. Whether you need a portfolio, online store, or custom
+                  web app, I deliver quality work.
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 h-full sm:h-20">

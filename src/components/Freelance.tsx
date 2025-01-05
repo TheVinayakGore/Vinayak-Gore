@@ -273,25 +273,37 @@ const cards = [
     ctaLink: "https://www.upwork.com/freelancers/~011d4c26a288037333",
     content: () => {
       return (
-        <p>
-          I&apos;m a skilled Web Developer specializing in React, Next.js, and
-          the MERN stack. I create responsive, user-friendly websites using
-          modern tools like Tailwind CSS and Shadcn UI, with a strong focus on
-          intuitive frontend UI design. My experience includes delivering 5
-          full-stack projects with dynamic data handling powered by MongoDB and
-          Sanity.
-          <br /> <br />
-          Here is what I can help you with: • Building responsive websites or
-          single-page applications • Designing and developing intuitive UIs for
-          impactful user experiences • Creating and managing dynamic backend
-          solutions using MongoDB and Express • Collaborating using Git for
-          seamless development workflows
-          <br /> <br />
-          Whether you need a polished portfolio website, an online store, or a
-          custom web application, I&apos;m here to bring your ideas to life. I
-          believe in clear communication and delivering quality work on time, so
-          let&apos;s discuss how I can help with your project !
-        </p>
+        <div>
+          <p>
+            ^__^ I&apos;m a skilled Web Developer specializing in React, Next.js,
+            and the MERN stack. I create responsive, user-friendly websites
+            using modern tools like Tailwind CSS and Shadcn UI, with a strong
+            focus on intuitive frontend UI design. My experience includes
+            delivering 5 full-stack projects with dynamic data handling powered
+            by MongoDB and Sanity.
+          </p>
+          <p className="my-4"># Here is what I can help you with :</p>
+          <ul className="flex flex-col gap-2 my-4">
+            <li>● Building responsive websites or single-page applications</li>
+            <li>
+              ● Designing and developing intuitive UIs for impactful user
+              experiences
+            </li>
+            <li>
+              ● Creating and managing dynamic backend solutions using MongoDB
+              and Express
+            </li>
+            <li>
+              ● Collaborating using Git for seamless development workflows
+            </li>
+          </ul>
+          <p className="my-4">
+            Whether you need a polished portfolio website, an online store, or a
+            custom web application, I&apos;m here to bring your ideas to life. I
+            believe in clear communication and delivering quality work on time,
+            so let&apos;s discuss how I can help with your project !
+          </p>
+        </div>
       );
     },
   },
@@ -303,25 +315,37 @@ const cards = [
     ctaLink: "https://www.glassdoor.co.uk/member/profile",
     content: () => {
       return (
-        <p>
-          I&apos;m a skilled Web Developer specializing in React, Next.js, and
-          the MERN stack. I create responsive, user-friendly websites using
-          modern tools like Tailwind CSS and Shadcn UI, with a strong focus on
-          intuitive frontend UI design. My experience includes delivering 5
-          full-stack projects with dynamic data handling powered by MongoDB and
-          Sanity.
-          <br /> <br />
-          Here is what I can help you with: • Building responsive websites or
-          single-page applications • Designing and developing intuitive UIs for
-          impactful user experiences • Creating and managing dynamic backend
-          solutions using MongoDB and Express • Collaborating using Git for
-          seamless development workflows
-          <br /> <br />
-          Whether you need a polished portfolio website, an online store, or a
-          custom web application, I&apos;m here to bring your ideas to life. I
-          believe in clear communication and delivering quality work on time, so
-          let&apos;s discuss how I can help with your project !
-        </p>
+        <div>
+          <p>
+            ^__^ I&apos;m a skilled Web Developer specializing in React, Next.js,
+            and the MERN stack. I create responsive, user-friendly websites
+            using modern tools like Tailwind CSS and Shadcn UI, with a strong
+            focus on intuitive frontend UI design. My experience includes
+            delivering 5 full-stack projects with dynamic data handling powered
+            by MongoDB and Sanity.
+          </p>
+          <p className="my-4"># Here is what I can help you with :</p>
+          <ul className="flex flex-col gap-2 my-4">
+            <li>● Building responsive websites or single-page applications</li>
+            <li>
+              ● Designing and developing intuitive UIs for impactful user
+              experiences
+            </li>
+            <li>
+              ● Creating and managing dynamic backend solutions using MongoDB
+              and Express
+            </li>
+            <li>
+              ● Collaborating using Git for seamless development workflows
+            </li>
+          </ul>
+          <p className="my-4">
+            Whether you need a polished portfolio website, an online store, or a
+            custom web application, I&apos;m here to bring your ideas to life. I
+            believe in clear communication and delivering quality work on time,
+            so let&apos;s discuss how I can help with your project !
+          </p>
+        </div>
       );
     },
   },

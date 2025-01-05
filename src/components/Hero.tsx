@@ -29,6 +29,15 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
       text: "Create",
     },
     {
+      text: "Tutorials",
+    },
+    {
+      text: "Cheat Sheets",
+    },
+    {
+      text: "Posters",
+    },
+    {
       text: "Blogs",
     },
   ];

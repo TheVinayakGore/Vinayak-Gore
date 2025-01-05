@@ -2,7 +2,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { Tabs } from "@/components/ui/tabs";
 import Tutorials from "./Tutorials";
-import Playlists from "./Playlists";
+// import Playlists from "./Playlists";
 import CheatSheets from "./CheatSheets";
 import Posters from "./Posters";
 import LoadingSpinner from "@/components/LoadingSpinner";
