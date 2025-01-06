@@ -154,7 +154,7 @@ const Navbar = ({
                         <ProductItem
                           key={project._id}
                           title={project.title}
-                          href={project.projectUrl || "#"}
+                          href={project.projectUrl || "/"}
                           src={
                             project.image?.asset
                               ? urlFor(project.image.asset._ref).url()
@@ -174,7 +174,7 @@ const Navbar = ({
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Contact">
                 <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink href={mailtoLink}>Email</HoveredLink>
+                  <HoveredLink href={mailtoLink}>Email me</HoveredLink>
                   <HoveredLink href="/#socialMedia">
                     Social Media Links
                   </HoveredLink>

@@ -108,7 +108,7 @@ export const ProductItem = ({
           {title}
         </h4>
         <p className="text-xs lg:text-sm">
-          {description}
+          {description}...
         </p>
       </div>
     </Link>

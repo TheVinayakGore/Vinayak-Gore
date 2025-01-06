@@ -62,7 +62,7 @@ export const GlowingStarsTitle = ({
 };
 
 export const Illustration = ({ mouseEnter }: { mouseEnter: boolean }) => {
-  const stars = 40;
+  const stars = 54;
   const columns = 18;
 
   const [glowingStars, setGlowingStars] = useState<number[]>([]);

@@ -64,7 +64,7 @@ const Footer = () => {
           </li>
           <li>
             <div className="flex flex-col items-center md:items-end text-zinc-500">
-              <p className="text-xs md:text-sm">Copyright © 2024 VinayakGore.com</p>
+              <p className="text-xs md:text-sm">Copyright © 2024 vinayak-gore.vercel.app</p>
               <p className="font-light text-zinc-600 text-sm md:text-base">
                 <span
                   className={`text-base md:text-lg font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
