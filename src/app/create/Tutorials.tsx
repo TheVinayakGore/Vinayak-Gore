@@ -89,6 +89,7 @@ const Tutorials = () => {
     "CSS",
     "Javascript",
     "Typescript",
+    "Rest API",
     "Bootstrap",
     "Tailwind CSS",
     "Vite",
@@ -117,7 +118,7 @@ const Tutorials = () => {
   return (
     <>
       <main className="flex flex-col items-start w-full h-[64.5rem]">
-        <div className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <div className="flex items-center space-x-4 w-1/2">
             <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-10">
               Tutorials
@@ -138,9 +139,9 @@ const Tutorials = () => {
               </button>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="flex flex-col items-start justify-start w-full h-full">
+        <section className="flex flex-col items-start justify-start w-full h-full">
           <div className="mx-auto overflow-auto w-full h-full">
             <div className="flex flex-wrap items-start justify-start gap-6 px-7 py-10 w-full">
               {filteredTutorials.length > 0 ? (
@@ -169,7 +170,7 @@ const Tutorials = () => {
                             translateZ={40}
                             className="flex items-center whitespace-nowrap w-[20rem]"
                           >
-                            <div className="flex item-center w-[23rem]">
+                            <div className="flex item-center w-[22rem]">
                               <div className="flex space-x-1 overflow-auto pb-4 w-full">
                                 {item.tutstack?.map((stack, index) => (
                                   <span
@@ -300,7 +301,7 @@ const Tutorials = () => {
               )}
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );

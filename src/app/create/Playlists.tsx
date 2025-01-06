@@ -47,6 +47,7 @@ const Playlists = () => {
     "All",
     "Javascript",
     "Typescript",
+    "Rest API",
     "Bootstrap",
     "Tailwind CSS",
     "React.Js",

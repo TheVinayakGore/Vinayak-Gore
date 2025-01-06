@@ -60,6 +60,7 @@ export const blogs = defineType({
             { title: "Heading 3", value: "h3" },
             { title: "Heading 4", value: "h4" },
             { title: "Heading 5", value: "h5" },
+            { title: "Divider", value: "hr" },
             { title: "Quote", value: "blockquote" },
           ],
           lists: [

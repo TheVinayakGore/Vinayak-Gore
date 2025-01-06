@@ -14,7 +14,8 @@ import { c } from "./c";
 import { cpp } from "./cpp";
 import { gallery } from "./gallery";
 import { socialMedia } from "./socialmedia";
+import { blogComments } from "./blogComments";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [mainprojects, gallery, blogs, portfolioblog, tutorials, playlists, figma, posters, html, css, js, python, c, cpp, socialMedia],
+  types: [mainprojects, gallery, blogs, blogComments, portfolioblog, tutorials, playlists, figma, posters, html, css, js, python, c, cpp, socialMedia],
 };

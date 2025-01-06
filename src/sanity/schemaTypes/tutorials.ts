@@ -29,13 +29,6 @@ export const tutorials = defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        {
-          name: "attribution",
-          type: "string",
-          title: "Attribution",
-        },
-      ],
     }),
     defineField({
       name: "date",
