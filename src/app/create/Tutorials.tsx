@@ -109,7 +109,9 @@ const Tutorials = () => {
   // Function to handle link clicks
   const handleLinkClick = (link: string | null) => {
     if (!link) {
-      toast.warning("Currently unavailable, comming soon !", { autoClose: 2000 });
+      toast.warning("Currently unavailable, comming soon !", {
+        autoClose: 2000,
+      });
       return false; // Indicate the link is unavailable
     }
     return true; // Indicate the link is available
@@ -150,7 +152,7 @@ const Tutorials = () => {
                     key={index}
                     className="flex flex-col items-start justify-start inter-var h-full"
                   >
-                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[24.4rem] h-[500px]">
+                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border border-zinc-100 dark:border-none bg-white/[0.7] dark:bg-white/[0.3] backdrop-blur-xl rounded-xl z-40 w-[24.4rem] h-[500px]">
                       <CardItem translateZ={40} className="flex-col h-full">
                         <CardItem className="w-full">
                           <Image
@@ -175,7 +177,7 @@ const Tutorials = () => {
                                 {item.tutstack?.map((stack, index) => (
                                   <span
                                     key={index}
-                                    className="p-1 px-2 leading-4 border border-pink-500 rounded text-xs mb-1 font-light text-pink-500 w-max"
+                                    className="p-1 px-2 leading-4 bg-pink-500 dark:bg-lime-500 rounded text-xs mb-1 font-light text-white w-max"
                                   >
                                     {stack}
                                   </span>
@@ -185,14 +187,14 @@ const Tutorials = () => {
                           </CardItem>
                           <CardItem
                             translateZ={50}
-                            className="text-xl font-bold text-black"
+                            className="text-xl font-bold"
                           >
                             {item.tuttitle}
                           </CardItem>
                           <CardItem
                             as="p"
                             translateZ={50}
-                            className="text-sm mt-2 text-zinc-800 font-light"
+                            className="text-sm mt-2 text-zinc-800 dark:text-zinc-100 font-light"
                           >
                             {item.tutshortdesc.slice(0, 100)}...
                           </CardItem>
@@ -212,9 +214,9 @@ const Tutorials = () => {
                                 if (!handleLinkClick(item.tutorialGitUrl))
                                   e.preventDefault();
                               }}
-                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
                                 item.tutorialGitUrl
-                                  ? "hover:border-purple-500 hover:bg-purple-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-purple-500 dark:hover:border-purple-500 hover:bg-purple-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -230,9 +232,9 @@ const Tutorials = () => {
                                 if (!handleLinkClick(item.tutorialYTUrl))
                                   e.preventDefault();
                               }}
-                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
                                 item.tutorialYTUrl
-                                  ? "hover:border-red-500 hover:bg-red-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-red-500 dark:hover:border-red-500 hover:bg-red-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -254,9 +256,9 @@ const Tutorials = () => {
                                   handleDownloadClick(item.tutdownloadUrl);
                                 }
                               }}
-                              className={`flex items-center p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 ${
+                              className={`flex items-center p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
                                 item.tutdownloadUrl
-                                  ? "hover:border-green-500 hover:bg-green-500 hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-green-500 dark:hover:border-green-500 hover:bg-green-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -271,7 +273,7 @@ const Tutorials = () => {
                               href={`/create/${item._id}`}
                               target="_blank"
                               rel="noopener"
-                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent text-zinc-800 border border-zinc-800 hover:border-blue-500 hover:bg-blue-500 hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
+                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
                             >
                               <span className="relative z-20">
                                 Start Reading

@@ -105,7 +105,7 @@ const CheatSheets: React.FC = () => {
               filteredSnippets.map((snippet, index) => (
                 <li
                   key={index}
-                  className="space-y-5 py-10 border-dashed border-b border-black dark:border-white"
+                  className="space-y-5 py-10 border-dashed border-b border-zinc-500"
                 >
                   <div className="flex flex-col space-y-2 w-full">
                     <span className="text-xl font-medium leading-5">

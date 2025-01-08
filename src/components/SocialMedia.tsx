@@ -108,51 +108,46 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
           </div>
 
           <div className="show-on-mobile items-center justify-center w-full">
-            <WavyBackground
-              isDarkMode={isDarkMode}
-              className="z-0 w-full max-w-screen"
-            >
-              <ul className="grid grid-cols-4 gap-3 items-center w-60">
-                {socialMedia
-                  .sort((a, b) => {
-                    const priorityOrder = [
-                      "GitHub",
-                      "Instagram",
-                      "Threads",
-                      "LinkedIn",
-                      "X",
-                      "YouTube",
-                      "Facebook",
-                      "Telegram",
-                    ];
-                    return (
-                      priorityOrder.indexOf(a.title) -
-                      priorityOrder.indexOf(b.title)
-                    );
-                  })
-                  .map((item) => (
-                    <li key={item._id}>
-                      {item.img?.asset?._ref ? (
-                        <Link href={item.UrlLink}>
-                          <Image
-                            src={urlFor(item.img).url()}
-                            alt={item.title || "Social media icon"}
-                            className="rounded-lg w-14 h-14"
-                            width={300}
-                            height={300}
-                          />
-                        </Link>
-                      ) : (
+            <ul className="grid grid-cols-4 gap-3 items-center w-60">
+              {socialMedia
+                .sort((a, b) => {
+                  const priorityOrder = [
+                    "GitHub",
+                    "Instagram",
+                    "Threads",
+                    "LinkedIn",
+                    "X",
+                    "YouTube",
+                    "Facebook",
+                    "Telegram",
+                  ];
+                  return (
+                    priorityOrder.indexOf(a.title) -
+                    priorityOrder.indexOf(b.title)
+                  );
+                })
+                .map((item) => (
+                  <li key={item._id}>
+                    {item.img?.asset?._ref ? (
+                      <Link href={item.UrlLink}>
                         <Image
-                          src="/noimg.png"
-                          alt="no image"
-                          className="text-gray-500"
+                          src={urlFor(item.img).url()}
+                          alt={item.title || "Social media icon"}
+                          className="rounded-lg w-14 h-14"
+                          width={300}
+                          height={300}
                         />
-                      )}
-                    </li>
-                  ))}
-              </ul>
-            </WavyBackground>
+                      </Link>
+                    ) : (
+                      <Image
+                        src="/noimg.png"
+                        alt="no image"
+                        className="text-gray-500"
+                      />
+                    )}
+                  </li>
+                ))}
+            </ul>
           </div>
         </section>
       </main>

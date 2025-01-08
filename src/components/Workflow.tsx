@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { BackgroundGradient } from "./ui/background-gradient";
-// import { MdArrowRightAlt } from "react-icons/md";
+import { BackgroundGradient } from "./ui/background-gradient";
+import { MdArrowRightAlt } from "react-icons/md";
 import { PiArrowCircleDownRight } from "react-icons/pi";
 import { BsVectorPen } from "react-icons/bs";
 import { BackgroundBeams } from "./ui/background-beams";
@@ -11,6 +11,7 @@ import Tooltip from "./Tooltip";
 import Typewriter from "./Typewriter";
 import { defineQuery } from "next-sanity";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { format } from "date-fns";
 import { GoArrowRight } from "react-icons/go";
 import {
@@ -26,6 +27,15 @@ interface Project {
   description: string;
   imageUrl: string;
   projectUrl: string;
+}
+
+interface Tutorial {
+  _id: string;
+  tuttitle: string;
+  tutshortdesc: string;
+  tutimage?: { asset: { _ref: string } };
+  tutlink: string | null;
+  date: string;
 }
 
 interface Blog {
@@ -47,6 +57,10 @@ export const MAIN_PROJECTS_QUERY = defineQuery(`*[_type == "mainprojects"]{
   projectUrl
 }`);
 
+const TUTORIALS_QUERY = defineQuery(`*[_type == "tutorials"]{
+  _id, tuttitle, tutshortdesc, tutimage, tutlink, date
+}`);
+
 const BLOGS_QUERY = defineQuery(`*[
   _type == "blogs"
   && defined(slug.current)
@@ -54,32 +68,40 @@ const BLOGS_QUERY = defineQuery(`*[
 
 const Workflow = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [tutorialData, setTutorialData] = useState<Tutorial[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      const fetchedBlogs = await client.fetch(BLOGS_QUERY);
+    const fetchData = async () => {
+      try {
+        const [blogData, tutorialData, projectData] = await Promise.all([
+          client.fetch(BLOGS_QUERY),
+          client.fetch(TUTORIALS_QUERY),
+          client.fetch(MAIN_PROJECTS_QUERY),
+        ]);
 
-      // Sorting blogs by date in descending order
-      const sortedBlogs = fetchedBlogs.sort((a: Blog, b: Blog) => {
-        const dateA = a.date ? new Date(a.date).getTime() : 0;
-        const dateB = b.date ? new Date(b.date).getTime() : 0;
-        return dateB - dateA; // Newest first
-      });
+        setBlogs(
+          blogData.sort((a: Blog, b: Blog) => {
+            const dateA = a.date ? new Date(a.date).getTime() : 0;
+            const dateB = b.date ? new Date(b.date).getTime() : 0;
+            return dateB - dateA;
+          })
+        );
 
-      setBlogs(sortedBlogs);
+        setTutorialData(
+          tutorialData.sort(
+            (a: Tutorial, b: Tutorial) =>
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+        );
+
+        setProjects(projectData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
-    fetchBlogs();
-  }, []);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const fetchedProjects = await client.fetch(MAIN_PROJECTS_QUERY);
-      setProjects(fetchedProjects);
-    };
-
-    fetchProjects();
+    fetchData();
   }, []);
 
   const typingText = `
@@ -250,55 +272,50 @@ const Workflow = () => {
         <section className="flex flex-col items-center justify-center space-y-5 md:space-y-14 mt-20 m-auto max-w-7xl w-full">
           <div className="z-40 w-full">
             <h1 className="md:text-4xl text-2xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-600 font-semibold text-center relative z-20 h-8 sm:h-10 md:h-12 lg:h-14">
-              Blogs Collection
+              Create Collections
             </h1>
             <p className="text-center tracking-widest text-zinc-500 text-xs sm:text-sm md:text-lg">
-              Some blogs related to Modern UI & Front-end websites
+              Collections created by me of Tutorials & Blogs related to Front-end Dev
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center m-auto w-full">
-            {/* <ul className="flex flex-wrap items-center justify-center w-full">
-              {indicesToShow.map((index) => {
-                const project = projects[index];
-                if (!project || !project.imageUrl) {
-                  return null;
-                }
-                return (
-                  <li
-                    key={project._id}
-                    className="w-full sm:w-1/2 lg:w-1/3 p-2"
-                  >
-                    <BackgroundGradient className="rounded-xl hover:shadow-xl shadow-black w-full h-full">
-                      <Image
-                        src={project.imageUrl}
-                        alt={project.title}
-                        layout="responsive"
-                        height={400}
-                        width={400}
-                        className="rounded-t-xl w-full h-auto"
-                      />
-                      <div className="flex flex-col items-start gap-3 p-5">
-                        <h1 className="text-base sm:text-2xl text-white font-semibold">
-                          {project.title}
-                        </h1>
-                        <p className="text-sm text-zinc-200">
-                          {project.description.slice(0, 500)}
-                        </p>
-                        <Link
-                          href={project.projectUrl}
-                          target="_blank"
-                          className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-5 hover:shadow-lg shadow-zinc-800/[0.7] text-white inline-flex items-center space-x-3 border border-white hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
-                        >
-                          <span>Explore Now</span>
-                          <MdArrowRightAlt className="w-5 h-5" />
-                        </Link>
-                      </div>
-                    </BackgroundGradient>
-                  </li>
-                );
-              })}
-            </ul> */}
+            <ul className="flex flex-wrap items-center justify-center w-full">
+              {tutorialData.slice(0, 3).map((item) => (
+                <li key={item._id} className="hover:scale-105 z-0 hover:z-50 transition-transform w-full sm:w-1/2 lg:w-1/3 p-2">
+                  <BackgroundGradient className="rounded-xl hover:shadow-xl shadow-black w-full h-full">
+                    <Image
+                      src={
+                        item.tutimage?.asset?._ref
+                          ? urlFor(item.tutimage.asset).url()
+                          : "/noimage.png"
+                      }
+                      alt={item.tuttitle}
+                      layout="responsive"
+                      height={400}
+                      width={400}
+                      className="rounded-t-xl w-full h-auto"
+                    />
+                    <div className="flex flex-col items-start gap-3 p-5">
+                      <h1 className="text-base sm:text-2xl text-white font-semibold">
+                        {item.tuttitle}
+                      </h1>
+                      <p className="text-sm text-zinc-200">
+                        {item.tutshortdesc.slice(0, 200)}..
+                      </p>
+                      <Link
+                        href={`/create/${item._id}`}
+                        target="_blank"
+                        className="hover:scale-110 transition-transform rounded-full p-2 px-6 mt-5 hover:shadow-lg shadow-zinc-800/[0.7] text-white inline-flex items-center space-x-3 border border-white hover:border-blue-600 text-sm font-medium hover:bg-blue-600"
+                      >
+                        <span>Explore Now</span>
+                        <MdArrowRightAlt className="w-5 h-5" />
+                      </Link>
+                    </div>
+                  </BackgroundGradient>
+                </li>
+              ))}
+            </ul>
 
             <div className="mx-auto overflow-y-auto py-5 w-full h-full">
               <div className="flex flex-wrap items-start justify-start w-full">

@@ -72,6 +72,7 @@ const Posters = () => {
   const chatrapatiPosters = filteredPosters.filter((doc) =>
     doc.title.toUpperCase().startsWith("CHATRAPATI")
   );
+  
   const otherPosters = filteredPosters.filter(
     (doc) => !doc.title.toUpperCase().startsWith("CHATRAPATI")
   );
