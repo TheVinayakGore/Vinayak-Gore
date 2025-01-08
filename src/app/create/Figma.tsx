@@ -66,8 +66,8 @@ const Figma = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start w-full h-[64.5rem]">
-        <div className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+      <main className="flex flex-col items-start w-full h-[64.5rem]">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/2">
             Figma
           </h1>
@@ -86,15 +86,15 @@ const Figma = () => {
               </button>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="h-full">
+        <section className="h-full">
           <div className="mx-auto overflow-y-auto w-full h-full">
             <div className="flex flex-wrap items-start justify-start gap-10 p-10 w-full">
               {filteredFigmaDocs.length > 0 ? (
                 filteredFigmaDocs.map((doc) => (
                   <CardContainer key={doc._id} className="inter-var">
-                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[37.6rem] h-full">
+                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[37.5rem] h-full">
                       <CardItem translateZ={40} className="w-full">
                         <Image
                           src={
@@ -148,8 +148,8 @@ const Figma = () => {
               )}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

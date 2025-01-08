@@ -62,8 +62,8 @@ const CheatSheets: React.FC = () => {
   return (
     <>
       <main className="flex flex-col w-full h-full">
-        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+          <h1 className="md:text-2xl text-xl text-orange-400 lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
             CheatSheets
           </h1>
           <div className="flex items-center justify-end space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
@@ -71,7 +71,7 @@ const CheatSheets: React.FC = () => {
               <input
                 type="text"
                 id="searchInput"
-                className="w-80 leading-9 pl-4 pr-10 bg-transparent/[0.2] backdrop-blur-sm border border-gray-300 rounded-full shadow-lg placeholder:text-zinc-300 focus:outline-none focus:ring-0 focus:border-gray-400"
+                className="w-80 leading-9 pl-4 pr-10 bg-transparent/[0.05] backdrop-blur-sm rounded-full shadow-lg placeholder:text-zinc-700 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-0 focus:border-gray-400"
                 placeholder="Search here for code snippets.."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -91,7 +91,7 @@ const CheatSheets: React.FC = () => {
                 className={`px-7 leading-9 rounded-full hover:shadow-xl ${
                   selectedCategory === item
                     ? "bg-gradient-to-r from-yellow-400 to-amber-600 text-white"
-                    : "bg-white hover:bg-gradient-to-r from-yellow-400 to-amber-600 text-black hover:text-white hover:scale-105 transition-transform"
+                    : "bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-yellow-400 to-amber-600 text-black hover:text-white hover:scale-105 transition-transform"
                 }`}
               >
                 {item}
@@ -105,13 +105,13 @@ const CheatSheets: React.FC = () => {
               filteredSnippets.map((snippet, index) => (
                 <li
                   key={index}
-                  className="space-y-5 py-10 border-dashed border-b border-purple-500"
+                  className="space-y-5 py-10 border-dashed border-b border-black dark:border-white"
                 >
                   <div className="flex flex-col space-y-2 w-full">
-                    <span className="text-xl font-medium text-white leading-5">
+                    <span className="text-xl font-medium leading-5">
                       {snippet.title}
                     </span>
-                    <p className="text-sm font-light text-zinc-300">
+                    <p className="text-sm font-light">
                       {snippet.description}
                     </p>
                   </div>

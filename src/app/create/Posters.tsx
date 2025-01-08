@@ -82,8 +82,8 @@ const Posters = () => {
   return (
     <>
       <main className="flex flex-col items-start w-full h-[64.5rem]">
-        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-12 w-1/2">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+          <h1 className="md:text-2xl text-xl text-sky-400 lg:text-3xl font-medium text-start relative px-5 h-12 w-1/2">
             Posters
           </h1>
           <div className="flex items-center justify-end space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
@@ -91,7 +91,7 @@ const Posters = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)} // Set selected category
-                className={`px-7 leading-9 bg-white hover:bg-gradient-to-r from-cyan-400 to-cyan-600 text-black hover:text-white rounded-full hover:shadow-xl hover:scale-105 transition-transform ${
+                className={`px-7 leading-9 bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-cyan-400 to-cyan-600 text-black hover:text-white rounded-full hover:shadow-xl hover:scale-105 transition-transform ${
                   selectedCategory === category
                     ? "bg-gradient-to-r from-cyan-400 to-cyan-600 text-white"
                     : ""
@@ -108,7 +108,7 @@ const Posters = () => {
               {allPosters.length > 0 ? (
                 allPosters.map((doc) => (
                   <CardContainer key={doc._id} className="inter-var">
-                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 mb-5 w-[23.8rem] h-full">
+                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 mb-5 w-[23.7rem] h-full">
                       <CardItem translateZ={40} className="w-full">
                         <Image
                           src={

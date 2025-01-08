@@ -109,7 +109,7 @@ const Tutorials = () => {
   // Function to handle link clicks
   const handleLinkClick = (link: string | null) => {
     if (!link) {
-      toast.error("Link is Unavailable!", { autoClose: 2000 });
+      toast.warning("Currently unavailable, comming soon !", { autoClose: 2000 });
       return false; // Indicate the link is unavailable
     }
     return true; // Indicate the link is available
@@ -118,9 +118,9 @@ const Tutorials = () => {
   return (
     <>
       <main className="flex flex-col items-start w-full h-[64.5rem]">
-        <section className="flex items-center justify-between border-b shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <div className="flex items-center space-x-4 w-1/2">
-            <h1 className="md:text-2xl text-xl lg:text-3xl font-medium text-start relative px-5 h-10">
+            <h1 className="md:text-2xl text-xl text-green-500 lg:text-3xl font-medium text-start relative px-5 h-10">
               Tutorials
             </h1>
           </div>
@@ -128,7 +128,7 @@ const Tutorials = () => {
             {stacks.map((item) => (
               <button
                 key={item}
-                className={`px-8 leading-9 hover:scale-105 transition-transform bg-white hover:bg-gradient-to-r from-teal-500 to-green-500 text-black hover:text-white rounded-full hover:shadow-xl ${
+                className={`px-8 leading-9 hover:scale-105 transition-transform bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-teal-500 to-green-500 text-black hover:text-white rounded-full hover:shadow-xl ${
                   selectedStack === item
                     ? "bg-gradient-to-r from-teal-500 to-green-500 text-white"
                     : ""
@@ -150,7 +150,7 @@ const Tutorials = () => {
                     key={index}
                     className="flex flex-col items-start justify-start inter-var h-full"
                   >
-                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[24.5rem] h-[500px]">
+                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 w-[24.4rem] h-[500px]">
                       <CardItem translateZ={40} className="flex-col h-full">
                         <CardItem className="w-full">
                           <Image

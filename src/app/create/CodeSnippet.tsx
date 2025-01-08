@@ -41,7 +41,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ codeString }) => {
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center text-sm font-light space-x-2 pb-1"
+            className="flex items-center text-sm font-light text-white space-x-2 pb-1"
           >
             <GoPaste />
             <span>Copy</span>

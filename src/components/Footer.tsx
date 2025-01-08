@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation"; // Import usePathname hook
 
 const Footer = () => {
   const [colorIndex, setColorIndex] = useState(0);
@@ -18,18 +19,23 @@ const Footer = () => {
     "text-indigo-500",
   ];
 
-  useEffect(() => {
-    const storedCount = localStorage.getItem("visitorCount");
+  const pathname = usePathname(); // Get the current pathname
 
-    if (storedCount) {
-      const newCount = parseInt(storedCount) + 1;
-      localStorage.setItem("visitorCount", newCount.toString());
-      setVisitorCount(newCount);
-    } else {
-      localStorage.setItem("visitorCount", "1");
-      setVisitorCount(1);
+  useEffect(() => {
+    if (pathname === "/") {
+      // Increment visitor count only for the home page
+      const storedCount = localStorage.getItem("visitorCount");
+
+      if (storedCount) {
+        const newCount = parseInt(storedCount) + 1;
+        localStorage.setItem("visitorCount", newCount.toString());
+        setVisitorCount(newCount);
+      } else {
+        localStorage.setItem("visitorCount", "1");
+        setVisitorCount(1);
+      }
     }
-  }, []);
+  }, [pathname]); // Dependency array includes pathname
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +50,7 @@ const Footer = () => {
   return (
     <>
       <footer className="flex flex-col items-center p-4 md:p-10 space-y-10 md:space-y-28 bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-800 text-xs md:text-sm z-[100] w-full">
-        <ul className="flex flex-col md:flex-row items-center md:items-start justify-between text-zinc-600 w-full space-y-4 md:space-y-0">
+        <ul className="flex flex-col md:flex-row items-center justify-between text-zinc-600 w-full space-y-4 md:space-y-0">
           <li className="flex-col space-y-3">
             <Link
               href="/"
@@ -64,8 +70,12 @@ const Footer = () => {
           </li>
           <li>
             <div className="flex flex-col items-center md:items-end text-zinc-500">
-              <p className="text-xs md:text-sm">Copyright © 2024 vinayak-gore.vercel.app</p>
-              <p className="font-light text-zinc-600 text-sm md:text-base">
+              <p className="text-xs md:text-sm">
+                Copyright © 2024, Vinayak Gore
+              </p>
+              <p
+                className={`${pathname === "/" ? "block" : "hidden"} font-light text-zinc-600 text-sm md:text-base`}
+              >
                 <span
                   className={`text-base md:text-lg font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
                 >

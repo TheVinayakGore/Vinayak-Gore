@@ -45,7 +45,7 @@ const Create: React.FC = () => {
       value: "Tutorials",
       description: "Explore step-by-step guide to web UI templates build with various skills & techs.",
       content: (
-        <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+        <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-black/[0.03] dark:from-white/[0.1] to-black/[0.03] dark:to-white/[0.1] backdrop-blur-md border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
             <Tutorials />
           </Suspense>
@@ -57,7 +57,7 @@ const Create: React.FC = () => {
     //   value: "Playlists",
     //   description: "Created playlists of tutorials on my YouTube channel, watch & enjoy videos !",
     //   content: (
-    //     <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+    //     <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-black/[0.03] dark:from-white/[0.1] to-black/[0.03] dark:to-white/[0.1] backdrop-blur-md border border-zinc-200 dark:border-none shadow-xl z-30">
     //       <Suspense fallback={<LoadingSpinner />}>
     //         <Playlists />
     //       </Suspense>
@@ -69,7 +69,7 @@ const Create: React.FC = () => {
       value: "Cheat Sheets",
       description: "Quick reference guides to help you solve problems and code efficiently.",
       content: (
-        <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+        <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-black/[0.03] dark:from-zinc-500/[0.15] to-black/[0.03] dark:via-zinc-500/[0.3] dark:to-zinc-500/[0.15] backdrop-blur-md border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
             <CheatSheets />
           </Suspense>
@@ -81,7 +81,7 @@ const Create: React.FC = () => {
       value: "Posters",
       description: "Beautifully designed posters as my hobby and for entertenment purposes.",
       content: (
-        <div className="w-full relative h-full rounded-xl text-white bg-gradient-to-br from-purple-700 to-pink-900 z-30">
+        <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-black/[0.03] dark:from-white/[0.1] to-black/[0.03] dark:to-white/[0.1] backdrop-blur-md border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
             <Posters />
           </Suspense>
