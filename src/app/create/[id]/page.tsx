@@ -130,9 +130,9 @@ export default function TutorialPage({ params }: TutorialPageProps) {
     };
 
     return (
-      <div className="hover:shadow-xl shadow-pink-400 rounded-lg my-2 w-full">
+      <div className="hover:shadow-xl rounded-lg my-2 w-full">
         <div className="flex items-center justify-between bg-[#1d1d1d] rounded-t-lg text-base px-4 py-2 font-medium">
-          <div className="flex space-x-2">
+          <div className="flex space-x-1">
             <span className="bg-red-500 rounded-full w-3 h-3"></span>
             <span className="bg-yellow-500 rounded-full w-3 h-3"></span>
             <span className="bg-green-500 rounded-full w-3 h-3"></span>

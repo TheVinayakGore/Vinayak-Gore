@@ -63,7 +63,7 @@ const CheatSheets: React.FC = () => {
     <>
       <main className="flex flex-col w-full h-full">
         <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <h1 className="md:text-2xl text-xl text-orange-400 lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
+          <h1 className="md:text-2xl text-xl text-green-500 lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
             CheatSheets
           </h1>
           <div className="flex items-center justify-end space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
@@ -90,8 +90,8 @@ const CheatSheets: React.FC = () => {
                 onClick={() => setSelectedCategory(item)}
                 className={`px-7 leading-9 rounded-full hover:shadow-xl ${
                   selectedCategory === item
-                    ? "bg-gradient-to-r from-yellow-400 to-amber-600 text-white"
-                    : "bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-yellow-400 to-amber-600 text-black hover:text-white hover:scale-105 transition-transform"
+                    ? "bg-gradient-to-r from-teal-400 to-green-600 text-white"
+                    : "bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-teal-400 to-green-600 text-black hover:text-white hover:scale-105 transition-transform"
                 }`}
               >
                 {item}

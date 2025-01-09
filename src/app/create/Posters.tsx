@@ -109,7 +109,7 @@ const Posters = () => {
               {allPosters.length > 0 ? (
                 allPosters.map((doc) => (
                   <CardContainer key={doc._id} className="inter-var">
-                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-blue-100 rounded-xl z-40 mb-5 w-[23.7rem] h-full">
+                    <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-yellow-400/[0.8] rounded-xl z-40 mb-5 w-[23.7rem] h-full">
                       <CardItem translateZ={40} className="w-full">
                         <Image
                           src={
@@ -130,7 +130,7 @@ const Posters = () => {
                           <div className="flex items-center justify-between text-sm font-light w-full">
                             <CardItem
                               translateZ={40}
-                              className="text-lg font-medium text-black"
+                              className="text-lg font-medium text-white"
                             >
                               {doc.title}
                             </CardItem>

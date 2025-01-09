@@ -122,7 +122,7 @@ const Tutorials = () => {
       <main className="flex flex-col items-start w-full h-[64.5rem]">
         <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
           <div className="flex items-center space-x-4 w-1/2">
-            <h1 className="md:text-2xl text-xl text-green-500 lg:text-3xl font-medium text-start relative px-5 h-10">
+            <h1 className="md:text-2xl text-xl text-orange-400 lg:text-3xl font-medium text-start relative px-5 h-10">
               Tutorials
             </h1>
           </div>
@@ -130,9 +130,9 @@ const Tutorials = () => {
             {stacks.map((item) => (
               <button
                 key={item}
-                className={`px-8 leading-9 hover:scale-105 transition-transform bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-teal-500 to-green-500 text-black hover:text-white rounded-full hover:shadow-xl ${
+                className={`px-8 leading-9 hover:scale-105 transition-transform bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:text-white rounded-full hover:shadow-xl ${
                   selectedStack === item
-                    ? "bg-gradient-to-r from-teal-500 to-green-500 text-white"
+                    ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white"
                     : ""
                 }`}
                 onClick={() => setSelectedStack(item)}
@@ -152,7 +152,7 @@ const Tutorials = () => {
                     key={index}
                     className="flex flex-col items-start justify-start inter-var h-full"
                   >
-                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border border-zinc-100 dark:border-none bg-white/[0.7] dark:bg-white/[0.3] backdrop-blur-xl rounded-xl z-40 w-[24.4rem] h-[500px]">
+                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] text-white bg-gradient-to-t from-indigo-500 to-white/[0.3] backdrop-blur-xl rounded-xl z-40 w-[24.4rem] h-[500px]">
                       <CardItem translateZ={40} className="flex-col h-full">
                         <CardItem className="w-full">
                           <Image
@@ -194,7 +194,7 @@ const Tutorials = () => {
                           <CardItem
                             as="p"
                             translateZ={50}
-                            className="text-sm mt-2 text-zinc-800 dark:text-zinc-100 font-light"
+                            className="text-sm mt-2 text-zinc-100 font-light"
                           >
                             {item.tutshortdesc.slice(0, 100)}...
                           </CardItem>
@@ -214,9 +214,9 @@ const Tutorials = () => {
                                 if (!handleLinkClick(item.tutorialGitUrl))
                                   e.preventDefault();
                               }}
-                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-200 ${
                                 item.tutorialGitUrl
-                                  ? "hover:border-purple-500 dark:hover:border-purple-500 hover:bg-purple-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-purple-500 dark:hover:border-purple-500 hover:bg-purple-500 hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -232,9 +232,9 @@ const Tutorials = () => {
                                 if (!handleLinkClick(item.tutorialYTUrl))
                                   e.preventDefault();
                               }}
-                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
+                              className={`flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-200 ${
                                 item.tutorialYTUrl
-                                  ? "hover:border-red-500 dark:hover:border-red-500 hover:bg-red-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-red-500 dark:hover:border-red-500 hover:bg-red-500 hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -256,9 +256,9 @@ const Tutorials = () => {
                                   handleDownloadClick(item.tutdownloadUrl);
                                 }
                               }}
-                              className={`flex items-center p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 ${
+                              className={`flex items-center p-1 pl-3 rounded-full relative bg-transparent border border-zinc-200 ${
                                 item.tutdownloadUrl
-                                  ? "hover:border-green-500 dark:hover:border-green-500 hover:bg-green-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105"
+                                  ? "hover:border-green-500 dark:hover:border-green-500 hover:bg-green-500 hover:shadow-md hover:scale-105"
                                   : "opacity-50 hover:cursor-not-allowed"
                               } transition-transform w-full`}
                             >
@@ -273,7 +273,7 @@ const Tutorials = () => {
                               href={`/create/${item._id}`}
                               target="_blank"
                               rel="noopener"
-                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-800 dark:border-zinc-200 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-500 text-black dark:text-white hover:text-white hover:shadow-md hover:scale-105 transition-transform w-full"
+                              className="flex items-center justify-between p-1 pl-3 rounded-full relative bg-transparent border border-zinc-200 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-500 hover:shadow-md hover:scale-105 transition-transform w-full"
                             >
                               <span className="relative z-20">
                                 Start Reading

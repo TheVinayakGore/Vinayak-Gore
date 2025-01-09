@@ -22,9 +22,9 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ codeString }) => {
   };
 
   return (
-    <div className="bg-zinc-900 hover:shadow-xl shadow-pink-400 rounded-lg w-full">
+    <div className="bg-zinc-900 hover:shadow-xl rounded-lg w-full">
       <div className="flex items-center justify-between text-base px-4 py-2 font-medium">
-        <div className="flex space-x-2">
+        <div className="flex space-x-1">
           <span className="bg-red-500 rounded-full w-3 h-3"></span>
           <span className="bg-yellow-500 rounded-full w-3 h-3"></span>
           <span className="bg-green-500 rounded-full w-3 h-3"></span>
