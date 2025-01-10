@@ -166,7 +166,7 @@ const Blogs: React.FC = () => {
                               )}
                             </div>
                             <div className="p-3 pl-5 w-full">
-                              <h2 className="font-medium text-2xl tracking-wider text-black dark:text-zinc-100">
+                              <h2 className="font-medium text-xl tracking-wider text-black dark:text-zinc-100">
                                 {blog?.title}
                               </h2>
                               <p className="leading-relaxed font-light my-5">
