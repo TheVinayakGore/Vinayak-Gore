@@ -49,39 +49,39 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="flex flex-col items-center p-4 md:p-10 space-y-10 md:space-y-28 bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-800 text-xs md:text-sm z-[100] w-full">
+      <footer className="flex flex-col items-center p-3 md:p-5 md:px-10 space-y-10 md:space-y-28 bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-800 text-xs md:text-sm z-[100] w-full">
         <ul className="flex flex-col md:flex-row items-center justify-between text-zinc-600 w-full space-y-4 md:space-y-0">
           <li className="flex-col space-y-3">
             <Link
               href="/"
-              className="flex items-center justify-center space-x-5"
+              className="flex items-center justify-center space-x-3"
             >
               <Image
                 src="/vinu.png"
                 alt="logo"
                 width={60}
                 height={60}
-                className="rounded-full hover:scale-125 transition duration-500 border-[0.17rem] border-pink-500 dark:border-zinc-200 w-16"
+                className="rounded-full hover:scale-125 transition duration-500 border-2 border-orange-500 w-10"
               />
-              <span className="footerLogo text-2xl md:text-4xl font-bold text-zinc-800 dark:text-zinc-300">
+              <span className="footerLogo text-lg md:text-xl font-bold text-zinc-800 dark:text-zinc-300">
                 Vinayak Gore
               </span>
             </Link>
           </li>
           <li>
             <div className="flex flex-col items-center md:items-end text-zinc-500">
-              <p className="text-xs md:text-sm">
-                Copyright © 2024, Vinayak Gore
+              <p className="text-xs md:text-[0.9rem]">
+                <span className="text-base">©</span> Vinayak Gore {new Date().getFullYear()}
               </p>
               <p
-                className={`${pathname === "/" ? "block" : "hidden"} font-light text-zinc-600 text-sm md:text-base`}
+                className={`${pathname === "/" ? "block" : "hidden"} font-light text-zinc-600 text-xs md:text-sm`}
               >
                 <span
-                  className={`text-base md:text-lg font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
+                  className={`font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
                 >
                   {visitorCount}
                 </span>{" "}
-                Visitors
+                Visits
               </p>
             </div>
           </li>

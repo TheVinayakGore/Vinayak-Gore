@@ -150,24 +150,26 @@ const Navbar = ({
                         <LoadingSpinner />
                       </div>
                     ) : (
-                      mainprojects.slice(0, 5).map((project) => (
-                        <ProductItem
-                          key={project._id}
-                          title={project.title}
-                          href={project.projectUrl || "/"}
-                          src={
-                            project.image?.asset
-                              ? urlFor(project.image.asset._ref).url()
-                              : "/card.png"
-                          }
-                          description={
-                            project.description.slice(0, 50) ||
-                            "Project - short description"
-                          }
-                          target="_blank"
-                          priority
-                        />
-                      ))
+                      mainprojects
+                        .slice(0, 5)
+                        .map((project) => (
+                          <ProductItem
+                            key={project._id}
+                            title={project.title}
+                            href={project.projectUrl || "/"}
+                            src={
+                              project.image?.asset
+                                ? urlFor(project.image.asset._ref).url()
+                                : "/card.png"
+                            }
+                            description={
+                              project.description.slice(0, 50) ||
+                              "Project - short description"
+                            }
+                            target="_blank"
+                            priority
+                          />
+                        ))
                     )}
                   </Suspense>
                 </div>
@@ -175,9 +177,7 @@ const Navbar = ({
               <MenuItem setActive={setActive} active={active} item="Contact">
                 <div className="flex flex-col space-y-4 text-sm">
                   <HoveredLink href={mailtoLink}>Mail me</HoveredLink>
-                  <HoveredLink href="/#socialMedia">
-                    Social Media Links
-                  </HoveredLink>
+                  <HoveredLink href="/#socialMedia">Social Media</HoveredLink>
                   <HoveredLink href="#">
                     <button
                       onClick={(e) => {
@@ -185,7 +185,7 @@ const Navbar = ({
                         handleFeedbackClick();
                       }}
                     >
-                      Feedback Form
+                      Give Feedback
                     </button>
                   </HoveredLink>
                 </div>
@@ -266,7 +266,13 @@ const Navbar = ({
       </nav>
 
       {/* Sidebar */}
-      <SideBar isSidebarOpen={isSidebarOpen} handleBackdropClick={handleBackdropClick} closeSidebar={closeSidebar} toggleTheme={toggleTheme} isSunIcon={isSunIcon}/>
+      <SideBar
+        isSidebarOpen={isSidebarOpen}
+        handleBackdropClick={handleBackdropClick}
+        closeSidebar={closeSidebar}
+        toggleTheme={toggleTheme}
+        isSunIcon={isSunIcon}
+      />
     </>
   );
 };

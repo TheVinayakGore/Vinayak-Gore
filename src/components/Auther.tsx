@@ -17,10 +17,10 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
     <>
       <main
         id="auther"
-        className="flex flex-col items-center justify-center m-auto max-w-7xl w-full"
+        className="flex flex-col items-center justify-center m-auto max-w-7xl w-full h-full"
       >
-        <div className="w-full">
-          <div className="flex flex-col overflow-hidden w-full">
+        <div className="w-full h-full">
+          <div className="flex flex-col overflow-hidden w-full h-full">
             <ContainerScroll
               titleComponent={
                 <>
@@ -33,7 +33,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                 </>
               }
             >
-              <div className="flex flex-col items-center space-y-5 py-20 w-full">
+              <div className="flex flex-col items-center justify-center m-auto space-y-5 py-20 w-full h-full">
                 <div className="flex flex-col items-center space-y-5 z-10 w-full">
                   <Image
                     src="/vinu.png"
@@ -55,7 +55,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                 </div>
 
                 <div className="text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl w-full">
-                  <span className="text-2xl font-extrabold bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text tracking-tight text-transparent">Namaste Guys, </span>
+                  <span className="text-base md:text-2xl font-extrabold bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text tracking-tight text-transparent">Namaste Guys, </span>
                   <br />
                   <br />
                   I&apos;m Vinayak Gore, a Web Developer specializing in React,
