@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --background: #ffffff;
+  --foreground: black; 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: black; 
+    --foreground: #ededed; 
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.dark {
+  background-color: black;
+  color: #ededed; 
+}
+
+body {
+  background-color: #ffffff; 
+  color: black; 
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* styles/global.css or styles/LoadingBar.module.css */
+
+@keyframes loadingAnimation {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 30%;
+  }
+  50% {
+    width: 50%;
+  }
+  80% {
+    width: 80%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  z-index: 1000;
+}
+
+.loading-bar-inner {
+  height: 100%;
+  background-color: #0059ff;
+  animation: loadingAnimation 1s ease-in-out forwards;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide the div for screens smaller than 640px */
+@media (max-width: 640px) {
+  .responsive-nav {
+    display: none;
+  }
+  .responsive-themBtn {
+    display: none;
+  }
+}
+
+/* Show the div for screens larger than 640px */
+@media (min-width: 640px) {
+  .responsive-nav {
+    display: flex; /* or block or whatever suits your layout */
+  }
+  .responsive-themBtn {
+    display: flex; /* or block or whatever suits your layout */
+  }
+}
+
+
+/* Social Media Response */
+@media (min-width: 750px) {
+  .show-on-desktop {
+    display: block;
+  }
+  .show-on-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 749px) {
+  .show-on-desktop {
+    display: none;
+  }
+  .show-on-mobile {
+    display: flex;
+  }
+}
+
+
+.footerLogo {
+  font-family: "Satisfy", cursive;
+}
+
+@media (max-width: 1023px) {
+  .lamp-container {
+    display: none;
+  }
+}
+
+/* Side Bar */
+@media (max-width: 350px) {
+  .grid-cols-responsive {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: 0 1rem;
+  }
+}
+
+
