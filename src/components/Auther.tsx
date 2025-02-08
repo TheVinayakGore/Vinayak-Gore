@@ -17,10 +17,10 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
     <>
       <main
         id="auther"
-        className="responsive-themeBtn flex-col items-center justify-center m-auto px-10 lg:px-32 border-b border-zinc-300 dark:border-zinc-800 lg:max-w-8xl w-full h-full"
+        className="responsive-themeBtn flex-col items-center justify-center m-auto border-b border-zinc-300 dark:border-zinc-800 lg:max-w-8xl w-full h-full"
       >
         <div className="w-full h-full">
-          <div className="flex flex-col overflow-hidden w-full h-full">
+          <div className="flex flex-col overflow-hidden px-24 pb-0 sm:pb-60 xl:pb-0 w-full h-full">
             <ContainerScroll
               titleComponent={
                 <>
@@ -68,7 +68,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                   web app, I deliver quality work.
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 h-full sm:h-20">
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-2 h-full lg:h-20">
                   {/* YouTube Button */}
                   <Link
                     href="http://www.youtube.com/@vinayakgore7715"

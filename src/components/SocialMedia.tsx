@@ -107,8 +107,8 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
             </WavyBackground>
           </div>
 
-          <div className="show-on-mobile items-center justify-center w-full">
-            <ul className="grid grid-cols-4 gap-3 items-center w-60">
+          <div className="show-on-mobile flex flex-col items-center justify-center m-auto mt-10 w-full">
+            <ul className="grid grid-cols-3 gap-5 items-center justify-center m-auto border-2 p-5 rounded-xl border-blue-500 w-full">
               {socialMedia
                 .sort((a, b) => {
                   const priorityOrder = [
@@ -133,7 +133,7 @@ const SocialMedia = ({ isDarkMode }: { isDarkMode: boolean }) => {
                         <Image
                           src={urlFor(item.img).url()}
                           alt={item.title || "Social media icon"}
-                          className="rounded-lg w-14 h-14"
+                          className="rounded-xl border border-zinc-300 dark:border-zinc-800 shadow-lg shadow-blue-400 dark:shadow-blue-900 w-14 h-14"
                           width={300}
                           height={300}
                         />

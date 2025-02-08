@@ -67,7 +67,9 @@ const Page: React.FC = () => {
             </div>
             <div className="flex flex-col space-y-48 max-w-6xl px-10 xl:px-0 mx-auto w-full h-full">
               <Workflow />
-              <TechStacks />
+              <div className="flex flex-col items-center justify-center m-auto p-10 lg:p-0 border lg:border-none border-zinc-300 dark:border-Zinc-800 rounded-3xl">
+                <TechStacks />
+              </div>
             </div>
             <div className="flex-col space-y-32">
               <div className="mt-3 pb-20 border-b border-zinc-300 dark:border-zinc-800">
