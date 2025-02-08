@@ -177,7 +177,7 @@ const Navbar = ({
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Contact">
                 <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink href={mailtoLink}>Mail me</HoveredLink>
+                  <HoveredLink href={mailtoLink}>Email</HoveredLink>
                   <HoveredLink href="/#socialMedia">Social Media</HoveredLink>
                   <HoveredLink href="/">
                     <button
