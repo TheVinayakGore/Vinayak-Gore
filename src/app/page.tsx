@@ -71,11 +71,11 @@ const Page: React.FC = () => {
                 <TechStacks />
               </div>
             </div>
-            <div className="flex-col space-y-32">
+            <div className="flex-col h-full">
               <div className="mt-3 pb-20 border-b border-zinc-300 dark:border-zinc-800">
                 <Gallery />
               </div>
-              <div className="">
+              <div className="flex flex-col items-center m-auto min-h-screen">
                 <Auther isDarkMode={isDarkMode} />
               </div>
             </div>

@@ -17,10 +17,10 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
     <>
       <main
         id="auther"
-        className="responsive-themeBtn flex-col items-center justify-center m-auto border-b border-zinc-300 dark:border-zinc-800 lg:max-w-8xl w-full h-full"
+        className="responsive-themeBtn flex-col items-center justify-center m-auto lg:max-w-7xl w-full min-h-screen"
       >
         <div className="w-full h-full">
-          <div className="flex flex-col overflow-hidden px-24 pb-0 sm:pb-60 xl:pb-0 w-full h-full">
+          <div className="flex flex-col overflow-hidden px-0 md:px-10 xl:px-20 w-full h-full">
             <ContainerScroll
               titleComponent={
                 <>
@@ -33,8 +33,19 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                 </>
               }
             >
-              <div className="flex flex-col items-center justify-center m-auto overflow-auto space-y-5 py-20 w-full h-full">
-                <div className="flex flex-col items-center space-y-5 z-10 w-full">
+              <div className="flex flex-col items-center justify-start m-auto overflow-auto space-y-5 py-0 lg:py-10 xl:py-20 px-7 w-full h-full">
+                <div className="flex items-center justify-center m-auto absolute top-2 md:pt-7 z-30 px-6 rounded-3xl w-full">
+                  <div className="flex items-center justify-center m-auto p-1 bg-zinc-100 dark:bg-zinc-900 w-full">
+                    <div className="flex items-center m-auto bg-zinc-900 rounded-full p-1 mb-1">
+                      <div className="p-1 bg-zinc-800 border border-zinc-600 rounded-full">
+                        <div className="p-1 bg-black border border-zinc-800 rounded-full">
+                          <div className="p-1 bg-zinc-700 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center space-y-5 relative z-10 w-full">
                   <Image
                     src="/vinu.png"
                     alt="vinugore"
@@ -42,7 +53,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                     height={400}
                     className="rounded-2xl mt-10 lg:mt-0 w-auto"
                   />
-                  <p className="text-sm font-mono font-normal text-black dark:text-zinc-400 tracking-wider text-center">
+                  <p className="text-xs md:text-sm font-mono font-normal text-black dark:text-zinc-400 tracking-wider text-center">
                     MERN STACK | NEXT.JS | REACT.JS
                   </p>
                   <Image
@@ -54,7 +65,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                   />
                 </div>
 
-                <div className="text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl w-full">
+                <div className="relative text-center p-3 text-xs sm:text-sm md:text-base max-w-4xl w-full">
                   <span className="text-base md:text-2xl font-extrabold bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text tracking-tight text-transparent">
                     Namaste Guys,{" "}
                   </span>
@@ -68,7 +79,7 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
                   web app, I deliver quality work.
                 </div>
 
-                <div className="flex flex-col lg:flex-row items-center justify-center gap-2 h-full lg:h-20">
+                <div className="flex flex-col lg:flex-row items-center justify-center relative gap-1 pb-10 h-full lg:h-20">
                   {/* YouTube Button */}
                   <Link
                     href="http://www.youtube.com/@vinayakgore7715"

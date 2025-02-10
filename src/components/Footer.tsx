@@ -71,7 +71,8 @@ const Footer = () => {
           <li>
             <div className="flex flex-col items-center md:items-end text-zinc-500">
               <p className="text-xs md:text-[0.9rem]">
-                <span className="text-base">©</span> Vinayak Gore {new Date().getFullYear()}
+                <span className="text-base">©</span> Vinayak Gore{" "}
+                {new Date().getFullYear()}
               </p>
               <p
                 className={`${pathname === "/" ? "block" : "hidden"} font-light text-zinc-600 text-xs md:text-sm`}
@@ -79,7 +80,9 @@ const Footer = () => {
                 <span
                   className={`font-medium transition-colors duration-[2000ms] ease-linear ${colors[colorIndex]}`}
                 >
-                  {visitorCount}
+                  {visitorCount > 1000
+                    ? `${(visitorCount / 1000).toFixed(2)}K`
+                    : visitorCount}
                 </span>{" "}
                 Visits
               </p>

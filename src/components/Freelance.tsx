@@ -41,7 +41,7 @@ const Freelance = () => {
     <>
       <main
         id="freelance"
-        className="border-b border-zinc-300 dark:border-zinc-900 px-10 xl:px-0 w-full"
+        className="border-t border-b border-zinc-300 dark:border-zinc-900 pt-20 px-10 xl:px-0 w-full"
       >
         <div className="flex flex-col items-center justify-center m-auto max-w-6xl w-full">
           <section className="w-full">
