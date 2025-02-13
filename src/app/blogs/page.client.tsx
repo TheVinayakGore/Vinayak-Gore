@@ -125,7 +125,7 @@ const Blogs: React.FC = () => {
                 text="NEWBLOGS"
                 className="text-[0px] md:text-[3.5rem] -mt-20 z-10"
               />
-              <p className="text-center tracking-widest mb-5 sm:-mt-28 pb-10 text-sm sm:text-3xl font-thin text-zinc-400">
+              <p className="text-center tracking-widest mb-5 sm:-mt-28 pb-10 text-sm sm:text-3xl font-thin">
                 All the blogs related to development
               </p>
             </div>
@@ -148,7 +148,7 @@ const Blogs: React.FC = () => {
                           : "No Date"}{" "}
                       </span>
                       <div className="flex items-start relative w-full">
-                        <BiCircle className="absolute inset-0 -left-[5.5px] text-zinc-500 bg-white dark:bg-black w-3 h-3" />
+                        <BiCircle className="absolute inset-0 -left-[5px] text-zinc-500 bg-white dark:bg-black w-3 h-3" />
                         <div className="border-l border-zinc-800 pl-14 pb-10 w-full">
                           <div className="flex flex-col lg:flex-row border border-zinc-800 hover:border-blue-800 hover:bg-gradient-to-r from-blue-600/[0.2] to-cyan-600/[0.2] text-zinc-600 hover:text-zinc-500 mb-2 rounded-lg h-auto lg:h-56 hover:scale-105 transition-transform">
                             <div className="w-full lg:w-[40rem]">
@@ -160,7 +160,7 @@ const Blogs: React.FC = () => {
                                   }
                                   width={300}
                                   height={300}
-                                  className="rounded-t-lg lg:rounded-l-lg lg:rounded-t-none border-b lg:border-r border-zinc-800 w-full h-full"
+                                  className="rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none border-b lg:border-r lg:border-b-0 border-zinc-800 w-full h-full"
                                   priority
                                 />
                               )}

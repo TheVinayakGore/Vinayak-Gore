@@ -43,7 +43,8 @@ const Create: React.FC = () => {
     {
       title: "Tutorials",
       value: "Tutorials",
-      description: "Explore step-by-step guide to web UI templates build with various skills & techs.",
+      description:
+        "Explore step-by-step guide to web UI templates build with various skills & techs.",
       content: (
         <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-white/[0.05] dark:from-white/[0.1] to-white/[0.05] dark:to-white/[0.1] backdrop-blur-2xl border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -67,7 +68,8 @@ const Create: React.FC = () => {
     {
       title: "Cheat Sheets",
       value: "Cheat Sheets",
-      description: "Quick reference guides to help you solve problems and code efficiently.",
+      description:
+        "Quick reference guides to help you solve problems and code efficiently.",
       content: (
         <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-white/[0.05] dark:from-white/[0.1] to-white/[0.05] dark:to-white/[0.1] backdrop-blur-2xl border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -79,7 +81,8 @@ const Create: React.FC = () => {
     {
       title: "Posters",
       value: "Posters",
-      description: "Beautifully designed posters as my hobby and for entertenment purposes.",
+      description:
+        "Beautifully designed posters as my hobby and for entertenment purposes.",
       content: (
         <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-white/[0.05] dark:from-white/[0.1] to-white/[0.05] dark:to-white/[0.1] backdrop-blur-2xl border border-zinc-200 dark:border-none shadow-xl z-30">
           <Suspense fallback={<LoadingSpinner />}>
@@ -95,11 +98,14 @@ const Create: React.FC = () => {
       <LoadingBar loading={loading} />
       {loading && <LoadingSpinner />}
       <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
-      <main className="flex flex-col items-start py-20 w-full h-full">
+      <main className="flex flex-col items-start pb-40 w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
-          <div className="flex flex-col items-center m-auto top-10 w-full h-full">
-            <TextHoverEffect text="CREATE" className="text-[0px] md:text-[5rem] -mt-10 z-10" />
-            <div className="w-screen sm:max-w-[90rem] pt-40 px-10 -mt-56 z-40 h-full">
+          <div className="flex flex-col items-center m-auto leading-none w-full h-full">
+            <TextHoverEffect
+              text="CREATE"
+              className="text-[0px] md:text-[5rem] z-10 leading-none"
+            />
+            <div className="w-screen sm:max-w-[90rem] px-10 -mt-48 z-40 h-full">
               <Tabs tabs={tabs} />
             </div>
           </div>

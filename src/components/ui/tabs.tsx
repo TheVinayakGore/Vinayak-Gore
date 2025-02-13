@@ -54,7 +54,7 @@ export const Tabs = ({
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
             className={cn(
-              "flex flex-col items-start justify-between relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-28 sm:h-36 md:h-32",
+              "flex flex-col items-start justify-between relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-32 sm:h-36 md:h-32",
               tabClassName
             )}
             style={{
