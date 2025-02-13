@@ -98,8 +98,8 @@ const Create: React.FC = () => {
       <main className="flex flex-col items-start py-20 w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
           <div className="flex flex-col items-center m-auto top-10 w-full h-full">
-            <TextHoverEffect text="CREATE" className="text-[5rem] -mt-10 z-10" />
-            <div className="max-w-7xl -mt-56 z-40">
+            <TextHoverEffect text="CREATE" className="text-[0px] md:text-[5rem] -mt-10 z-10" />
+            <div className="w-screen sm:max-w-[90rem] pt-40 px-10 -mt-56 z-40 h-full">
               <Tabs tabs={tabs} />
             </div>
           </div>

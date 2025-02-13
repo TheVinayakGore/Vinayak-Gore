@@ -329,7 +329,7 @@ const Workflow = () => {
                       key={blog._id}
                       href={`/blogs/${blog?.slug?.current}`}
                       target="_blank"
-                      className="flex flex-col items-start w-full sm:w-1/2 lg:w-1/3 p-2 h-48"
+                      className="flex flex-col items-start justify-center m-auto w-full sm:w-1/2 lg:w-1/3 p-2 h-56"
                     >
                       <div className="hover:animate-shimmer transition-colors bg-[linear-gradient(110deg,#fbfbfd,45%,#efefef,55%,#fbfbfd)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] relative border border-zinc-200 dark:border-zinc-800 hover:shadow-lg shadow-zinc-200 dark:shadow-zinc-900 p-5 h-full overflow-hidden rounded-xl flex flex-col items-start group">
                         <div className="flex items-center space-x-2 text-xs leading-3 font-light text-zinc-500 dark:text-zinc-500 w-full">
@@ -345,7 +345,7 @@ const Workflow = () => {
                         </h1>
                         <p className="relative text-zinc-500 z-20 text-sm">
                           {blog?.desc
-                            ? blog.desc.split(" ").slice(0, 15).join(" ") +
+                            ? blog.desc.split(" ").slice(0, 18).join(" ") +
                               "..."
                             : "No description available"}
                         </p>
@@ -357,8 +357,8 @@ const Workflow = () => {
                 ) : (
                   <p>No blogs available.</p>
                 )}
-                <div className="flex items-start justify-start rounded-xl p-2 antialiased w-full md:w-1/2 lg:w-1/3">
-                  <GlowingStarsBackgroundCard className="p-5 w-full">
+                <div className="flex items-end justify-end rounded-xl p-2 antialiased w-full sm:w-1/2 lg:w-1/3 h-56">
+                  <GlowingStarsBackgroundCard className="p-5 w-full h-full">
                     <GlowingStarsTitle className="text-zinc-300 my-2">
                       About this site
                     </GlowingStarsTitle>
@@ -380,7 +380,7 @@ const Workflow = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between hover:shadow-xl shadow-zinc-200 dark:shadow-zinc-900 rounded-2xl w-full relative z-40 h-full md:h-[30rem]">
+            <div className="flex flex-col items-center justify-between hover:shadow-xl shadow-zinc-200 dark:shadow-zinc-900 rounded-2xl w-full relative z-40 h-screen">
               <div className="relative bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 px-4 py-10 overflow-hidden rounded-2xl flex flex-col justify-between items-start w-full h-full">
                 <h1 className="md:text-3xl text-2xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-black to-zinc-400 dark:from-zinc-50 dark:to-zinc-700 font-semibold text-center relative z-50 w-full h-20">
                   What is Programming ?

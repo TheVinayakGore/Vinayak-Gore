@@ -61,12 +61,12 @@ const CheatSheets: React.FC = () => {
 
   return (
     <>
-      <main className="flex flex-col w-full h-full">
-        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <h1 className="md:text-2xl text-xl text-green-500 lg:text-3xl font-medium text-start relative px-5 h-12 w-1/4">
+      <main className="flex flex-col items-start w-full h-full">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] w-full">
+          <h1 className="text-green-500 text-3xl font-medium text-center relative p-4 w-1/2 md:w-1/4">
             CheatSheets
           </h1>
-          <div className="flex items-center justify-end space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
+          <div className="flex items-start justify-start space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
             <div className="relative transform transition-transform hover:scale-105">
               <input
                 type="text"
@@ -111,9 +111,7 @@ const CheatSheets: React.FC = () => {
                     <span className="text-xl font-medium leading-5">
                       {snippet.title}
                     </span>
-                    <p className="text-sm font-light">
-                      {snippet.description}
-                    </p>
+                    <p className="text-sm font-light">{snippet.description}</p>
                   </div>
                   <CodeSnippet codeString={snippet.codeString} />
                 </li>

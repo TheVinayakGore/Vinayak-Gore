@@ -119,14 +119,12 @@ const Tutorials = () => {
 
   return (
     <>
-      <main className="flex flex-col items-start w-full h-[64.5rem]">
-        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] pt-4 w-full">
-          <div className="flex items-center space-x-4 w-1/2">
-            <h1 className="md:text-2xl text-xl text-orange-400 lg:text-3xl font-medium text-start relative px-5 h-10">
-              Tutorials
-            </h1>
-          </div>
-          <div className="flex items-center space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
+      <main className="flex flex-col items-start w-full h-full">
+        <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] w-full">
+          <h1 className="text-orange-400 text-3xl font-medium text-start relative p-5 w-1/2 md:w-1/4">
+            Tutorials
+          </h1>
+          <div className="flex items-center space-x-2 p-5 text-base font-light overflow-auto whitespace-nowrap w-full">
             {stacks.map((item) => (
               <button
                 key={item}
@@ -143,17 +141,17 @@ const Tutorials = () => {
           </div>
         </section>
 
-        <section className="flex flex-col items-start justify-start w-full h-full">
+        <section className="flex flex-col items-start justify-start overflow-auto w-full h-full">
           <div className="mx-auto overflow-auto w-full h-full">
-            <div className="flex flex-wrap items-start justify-start gap-6 px-7 py-10 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-7 items-center justify-center m-auto py-10 w-full">
               {filteredTutorials.length > 0 ? (
                 filteredTutorials.map((item, index) => (
                   <CardContainer
                     key={index}
-                    className="flex flex-col items-start justify-start inter-var h-full"
+                    className="flex flex-col items-start justify-start inter-var w-full h-full"
                   >
-                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] text-white bg-gradient-to-t from-indigo-500 to-white/[0.3] backdrop-blur-xl rounded-xl z-40 w-[24.4rem] h-[500px]">
-                      <CardItem translateZ={40} className="flex-col h-full">
+                    <CardBody className="flex flex-col items-start justify-between relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] text-white bg-gradient-to-t from-indigo-500 to-white/[0.3] backdrop-blur-xl rounded-xl z-40 w-full h-full md:h-[500px]">
+                      <CardItem translateZ={40} className="flex-col w-full h-full">
                         <CardItem className="w-full">
                           <Image
                             src={
@@ -163,16 +161,16 @@ const Tutorials = () => {
                             }
                             height={500}
                             width={1000}
-                            className="h-60 w-full rounded-xl group-hover/card:shadow-xl"
+                            className="h-60 rounded-xl group-hover/card:shadow-xl"
                             alt={item.tuttitle || "tutorial image"}
                           />
                         </CardItem>
                         <div className="p-5">
                           <CardItem
                             translateZ={40}
-                            className="flex items-center whitespace-nowrap w-[20rem]"
+                            className="flex items-center whitespace-nowrap w-[25vw]"
                           >
-                            <div className="flex item-center w-[22rem]">
+                            <div className="flex item-center w-full">
                               <div className="flex space-x-1 overflow-auto pb-4 w-full">
                                 {item.tutstack?.map((stack, index) => (
                                   <span
@@ -203,7 +201,7 @@ const Tutorials = () => {
 
                       <div className="flex flex-col items-center justify-between space-y-2 m-auto text-base font-light p-5 pt-0 w-full">
                         <CardItem translateZ={40} className="w-full">
-                          <div className="flex items-center space-x-2 w-full">
+                          <div className="flex flex-col md:flex-row items-center gap-2 w-full">
                             <Link
                               href={item.tutorialGitUrl || "/errorpage"}
                               target={
@@ -246,7 +244,7 @@ const Tutorials = () => {
                           </div>
                         </CardItem>
                         <CardItem translateZ={40} className="w-full">
-                          <div className="flex items-center space-x-2 w-full">
+                          <div className="flex flex-col md:flex-row items-center gap-2 w-full">
                             <a
                               href={item.tutdownloadUrl || "/errorpage"}
                               onClick={(e) => {
