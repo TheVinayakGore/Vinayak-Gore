@@ -254,7 +254,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   return (
     <>
       <title>{`${tutorial.tuttitle} | Tutorial`}</title>
-      <main className="flex flex-col items-start pt-14 px-52 overflow-auto w-full">
+      <main className="flex flex-col items-start justify-center m-auto pt-14 px-10 w-full md:max-w-5xl overflow-auto">
         <div className="flex items-end justify-between mb-5 pb-3 border-b border-zinc-600 w-full">
           <div className="flex flex-col items-start border-l-4 border-zinc-400 rounded-l-[0.3rem] pl-5 w-full">
             <p className="text-3xl font-semibold text-zinc-300 mb-1">
