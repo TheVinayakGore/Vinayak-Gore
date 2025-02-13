@@ -243,7 +243,7 @@ const Navbar = ({
               ) : (
                 <button
                   onClick={async () => await signIn()}
-                  className="flex cursor-pointer border border-zinc-700 hover:bg-gradient-to-r from-blue-500 to-blue-700 dark:hover:text-white hover:border-blue-600 rounded-full"
+                  className="flex cursor-pointer hover:text-white border border-zinc-700 hover:bg-gradient-to-r from-blue-500 to-blue-700 hover:border-blue-600 rounded-full"
                 >
                   <span className="responsive-themBtn text-sm px-7 py-2">
                     Login
