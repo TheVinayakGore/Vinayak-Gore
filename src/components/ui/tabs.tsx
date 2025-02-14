@@ -54,7 +54,7 @@ export const Tabs = ({
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
             className={cn(
-              "flex flex-col items-start justify-between relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-32 sm:h-36 md:h-32",
+              "flex flex-col items-start justify-between relative p-5 bg-white/[0.5] dark:bg-black/[0.1] border border-zinc-500 dark:border-zinc-800 active:border-blue-500 backdrop-blur-[1px] rounded-xl w-full h-full sm:h-32",
               tabClassName
             )}
             style={{
@@ -75,7 +75,7 @@ export const Tabs = ({
             {/* Conditionally change text color based on active tab */}
             <span
               className={cn(
-                "text-start text-xl font-medium relative block mb-2",
+                "text-start text-base sm:text-xl font-medium relative block mb-2",
                 active.value === tab.value ? "text-yellow-400" : "text-blue-600"
               )}
             >
@@ -83,7 +83,7 @@ export const Tabs = ({
             </span>
             <span
               className={cn(
-                "text-start text-sm font-light relative block",
+                "text-start text-xs sm:text-sm font-light relative block",
                 active.value === tab.value ? "text-white" : "text-zinc-600"
               )}
             >

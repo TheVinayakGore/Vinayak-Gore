@@ -164,7 +164,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
             background: "#0f0f0f",
           }}
           wrapLongLines={true}
-          className="text-sm font-light"
+          className="text-xs sm:text-sm font-light"
         >
           {value.code}
         </SyntaxHighlighter>
@@ -188,25 +188,29 @@ export default function TutorialPage({ params }: TutorialPageProps) {
     },
     block: {
       h1: ({ children }: any) => (
-        <h1 className="text-4xl font-medium text-zinc-200 my-2 mt-5">
+        <h1 className="text-2xl sm:text-4xl font-medium text-zinc-200 my-2 mt-5">
           {children}
         </h1>
       ),
       h2: ({ children }: any) => (
-        <h2 className="text-3xl font-medium text-zinc-200 my-2 mt-10">
+        <h2 className="text-xl sm:text-3xl font-medium text-zinc-200 my-2 mt-10">
           {children}
         </h2>
       ),
       h3: ({ children }: any) => (
-        <h3 className="text-2xl font-medium text-zinc-200 my-2 mt-10">
+        <h3 className="text-lg sm:text-2xl font-medium text-zinc-200 my-2 mt-10">
           {children}
         </h3>
       ),
       h5: ({ children }: any) => (
-        <h5 className="text-xl font-medium text-zinc-200 my-2">{children}</h5>
+        <h5 className="text-base sm:text-xl font-medium text-zinc-200 my-2">
+          {children}
+        </h5>
       ),
       normal: ({ children }: any) => (
-        <p className="text-zinc-400 leading-relaxed mb-2">{children}</p>
+        <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-2">
+          {children}
+        </p>
       ),
     },
     list: {
@@ -254,10 +258,10 @@ export default function TutorialPage({ params }: TutorialPageProps) {
   return (
     <>
       <title>{`${tutorial.tuttitle} | Tutorial`}</title>
-      <main className="flex flex-col items-start justify-center m-auto pt-14 px-10 w-full md:max-w-5xl overflow-auto">
+      <main className="flex flex-col items-start justify-center m-auto pt-14 px-4 sm:px-10 text-xs sm:text-base w-full md:max-w-5xl overflow-auto">
         <div className="flex items-end justify-between mb-5 pb-3 border-b border-zinc-600 w-full">
           <div className="flex flex-col items-start border-l-4 border-zinc-400 rounded-l-[0.3rem] pl-5 w-full">
-            <p className="text-3xl font-semibold text-zinc-300 mb-1">
+            <p className="text-xl sm:text-3xl font-semibold text-zinc-300 mb-1">
               {tutorial.tuttitle}
             </p>
             <p className="text-start text-sm text-zinc-600 font-light mb-3 w-full">
@@ -265,11 +269,11 @@ export default function TutorialPage({ params }: TutorialPageProps) {
                 ? format(new Date(tutorial.date), "MMM dd, yyyy")
                 : "No Date"}
             </p>
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1 overflow-auto w-full">
               {tutorial.tutstack?.map((stack, index) => (
                 <span
                   key={index}
-                  className="p-1 px-2 leading-4 border border-zinc-500 rounded text-xs mb-1 font-light text-zinc-500 w-max"
+                  className="p-1 px-2 leading-4 border border-zinc-500 rounded text-xs mb-1 font-light text-zinc-500  whitespace-nowrap w-max"
                 >
                   {stack}
                 </span>
@@ -292,7 +296,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
               <Link
                 href={tutorial.tutorialYTUrl}
                 target="_blank"
-                className="bg-white rounded-full text-red-600 shadow-xl shadow-black/[0.5] hover:scale-105 transition-transform w-20 h-20"
+                className="bg-white rounded-full text-red-600 shadow-xl shadow-black/[0.5] hover:scale-105 transition-transform w-12 h-12 sm:w-20 sm:h-20"
               >
                 <BiLogoYoutube className="p-2 w-full h-full" />
               </Link>
@@ -302,7 +306,7 @@ export default function TutorialPage({ params }: TutorialPageProps) {
           </div>
         </div>
         <div className="flex flex-col items-start justify-start py-5 mb-10 border-dashed border-b border-zinc-700 w-full">
-          <p className="text-base font-mono text-zinc-500 leading-relaxed">
+          <p className="text-sm sm:text-base font-mono text-zinc-500 leading-relaxed">
             <span className="text-lg text-zinc-300 font-semibold">
               Summary :
             </span>{" "}

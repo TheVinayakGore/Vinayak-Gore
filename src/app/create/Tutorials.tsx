@@ -121,14 +121,14 @@ const Tutorials = () => {
     <>
       <main className="flex flex-col items-start w-full h-full">
         <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] w-full">
-          <h1 className="text-orange-400 text-3xl font-medium text-start relative p-5 w-1/2 md:w-1/4">
+          <h1 className="text-orange-400 text-xl sm:text-3xl font-medium text-start relative p-5 w-1/2 md:w-1/4">
             Tutorials
           </h1>
           <div className="flex items-center space-x-2 p-5 text-base font-light overflow-auto whitespace-nowrap w-full">
             {stacks.map((item) => (
               <button
                 key={item}
-                className={`px-8 leading-9 hover:scale-105 transition-transform bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:text-white rounded-full hover:shadow-xl ${
+                className={`px-7 py-2 leading-6 sm:py-3 text-xs sm:text-base hover:scale-105 transition-transform bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:text-white rounded-full hover:shadow-xl ${
                   selectedStack === item
                     ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white"
                     : ""
@@ -143,7 +143,7 @@ const Tutorials = () => {
 
         <section className="flex flex-col items-start justify-start overflow-auto w-full h-full">
           <div className="mx-auto overflow-auto w-full h-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-7 items-center justify-center m-auto py-10 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 sm:px-10 items-center justify-center m-auto py-10 w-full">
               {filteredTutorials.length > 0 ? (
                 filteredTutorials.map((item, index) => (
                   <CardContainer
@@ -168,7 +168,7 @@ const Tutorials = () => {
                         <div className="p-5">
                           <CardItem
                             translateZ={40}
-                            className="flex items-center whitespace-nowrap w-[25vw]"
+                            className="flex items-center whitespace-nowrap w-full"
                           >
                             <div className="flex item-center w-full">
                               <div className="flex space-x-1 overflow-auto pb-4 w-full">

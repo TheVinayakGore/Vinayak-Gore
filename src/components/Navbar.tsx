@@ -7,11 +7,9 @@ import {
   ProductItem,
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import Feedback from "./Feedback";
-import Tooltip from "./Tooltip";
 import { client } from "../sanity/lib/client";
 import { urlFor } from "../sanity/lib/image";
 import { PiArrowUpRightBold } from "react-icons/pi";
@@ -20,6 +18,7 @@ import { BsMoonStars } from "react-icons/bs";
 import { HiOutlineSun } from "react-icons/hi2";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import SideBar from "./SideBar";
+import { UserButton, useUser } from "@clerk/nextjs"; // Import Clerk components
 import { IoMdLogIn } from "react-icons/io";
 
 const LoadingSpinner = lazy(() => import("@/components/LoadingSpinner"));
@@ -52,7 +51,7 @@ const Navbar = ({
   const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const { data: session, status } = useSession();
+  const { isSignedIn, user } = useUser(); // Use Clerk's useUser hook
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -83,7 +82,7 @@ const Navbar = ({
   }, []);
 
   const handleFeedbackClick = () => {
-    if (status === "authenticated") {
+    if (isSignedIn) {
       openModal();
     } else {
       toast.warning("Please log in to give feedback", {
@@ -212,44 +211,20 @@ const Navbar = ({
             </div>
 
             <div className="flex items-center space-x-2 text-xs font-medium dark:text-zinc-100">
-              {status === "authenticated" && session?.user ? (
-                <Tooltip
-                  text={
-                    <>
-                      <p className="">
-                        You are signed in as
-                        <span className="text-blue-600 mx-1">
-                          {session.user.name}
-                        </span>
-                        Click to Sign Out
-                      </p>
-                    </>
-                  }
-                  className="top-full -left-16 mt-2 overflow-auto w-40 h-16"
-                >
-                  <button
-                    onClick={() => signOut()}
-                    className="flex text-zinc-300 cursor-pointer rounded-full"
-                  >
-                    <Image
-                      src={session?.user?.image || "/user.png"}
-                      width={40}
-                      height={40}
-                      alt="User Image"
-                      className="rounded-full"
-                    />
-                  </button>
-                </Tooltip>
+              {isSignedIn ? (
+                <div className="flex items-center space-x-2">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
               ) : (
-                <button
-                  onClick={async () => await signIn()}
+                <Link
+                  href="/sign-in"
                   className="flex cursor-pointer hover:text-white border border-zinc-700 hover:bg-gradient-to-r from-blue-500 to-blue-700 hover:border-blue-600 rounded-full"
                 >
                   <span className="responsive-themBtn text-sm px-7 py-2">
                     Login
                   </span>
                   <IoMdLogIn className="block sm:hidden text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white p-2 w-8 h-8" />
-                </button>
+                </Link>
               )}
               <button
                 className="responsive-themBtn text-2xl p-2 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"

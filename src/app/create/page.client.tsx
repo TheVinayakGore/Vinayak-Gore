@@ -98,7 +98,7 @@ const Create: React.FC = () => {
       <LoadingBar loading={loading} />
       {loading && <LoadingSpinner />}
       <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
-      <main className="flex flex-col items-start pb-40 w-full h-full">
+      <main className="flex flex-col items-start py-40 w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
           <div className="flex flex-col items-center m-auto leading-none w-full h-full">
             <TextHoverEffect

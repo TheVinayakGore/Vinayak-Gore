@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { useUser } from "@clerk/nextjs"; // Import Clerk's useUser hook
 
 interface Comment {
   _id: string;
   name: string;
   comment: string;
-  stars: number; 
+  stars: number;
 }
 
 const Comments = () => {
-  const { data: session } = useSession();
+  const { user } = useUser(); // Use Clerk's useUser hook
   const [comments, setComments] = useState<Comment[]>([]);
 
   // Fetch comments from localStorage
@@ -48,13 +48,13 @@ const Comments = () => {
             className="text-zinc-100 bg-zinc-900 p-4 rounded-lg border border-zinc-700 shadow-md"
           >
             <div className="flex items-center space-x-2 w-full">
-              <Image
-                src={session?.user?.image || "/vinu.png"}
+              {/* <Image
+                src={user?.imageUrl || "/vinu.png"} // Use Clerk's user image
                 alt="user"
                 className="rounded-full w-12 h-12"
                 width={500}
                 height={500}
-              />
+              /> */}
               <div className="flex flex-col items-start">
                 <p className="font-semibold text-lg leading-7">
                   {comment.name}

@@ -58,7 +58,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ codeString }) => {
             background: "#0f0f0f",
           }}
           wrapLongLines={true}
-          className="text-sm font-light"
+          className="text-xs sm:text-sm font-light"
         >
           {codeString}
         </SyntaxHighlighter>

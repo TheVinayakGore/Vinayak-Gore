@@ -124,8 +124,8 @@ const Auther: React.FC<AuthorProps> = ({ isDarkMode }) => {
             </ContainerScroll>
           </div>
         </div>
-        <Comments />
       </main>
+      <Comments />
     </>
   );
 };

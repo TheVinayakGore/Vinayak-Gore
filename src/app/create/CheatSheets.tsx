@@ -63,10 +63,10 @@ const CheatSheets: React.FC = () => {
     <>
       <main className="flex flex-col items-start w-full h-full">
         <section className="flex items-center justify-between border-b dark:border-zinc-500 shadow-lg shadow-zinc-900/[0.2] w-full">
-          <h1 className="text-green-500 text-3xl font-medium text-center relative p-4 w-1/2 md:w-1/4">
+          <h1 className="text-green-500 text-xl sm:text-3xl font-medium text-center relative p-4 z-30 w-1/2 md:w-1/4">
             CheatSheets
           </h1>
-          <div className="flex items-start justify-start space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
+          <div className="flex items-end justify-start space-x-2 p-4 text-base font-light overflow-auto whitespace-nowrap w-full">
             <div className="relative transform transition-transform hover:scale-105">
               <input
                 type="text"
@@ -88,7 +88,7 @@ const CheatSheets: React.FC = () => {
               <button
                 key={item}
                 onClick={() => setSelectedCategory(item)}
-                className={`px-7 leading-9 rounded-full hover:shadow-xl ${
+                className={`px-7 py-2 text-xs sm:text-base rounded-full hover:shadow-xl ${
                   selectedCategory === item
                     ? "bg-gradient-to-r from-teal-400 to-green-600 text-white"
                     : "bg-black/[0.07] dark:bg-white/[0.2] dark:text-white hover:bg-gradient-to-r from-teal-400 to-green-600 text-black hover:text-white hover:scale-105 transition-transform"
@@ -100,7 +100,7 @@ const CheatSheets: React.FC = () => {
           </div>
         </section>
         <section className="flex items-center overflow-auto w-full h-full">
-          <ul className="flex flex-col px-10 w-full h-full">
+          <ul className="flex flex-col px-4 sm:px-10 w-full h-full">
             {filteredSnippets.length > 0 ? (
               filteredSnippets.map((snippet, index) => (
                 <li

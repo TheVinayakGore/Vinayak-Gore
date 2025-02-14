@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import SessionWrapper from "@/components/SessionWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,14 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ToastContainer />
-        <SessionWrapper>
-          <div className="pb-20">{children}</div>
-          <Footer />
-        </SessionWrapper>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ToastContainer />
+            <div className="pb-20">{children}</div>
+            <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
