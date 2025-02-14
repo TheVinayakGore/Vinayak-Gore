@@ -155,3 +155,17 @@ body {
 }
 
 
+
+@media (max-width: 1023px) {
+  .techstacks {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .techstacks {
+    display: block;
+  }
+}
+
+

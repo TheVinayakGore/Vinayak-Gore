@@ -1,21 +1,25 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { IoLogoHtml5 } from "react-icons/io";
-import { IoLogoCss3 } from "react-icons/io";
-import { IoLogoJavascript } from "react-icons/io";
-import { RiReactjsLine } from "react-icons/ri";
-import { SiNextdotjs } from "react-icons/si";
-import { SiMongodb } from "react-icons/si";
-import { IoIosGitBranch } from "react-icons/io";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { SiShadcnui } from "react-icons/si";
+import {
+  IoLogoHtml5,
+  IoLogoCss3,
+  IoLogoJavascript,
+  IoIosGitBranch,
+} from "react-icons/io";
+import { RiReactjsLine, RiTailwindCssFill } from "react-icons/ri";
+import {
+  SiNextdotjs,
+  SiMongodb,
+  SiShadcnui,
+  SiTypescript,
+  SiVite,
+  SiSanity,
+  SiExpress,
+} from "react-icons/si";
 import { BsBootstrapFill } from "react-icons/bs";
 import { FaNodeJs } from "react-icons/fa";
-import { SiExpress } from "react-icons/si";
-import { SiTypescript } from "react-icons/si";
-import { SiVite } from "react-icons/si";
-import { SiSanity } from "react-icons/si";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const TechStacks = () => {
   const features = [
@@ -127,11 +131,50 @@ const TechStacks = () => {
             Development Tech Stacks for creating Modern Projects
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 py-10 mx-auto w-full">
-          {features.map((feature, index) => (
-            <Feature key={feature.title} {...feature} index={index} />
-          ))}
+        <div className="techstacks">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 py-10 mx-auto w-full">
+            {features.map((feature, index) => (
+              <Feature key={feature.title} {...feature} index={index} />
+            ))}
+          </div>
         </div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, scale: 0.8 },
+            visible: {
+              opacity: 1,
+              scale: 1,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+          className="lg:hidden grid grid-cols-3 sm:grid-cols-4 gap-5 sm:gap-10"
+        >
+          {features.map((item) => (
+            <motion.div
+              key={item.title}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.9 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              whileHover={{ scale: 1.1, rotate: 8 }}
+              transition={{ type: "spring", stiffness: 200, damping: 12 }}
+              className="relative group items-center justify-center m-auto p-5 bg-white dark:bg-zinc-900 border rounded-full"
+            >
+              <Link
+                href={item.link || "/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Learn more about ${item.title}`}
+              >
+                <div className="text-3xl transition-all duration-500">
+                  {item.icon}
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
       </main>
     </>
   );
@@ -163,6 +206,7 @@ const Feature = ({
           "lg:border-l dark:border-neutral-800",
         index < 10 && "lg:border-b dark:border-neutral-800"
       )}
+      aria-label={`Learn more about ${title}`}
     >
       {index < 5 && (
         <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
