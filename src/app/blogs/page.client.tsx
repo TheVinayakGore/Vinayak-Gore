@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { BiCircle } from "react-icons/bi";
 import { LuChevronRightCircle } from "react-icons/lu";
@@ -11,9 +11,8 @@ import { urlFor } from "../../sanity/lib/image";
 import { format } from "date-fns";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import Navbar from "@/components/Navbar";
-
-const LoadingSpinner = lazy(() => import("@/components/LoadingSpinner"));
-const LoadingBar = lazy(() => import("@/components/LoadingBar"));
+import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingBar from "@/components/LoadingBar";
 
 interface Blog {
   _id: string;
@@ -43,15 +42,21 @@ const Blogs: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSunIcon, setIsSunIcon] = useState(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false); // 🚀 Prevent SSR Hydration Error
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setIsDarkMode(storedTheme === "dark");
-      setIsSunIcon(storedTheme !== "dark");
-      document.body.classList.toggle("dark", storedTheme === "dark");
-    }
-  }, []);
+    // ✅ Fix Hydration Issue: Only run theme logic on the client
+    useEffect(() => {
+      setIsMounted(true);
+  
+      if (typeof window !== "undefined") {
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme) {
+          setIsDarkMode(storedTheme === "dark");
+          setIsSunIcon(storedTheme !== "dark");
+          document.body.classList.toggle("dark", storedTheme === "dark");
+        }
+      }
+    }, []);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -111,6 +116,10 @@ const Blogs: React.FC = () => {
       blog.desc.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  if (!isMounted) {
+    return null; // or return a loading spinner
+  }
+
   return (
     <>
       <title>Blogs Page | Web Development | Vinayak Gore</title>
@@ -125,7 +134,7 @@ const Blogs: React.FC = () => {
                 text="NEWBLOGS"
                 className="text-[0px] md:text-[3.5rem] -mt-20 z-10"
               />
-              <p className="text-center tracking-widest mb-5 sm:-mt-28 pb-10 text-sm sm:text-3xl font-thin">
+              <p className="text-center tracking-widest mb-5 sm:-mt-28 text-sm md:text-xl lg:text-2xl xl:text-3xl font-extralight">
                 All the blogs related to development
               </p>
             </div>

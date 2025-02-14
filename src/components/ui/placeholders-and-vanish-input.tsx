@@ -179,14 +179,14 @@ export function PlaceholdersAndVanishInput({
   return (
     <form
       className={cn(
-        "w-full relative max-w-4xl mx-auto border border-zinc-800 h-16 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
+        "w-full relative max-w-4xl mx-auto border border-zinc-800 h-12 sm:h-16 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
         value && "bg-transparent"
       )}
       onSubmit={handleSubmit}
     >
       <canvas
         className={cn(
-          "absolute pointer-events-none text-base transform scale-50 top-[20%] left-2 origin-top-left filter invert dark:invert-0 pr-20",
+          "absolute pointer-events-none text-xs sm:text-base transform scale-50 top-[20%] left-2 origin-top-left filter invert dark:invert-0 pr-10 sm:pr-20",
           !animating ? "opacity-0" : "opacity-100"
         )}
         ref={canvasRef}
@@ -203,7 +203,7 @@ export function PlaceholdersAndVanishInput({
         value={value}
         type="text"
         className={cn(
-          "w-full relative text-xl font-light z-40 border-none text-black dark:text-white bg-transparent h-full rounded-full focus:outline-none focus:ring-0 pl-10 pr-20",
+          "w-full relative text-base sm:text-xl font-light z-40 border-none text-black dark:text-white bg-transparent h-full rounded-full focus:outline-none focus:ring-0 pl-5 sm:pl-10 pr-10 sm:pr-20",
           animating && "text-transparent dark:text-transparent bg-transparent"
         )}
       />
@@ -211,7 +211,7 @@ export function PlaceholdersAndVanishInput({
       <button
         disabled={!value}
         type="submit"
-        className="absolute right-[0.4rem] top-1/2 z-40 -translate-y-1/2 h-12 w-12 rounded-full border border-zinc-800 disabled:border-zinc-800 bg-white dark:bg-black transition duration-200 flex items-center justify-center"
+        className="absolute right-[0.4rem] top-1/2 z-40 -translate-y-1/2 h-7 sm:h-12 w-7 sm:w-12 rounded-full border border-zinc-800 disabled:border-zinc-800 bg-white dark:bg-black transition duration-200 flex items-center justify-center"
       >
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +266,7 @@ export function PlaceholdersAndVanishInput({
                 duration: 0.3,
                 ease: "linear",
               }}
-              className="text-xl font-light text-zinc-600 pl-10 text-left w-[calc(100%-2rem)] truncate"
+              className="text-sm sm:text-xl font-light text-zinc-600 pl-5 sm:pl-10 text-left w-[calc(100%-2rem)] truncate"
             >
               {placeholders[currentPlaceholder]}
             </motion.p>

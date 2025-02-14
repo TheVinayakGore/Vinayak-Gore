@@ -1,8 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true, 
+    reactStrictMode: true,
     images: {
-        domains: ['avatars.githubusercontent.com', 'cdn.sanity.io', 'via.placeholder.com'],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+            },
+            {
+                protocol: "https",
+                hostname: "via.placeholder.com",
+            },
+        ],
     },
     basePath: "", // Keep empty or remove to prevent conflicts
 };

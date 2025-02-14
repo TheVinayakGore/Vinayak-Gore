@@ -2,7 +2,6 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { Tabs } from "@/components/ui/tabs";
 import Tutorials from "./Tutorials";
-// import Playlists from "./Playlists";
 import CheatSheets from "./CheatSheets";
 import Posters from "./Posters";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -14,8 +13,12 @@ const Create: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSunIcon, setIsSunIcon] = useState(true);
+  const [isMounted, setIsMounted] = useState(false); // 🚀 Prevent SSR Hydration Error
 
+  // ✅ Fix Hydration Issue: Only run theme logic on the client
   useEffect(() => {
+    setIsMounted(true);
+
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
       setIsDarkMode(storedTheme === "dark");
@@ -53,18 +56,6 @@ const Create: React.FC = () => {
         </div>
       ),
     },
-    // {
-    //   title: "Playlists",
-    //   value: "Playlists",
-    //   description: "Created playlists of tutorials on my YouTube channel, watch & enjoy videos !",
-    //   content: (
-    //     <div className="w-full relative h-full rounded-xl dark:text-white bg-gradient-to-br from-white/[0.05] dark:from-white/[0.1] to-white/[0.05] dark:to-white/[0.1] backdrop-blur-2xl border border-zinc-200 dark:border-none shadow-xl z-30">
-    //       <Suspense fallback={<LoadingSpinner />}>
-    //         <Playlists />
-    //       </Suspense>
-    //     </div>
-    //   ),
-    // },
     {
       title: "Cheat Sheets",
       value: "Cheat Sheets",
@@ -93,12 +84,16 @@ const Create: React.FC = () => {
     },
   ];
 
+  if (!isMounted) {
+    return null; // or return a loading spinner
+  }
+
   return (
     <>
       <LoadingBar loading={loading} />
       {loading && <LoadingSpinner />}
       <Navbar toggleTheme={toggleTheme} isSunIcon={isSunIcon} />
-      <main className="flex flex-col items-start py-40 w-full h-full">
+      <main className="flex flex-col items-start pt-40 sm:pt-10 pb-40 w-full h-full">
         <div className="relative flex flex-col m-auto items-start justify-start w-full h-full">
           <div className="flex flex-col items-center m-auto leading-none w-full h-full">
             <TextHoverEffect

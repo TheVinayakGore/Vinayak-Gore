@@ -48,13 +48,13 @@ const Comments = () => {
             className="text-zinc-100 bg-zinc-900 p-4 rounded-lg border border-zinc-700 shadow-md"
           >
             <div className="flex items-center space-x-2 w-full">
-              {/* <Image
-                src={user?.imageUrl || "/vinu.png"} // Use Clerk's user image
+              <Image
+                src={user?.imageUrl || "/user.png"} // Use Clerk's user image
                 alt="user"
                 className="rounded-full w-12 h-12"
                 width={500}
                 height={500}
-              /> */}
+              />
               <div className="flex flex-col items-start">
                 <p className="font-semibold text-lg leading-7">
                   {comment.name}

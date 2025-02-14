@@ -212,8 +212,15 @@ const Navbar = ({
 
             <div className="flex items-center space-x-2 text-xs font-medium dark:text-zinc-100">
               {isSignedIn ? (
-                <div className="flex items-center space-x-2">
-                  <UserButton afterSignOutUrl="/" />
+                <div className="flex items-center border-2 rounded-full">
+                  <UserButton
+                    afterSignOutUrl="/"
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-10 h-10", // Adjusts the avatar size
+                      },
+                    }}
+                  />
                 </div>
               ) : (
                 <Link
@@ -227,13 +234,13 @@ const Navbar = ({
                 </Link>
               )}
               <button
-                className="responsive-themBtn text-2xl p-2 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
+                className="responsive-themBtn text-2xl p-3 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
                 onClick={toggleTheme}
               >
                 {isSunIcon ? <HiOutlineSun /> : <BsMoonStars />}
               </button>
               <button
-                className="block sm:hidden text-2xl p-2 text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
+                className="block sm:hidden text-2xl p-3 text-zinc-400 hover:text-black dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-full"
                 onClick={openSidebar}
               >
                 <MdOutlineDashboardCustomize />
