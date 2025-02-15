@@ -95,5 +95,31 @@ export const blogs = defineType({
         },
       ],
     }),
+    defineField({
+      title: "Like Count",
+      name: "likeCount",
+      type: "number",
+      initialValue: 0,
+    }),
+    defineField({
+      title: "Star Count",
+      name: "starCount",
+      type: "number",
+      initialValue: 0,
+    }),
+    defineField({
+      title: "Liked By",
+      name: "likedBy",
+      type: "array",
+      of: [{ type: "string" }], // Array of user identifiers (e.g., IP addresses)
+      initialValue: [],
+    }),
+    defineField({
+      title: "Starred By",
+      name: "starredBy",
+      type: "array",
+      of: [{ type: "string" }], // Array of user identifiers (e.g., IP addresses)
+      initialValue: [],
+    }),
   ],
 });

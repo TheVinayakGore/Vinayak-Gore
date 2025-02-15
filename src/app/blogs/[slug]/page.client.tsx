@@ -21,6 +21,7 @@ import CommentModal from "./CommentForm";
 import { ShareDialog } from "./ShareDialog";
 import { toast } from "react-toastify";
 import Tooltip from "@/components/Tooltip";
+import Cookies from "js-cookie"; // Import js-cookie
 
 interface Blog {
   _id: string;
@@ -35,6 +36,8 @@ interface Blog {
   nextPost?: { slug: { current: string } };
   starCount: number;
   likeCount: number;
+  likedBy: string[]; // Array of user identifiers who liked the post
+  starredBy: string[]; // Array of user identifiers who starred the post
 }
 
 interface Comment {
@@ -65,6 +68,17 @@ const BlogPage = ({ params }: Props) => {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
+  // Generate or retrieve a unique user identifier (e.g., from a cookie)
+  const getUserId = () => {
+    let userId = Cookies.get("user_id");
+    if (!userId) {
+      userId =
+        Math.random().toString(36).substring(2) + Date.now().toString(36); // Generate a unique ID
+      Cookies.set("user_id", userId, { expires: 365 }); // Store the ID in a cookie for 1 year
+    }
+    return userId;
+  };
+
   useEffect(() => {
     document.body.classList.add("dark"); // Apply dark mode class to body
   }, []);
@@ -83,7 +97,7 @@ const BlogPage = ({ params }: Props) => {
       date: currentDate,
       blog: {
         _type: "reference",
-        _ref: blog?._id, // Reference the blog post
+        _ref: blog?._id,
       },
     };
 
@@ -92,7 +106,10 @@ const BlogPage = ({ params }: Props) => {
       toast.success("Comment submitted successfully!", { autoClose: 2000 });
       fetchComments(); // Refresh comments after submission
     } catch (error) {
-      toast.error("Failed to submit comment", { autoClose: 2000 });
+      console.error("Failed to submit comment:", error); // Log the error
+      toast.error("Failed to submit comment. Please try again.", {
+        autoClose: 2000,
+      });
     }
 
     setModalOpen(false);
@@ -132,6 +149,14 @@ const BlogPage = ({ params }: Props) => {
         }
 
         setBlog(fetchedBlog);
+        setLikeCount(fetchedBlog.likeCount || 0); // Initialize likeCount
+        setStarCount(fetchedBlog.starCount || 0); // Initialize starCount
+
+        // Check if the current user has already liked or starred the post
+        const userId = getUserId();
+        setLike(fetchedBlog.likedBy?.includes(userId) || false);
+        setStar(fetchedBlog.starredBy?.includes(userId) || false);
+
         fetchComments(); // Fetch comments after setting the blog
       } catch (err) {
         setError("Failed to load blog");
@@ -141,37 +166,7 @@ const BlogPage = ({ params }: Props) => {
     };
 
     fetchBlogData();
-  }, [slug, fetchComments]); // Add fetchComments to the dependency array
-
-  // Star Mark
-  useEffect(() => {
-    const storedStarStatus = localStorage.getItem(`starMark-${slug}`);
-    const storedStarCount = localStorage.getItem(`starCount-${slug}`);
-
-    if (storedStarStatus === "true") {
-      setStar(true);
-    }
-
-    if (storedStarCount) {
-      setStarCount(parseInt(storedStarCount, 10));
-    }
-  }, [slug]);
-
-  // Like Blog
-  useEffect(() => {
-    const storedLikeStatus = localStorage.getItem(`liked-${slug}`);
-    const storedLikeCount = localStorage.getItem(`likeCount-${slug}`);
-
-    if (storedLikeStatus === "true") {
-      setLike(true);
-    } else {
-      setLike(false);
-    }
-
-    if (storedLikeCount) {
-      setLikeCount(parseInt(storedLikeCount, 10));
-    }
-  }, [slug]);
+  }, [slug, fetchComments]);
 
   if (loading) {
     return (
@@ -190,48 +185,61 @@ const BlogPage = ({ params }: Props) => {
     return <p>Blog not found</p>;
   }
 
-  const handleStarMark = () => {
-    if (star === false) {
-      setStar(true);
-      toast.success("Star marked the blog!", { autoClose: 2000 });
-      setStarCount((prevCount) => {
-        const updatedCount = prevCount + 1;
-        localStorage.setItem(`starCount-${slug}`, updatedCount.toString());
-        return updatedCount;
-      });
-    } else {
-      setStar(false);
-      toast.warning("Unstared the blog!", { autoClose: 2000 });
-      setStarCount((prevCount) => {
-        const updatedCount = prevCount - 1;
-        localStorage.setItem(`starCount-${slug}`, updatedCount.toString());
-        return updatedCount;
-      });
+  // Handle Like
+  const handleLikeMark = async () => {
+    if (!blog?._id) return;
+
+    const userId = getUserId();
+    const hasLiked = blog.likedBy?.includes(userId);
+
+    if (hasLiked) {
+      toast.warning("You have already liked this post!", { autoClose: 2000 });
+      return;
     }
-    localStorage.setItem(`starMark-${slug}`, (!star).toString());
+
+    const updatedLikeCount = likeCount + 1;
+    const updatedLikedBy = [...(blog.likedBy || []), userId];
+
+    try {
+      await client
+        .patch(blog._id)
+        .set({ likeCount: updatedLikeCount, likedBy: updatedLikedBy })
+        .commit();
+
+      setLike(true);
+      setLikeCount(updatedLikeCount);
+      toast.success("Liked the blog!", { autoClose: 2000 });
+    } catch (error) {
+      toast.error("Failed to update like count", { autoClose: 2000 });
+    }
   };
 
-  const handleLikeMark = () => {
-    const storedLikeStatus = localStorage.getItem(`liked-${slug}`);
+  // Handle Star
+  const handleStarMark = async () => {
+    if (!blog?._id) return;
 
-    if (storedLikeStatus === "true") {
-      setLike(false);
-      toast.warning("Unliked the blog!", { autoClose: 2000 });
-      setLikeCount((prevCount) => {
-        const updatedCount = prevCount - 1;
-        localStorage.setItem(`likeCount-${slug}`, updatedCount.toString());
-        return updatedCount;
-      });
-      localStorage.setItem(`liked-${slug}`, "false");
-    } else {
-      setLike(true);
-      toast.success("Liked blog!", { autoClose: 2000 });
-      setLikeCount((prevCount) => {
-        const updatedCount = prevCount + 1;
-        localStorage.setItem(`likeCount-${slug}`, updatedCount.toString());
-        return updatedCount;
-      });
-      localStorage.setItem(`liked-${slug}`, "true");
+    const userId = getUserId();
+    const hasStarred = blog.starredBy?.includes(userId);
+
+    if (hasStarred) {
+      toast.warning("You have already starred this post!", { autoClose: 2000 });
+      return;
+    }
+
+    const updatedStarCount = starCount + 1;
+    const updatedStarredBy = [...(blog.starredBy || []), userId];
+
+    try {
+      await client
+        .patch(blog._id)
+        .set({ starCount: updatedStarCount, starredBy: updatedStarredBy })
+        .commit();
+
+      setStar(true);
+      setStarCount(updatedStarCount);
+      toast.success("Starred the blog!", { autoClose: 2000 });
+    } catch (error) {
+      toast.error("Failed to update star count", { autoClose: 2000 });
     }
   };
 
