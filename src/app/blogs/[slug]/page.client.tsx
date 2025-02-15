@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/lib/image";
 import { format } from "date-fns";
@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import Tooltip from "@/components/Tooltip";
 
 interface Blog {
+  _id: string;
   title: string;
   desc: string;
   date: string;
@@ -32,7 +33,6 @@ interface Blog {
   };
   previousPost?: { slug: { current: string } };
   nextPost?: { slug: { current: string } };
-  comments: any[];
   starCount: number;
   likeCount: number;
 }
@@ -70,27 +70,60 @@ const BlogPage = ({ params }: Props) => {
   }, []);
 
   // Handle comment submission
-  const handleCommentSubmit = (newComment: {
+  const handleCommentSubmit = async (newComment: {
     username: string;
     message: string;
   }) => {
-    const currentDate = new Date();
-    const formattedDate = format(currentDate, "dd-MM-yyyy | hh:mm:ss a");
+    const currentDate = new Date().toISOString();
 
-    const updatedComments = [
-      ...comments,
-      { ...newComment, date: formattedDate },
-    ];
+    const commentDoc = {
+      _type: "blogComments",
+      username: newComment.username,
+      message: newComment.message,
+      date: currentDate,
+      blog: {
+        _type: "reference",
+        _ref: blog?._id, // Reference the blog post
+      },
+    };
 
-    setComments(updatedComments);
-    localStorage.setItem(`comments-${slug}`, JSON.stringify(updatedComments)); // Store with the blog-specific key
+    try {
+      await client.create(commentDoc);
+      toast.success("Comment submitted successfully!", { autoClose: 2000 });
+      fetchComments(); // Refresh comments after submission
+    } catch (error) {
+      toast.error("Failed to submit comment", { autoClose: 2000 });
+    }
+
     setModalOpen(false);
   };
+
+  // Fetch comments for the current blog post
+  const fetchComments = useCallback(async () => {
+    if (!blog?._id) return;
+
+    try {
+      const query = `*[_type == "blogComments" && blog._ref == $blogId] | order(date desc) {
+        username,
+        message,
+        date
+      }`;
+      const fetchedComments = await client.fetch(query, { blogId: blog._id });
+      setComments(fetchedComments);
+    } catch (error) {
+      toast.error("Failed to load comments", { autoClose: 2000 });
+    }
+  }, [blog?._id]); // Add blog._id as a dependency
 
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const blogQuery = `*[_type == "blogs" && slug.current == $slug][0]{..., "previousPost": *[_type == "blogs" && date < ^.date] | order(date desc)[0]{ slug }, "nextPost": *[_type == "blogs" && date > ^.date] | order(date asc)[0]{ slug }}`;
+        const blogQuery = `*[_type == "blogs" && slug.current == $slug][0]{
+          _id,
+          ...,
+          "previousPost": *[_type == "blogs" && date < ^.date] | order(date desc)[0]{ slug },
+          "nextPost": *[_type == "blogs" && date > ^.date] | order(date asc)[0]{ slug }
+        }`;
         const fetchedBlog = await client.fetch(blogQuery, { slug });
 
         if (!fetchedBlog) {
@@ -99,12 +132,7 @@ const BlogPage = ({ params }: Props) => {
         }
 
         setBlog(fetchedBlog);
-
-        // Retrieve comments for this specific blog post from localStorage
-        const storedComments = localStorage.getItem(`comments-${slug}`);
-        if (storedComments) {
-          setComments(JSON.parse(storedComments));
-        }
+        fetchComments(); // Fetch comments after setting the blog
       } catch (err) {
         setError("Failed to load blog");
       } finally {
@@ -113,11 +141,10 @@ const BlogPage = ({ params }: Props) => {
     };
 
     fetchBlogData();
-  }, [slug]);
+  }, [slug, fetchComments]); // Add fetchComments to the dependency array
 
   // Star Mark
   useEffect(() => {
-    // Get the stored star state and count from localStorage
     const storedStarStatus = localStorage.getItem(`starMark-${slug}`);
     const storedStarCount = localStorage.getItem(`starCount-${slug}`);
 
@@ -138,21 +165,13 @@ const BlogPage = ({ params }: Props) => {
     if (storedLikeStatus === "true") {
       setLike(true);
     } else {
-      setLike(false); // Ensure it's set to false if not liked
+      setLike(false);
     }
 
     if (storedLikeCount) {
       setLikeCount(parseInt(storedLikeCount, 10));
     }
   }, [slug]);
-
-  // Retrieve comments from localStorage
-  useEffect(() => {
-    const storedComments = localStorage.getItem("comments");
-    if (storedComments) {
-      setComments(JSON.parse(storedComments));
-    }
-  }, []);
 
   if (loading) {
     return (
@@ -177,7 +196,7 @@ const BlogPage = ({ params }: Props) => {
       toast.success("Star marked the blog!", { autoClose: 2000 });
       setStarCount((prevCount) => {
         const updatedCount = prevCount + 1;
-        localStorage.setItem(`starCount-${slug}`, updatedCount.toString()); // Store the updated star count
+        localStorage.setItem(`starCount-${slug}`, updatedCount.toString());
         return updatedCount;
       });
     } else {
@@ -185,19 +204,17 @@ const BlogPage = ({ params }: Props) => {
       toast.warning("Unstared the blog!", { autoClose: 2000 });
       setStarCount((prevCount) => {
         const updatedCount = prevCount - 1;
-        localStorage.setItem(`starCount-${slug}`, updatedCount.toString()); // Store the updated star count
+        localStorage.setItem(`starCount-${slug}`, updatedCount.toString());
         return updatedCount;
       });
     }
-    localStorage.setItem(`starMark-${slug}`, (!star).toString()); // Store star status
+    localStorage.setItem(`starMark-${slug}`, (!star).toString());
   };
 
-  // Add the toggle functionality to like/unlike the blog
   const handleLikeMark = () => {
     const storedLikeStatus = localStorage.getItem(`liked-${slug}`);
 
     if (storedLikeStatus === "true") {
-      // User has already liked the blog, now unlike
       setLike(false);
       toast.warning("Unliked the blog!", { autoClose: 2000 });
       setLikeCount((prevCount) => {
@@ -205,9 +222,8 @@ const BlogPage = ({ params }: Props) => {
         localStorage.setItem(`likeCount-${slug}`, updatedCount.toString());
         return updatedCount;
       });
-      localStorage.setItem(`liked-${slug}`, "false"); // Update to unlike in localStorage
+      localStorage.setItem(`liked-${slug}`, "false");
     } else {
-      // User is liking the blog
       setLike(true);
       toast.success("Liked blog!", { autoClose: 2000 });
       setLikeCount((prevCount) => {
@@ -215,11 +231,10 @@ const BlogPage = ({ params }: Props) => {
         localStorage.setItem(`likeCount-${slug}`, updatedCount.toString());
         return updatedCount;
       });
-      localStorage.setItem(`liked-${slug}`, "true"); // Mark as liked in localStorage
+      localStorage.setItem(`liked-${slug}`, "true");
     }
   };
 
-  // CodeBlock component with copy functionality
   const CodeBlock = ({
     value,
   }: {
@@ -233,7 +248,7 @@ const BlogPage = ({ params }: Props) => {
       toast.success("Copied Successfully!");
       setTimeout(() => {
         setIsCopied(false);
-      }, 2000); // Revert to "Copy" after 2 seconds
+      }, 2000);
     };
 
     return (
@@ -329,7 +344,6 @@ const BlogPage = ({ params }: Props) => {
       circle: ({ children }: any) => (
         <ul className="list-circle pl-5 text-green-400 my-2">{children}</ul>
       ),
-
       alpha: ({ children }: any) => (
         <ol className="list-[lower-alpha] pl-5 text-pink-400 my-2">
           {children}
@@ -425,7 +439,6 @@ const BlogPage = ({ params }: Props) => {
                 </div>
               </div>
               <div className="flex flex-col text-zinc-400 w-full">
-                {/* Use PortableText with custom serializers */}
                 <PortableText value={blog.content} components={components} />
               </div>
             </div>
@@ -494,10 +507,11 @@ const BlogPage = ({ params }: Props) => {
                           <p className="text-base font-medium text-zinc-200 leading-6">
                             {comment.username}
                           </p>
-                          <span className="font-light text-[0.7rem] text-zinc-500">
-                            {!isNaN(new Date().getTime())
-                              ? format(new Date(), "dd-MM-yyyy | hh:mm:ss a")
-                              : "Invalid date"}
+                          <span className="font-light text-[0.7rem] text-zinc-500 mt-1">
+                            {format(
+                              new Date(comment.date),
+                              "dd-MM-yyyy | hh:mm:ss a"
+                            )}
                           </span>
                         </div>
                       </div>
